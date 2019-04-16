@@ -168,25 +168,6 @@ export class DisasterMap {
   attached() {
     let self = this;
 
-    // Calls the Map disable/enable function per map option.
-    const mapMovement = (enabled) => {
-      enabled = (enabled ? 'enable' : 'disable');
-      const
-        touchZoom = self.map.touchZoom,
-        doubleClickZoom = self.map.doubleClickZoom,
-        scrollWheelZoom = self.map.scrollWheelZoom,
-        boxZoom = self.map.boxZoom,
-        keyboard = self.map.keyboard,
-        dragging = self.map.dragging;
-
-      touchZoom[enabled]();
-      doubleClickZoom[enabled]();
-      scrollWheelZoom[enabled]();
-      boxZoom[enabled]();
-      keyboard[enabled]();
-      dragging[enabled]();
-    };
-
     // Initialize leaflet map
     self.map = L.map('mapContainer', {
       attributionControl: false, //include in side pane
@@ -232,31 +213,29 @@ export class DisasterMap {
     if (typeof self.querycity !== 'undefined') {
       self.viewReports(self.querycity, true);
     } else {
-      mapMovement(false);
-
       // Find user location & store in background
       self.map.locate({
         setView: false
       });
       self.map.on('locationfound', (e) => {
-        self.utility.onLocationFound(e);
 
-        // Not a valid city, or not in bounds of defined cities. see map-utility.js onLocationFound();
-        if (typeof self.utility.clientCity === 'undefined') {
-          self.utility.clientLocation = null;
-          // Show the City Selector
-          $('#screen').show();
-          mapMovement(true);
+        if (self.utility.config.dep_name === 'petabencana') {
+          // If in Indonesia, flyTo the users location.
+          if (
+            e.latitude > -10.3599874813 && // Lat SW
+            e.longitude > 95.2930261576 && // Lng SW
+            e.latitude < 5.47982086834 && // Lat NE
+            e.longitude < 141.03385176 // Lng NE
+          ) {
+            self.map.flyTo(e.latlng, 12);
+          } else {
+            $('#screen').show();
+          }
         } else {
-          mapMovement(true);
-          // changeCity and FlyTo the city.
-          self.utility.viewClientLocation(self.map, self.layers, self.togglePane, 12);
-          history.replaceState({city: self.utility.clientCity, report_id: null}, 'city', 'map/' + self.utility.clientCity);
+          $('#screen').show();
         }
       });
       self.map.on('locationerror', () => {
-        self.utility.clientLocation = null;
-        mapMovement(true);
         // Show the City Selector
         $('#screen').show();
       });
