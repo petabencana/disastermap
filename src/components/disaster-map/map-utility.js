@@ -137,13 +137,13 @@ export class MapUtility {
     this.gpsMarker.addTo(map);
   }
 
-  viewClientLocation(map, layers, togglePane) {
+  viewClientLocation(map, layers, togglePane, zoomLevel) {
     var self = this;
     if (self.clientLocation) {
       if (self.clientCityIsValid) {
         //case 1: location found, location in a supported city
         self.changeCity(self.clientCity, null, map, layers, true, togglePane);
-        map.flyTo(self.clientLocation.latlng, 15);
+        map.flyTo(self.clientLocation.latlng, zoomLevel ? zoomLevel : 15);
         if (self.gpsMarker) {
           self.gpsMarker.removeFrom(map);
           self.gpsAccuracy.removeFrom(map);
