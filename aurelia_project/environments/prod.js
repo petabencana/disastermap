@@ -7,7 +7,7 @@ export default {
     title: 'RiskMap.us',
     report_timeperiod: 3600,
     default_language: 'en',
-    tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNqMnFraWVzYzAyd24ycXRqMmpvbmhyZ2QifQ.xc_v7umok760t2q6NZK1RA',
+    tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNpdmVhc2VwZTAwNmYydXFrOThrMWxmcGIifQ.Dl07iYeyvtqJxOVXa9_A0A',
     data_server: 'https://data.riskmap.us/',
     app: 'https://broward.riskmap.us/',
     deep_links: [
@@ -35,7 +35,7 @@ export default {
     title: 'RiskMap.in',
     report_timeperiod: 43200, //12 hrs
     default_language: 'en',
-    tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNqMnFraWVzYzAyd24ycXRqMmpvbmhyZ2QifQ.xc_v7umok760t2q6NZK1RA',
+    tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNpdmVhc2VwZTAwNmYydXFrOThrMWxmcGIifQ.Dl07iYeyvtqJxOVXa9_A0A',
     data_server: 'https://data.riskmap.in/',
     app: 'https://riskmap.in/',
     deep_links: [
