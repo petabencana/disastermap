@@ -2,8 +2,9 @@
 
 import {inject, noView} from 'aurelia-framework';
 import * as L from 'leaflet';
-import {Config} from 'resources/config';
 import {notify} from 'notifyjs-browser'; //Jquery plugin
+
+import {Config} from 'resources/config';
 
 $.notify.addStyle('mapInfo', {
   html: "<div id=notification><span data-notify-text/></div>",
@@ -24,6 +25,13 @@ $.notify.addStyle('mapInfo', {
 export class MapUtility {
   constructor(Config) {
     this.config = Config.map;
+
+    this.indonesiaBoundingBox = {
+      lat_sw: -10.3599874813,
+      lng_sw: 95.2930261576,
+      lat_ne: 5.47982086834,
+      lng_ne: 141.03385176
+    };
   }
 
   // return boolean only
@@ -73,11 +81,23 @@ export class MapUtility {
     // Remove previous layers
     layers.removeFloodExtents(map);
     layers.removeFloodGauges(map);
-    // Fly to new city bounds
-    map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
-    .once('moveend zoomend', (e) => {
-      map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
+
+    // // Fly to new city bounds
+    // Below is code to LOCK the screen to the bounds of the city.
+    map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne]).once('moveend zoomend', (e) => {
+
+      // Sets the bounds to Indonesia
+      if (self.config.dep_name === 'petabencana') {
+        const
+          southWest = L.latLng(self.indonesiaBoundingBox.lat_sw, self.indonesiaBoundingBox.lng_sw),
+          northEast = L.latLng(self.indonesiaBoundingBox.lat_ne, self.indonesiaBoundingBox.lng_ne);
+
+        map.setMaxBounds([southWest, northEast]);
+      } else {
+        map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
+      }
     });
+
     // Add new layers
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(city_name, self.parseCityObj(city_name, false).region, map, togglePane);
@@ -102,6 +122,7 @@ export class MapUtility {
       $.notify("No reports found for " + city_name, {style:"mapInfo", className:"info", position:"top center"});
     } else {
       $.notify('Unsupported city', {style:"mapInfo", className:"error", position:"top center"});
+      $('#screen').show();
     }
   }
 

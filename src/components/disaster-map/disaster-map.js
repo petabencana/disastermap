@@ -90,11 +90,9 @@ export class DisasterMap {
   viewReports(cityName, pushState) {
     let self = this;
 
-    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane)
-    .then(() => {
+    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane).then(() => {
       // Show timeperiod notification
-      self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
-      .then(stats => {
+      self.layers.getStats(self.utility.parseCityObj(cityName, false).region).then(stats => {
         let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600);
         self.utility.statsNotification(msg);
       });
@@ -110,8 +108,7 @@ export class DisasterMap {
         }
       } else if (self.reportid && !self.layers.activeReports.hasOwnProperty(self.reportid)) {
         //Case 2: No active report, check availability on server
-        self.layers.addSingleReport(self.reportid)
-        .then(report => {
+        self.layers.addSingleReport(self.reportid).then(report => {
           let reportRegion = self.layers.activeReports[self.reportid].feature.properties.tags.instance_region_code;
           if (reportRegion === self.utility.parseCityObj(cityName, false).region) {
             //Case 2A: in current city?
@@ -123,10 +120,8 @@ export class DisasterMap {
           } else {
             //Case 2B: fly to city with report id
             let queryReportCity = self.utility.parseCityName(reportRegion, self.cities);
-            self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.togglePane)
-            .then(() => {
-              self.layers.addSingleReport(self.reportid)
-              .then(queriedReport => {
+            self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.togglePane).then(() => {
+              self.layers.addSingleReport(self.reportid).then(queriedReport => {
                 queriedReport.fire('click');
                 self.selected_city = queryReportCity;
                 if (pushState) {
@@ -166,7 +161,8 @@ export class DisasterMap {
   }
 
   attached() {
-    let self = this;
+    const self = this;
+    let mapMoveZoomTimeout = false;
 
     // Initialize leaflet map
     self.map = L.map('mapContainer', {
@@ -209,30 +205,59 @@ export class DisasterMap {
       position: 'bottomright'
     }).addTo(self.map);
 
+    self.map.on('movestart', () => {
+      if (self.utility.config.dep_name === 'petabencana' && mapMoveZoomTimeout) {
+        clearTimeout(mapMoveZoomTimeout);
+        mapMoveZoomTimeout = false;
+      }
+    });
+    self.map.on('moveend', () => {
+      if (self.utility.config.dep_name === 'petabencana') {
+        mapMoveZoomTimeout = setTimeout(() => {
+          const regions = self.utility.config.instance_regions;
+
+          // Get reports for city in view/bounds.
+          for (const city in regions) {
+            const cityBounds = new L.LatLngBounds(
+              new L.LatLng(regions[city].bounds.ne[0], regions[city].bounds.ne[1]),
+              new L.LatLng(regions[city].bounds.sw[0], regions[city].bounds.sw[1])
+            );
+
+            if (self.map.getBounds().intersects(cityBounds)) {
+              self.layers.addFloodExtents(city, self.utility.parseCityObj(city, false).region, self.map, self.togglePane);
+              self.layers.addFloodGauges(city, self.utility.parseCityObj(city, false).region, self.map, self.togglePane);
+              self.layers.addReports(city, self.utility.parseCityObj(city, false).region, self.map, self.togglePane);
+            }
+          }
+        }, 500);
+      }
+    });
+
     // If the URL contains a city don't geoLocate the user.
     if (typeof self.querycity !== 'undefined') {
       self.viewReports(self.querycity, true);
     } else {
-      // Find user location & store in background
+      // Find user location
       self.map.locate({
         setView: false
       });
       self.map.on('locationfound', (e) => {
 
+        // Store in background
+        self.utility.onLocationFound(e);
+        // If the users location is outside of Indonesia, show the city selector.
+        // Otherwise flyTo their location.
         if (self.utility.config.dep_name === 'petabencana') {
-          // If in Indonesia, flyTo the users location.
           if (
-            e.latitude > -10.3599874813 && // Lat SW
-            e.longitude > 95.2930261576 && // Lng SW
-            e.latitude < 5.47982086834 && // Lat NE
-            e.longitude < 141.03385176 // Lng NE
+            e.bounds._southWest.lat > self.utility.indonesiaBoundingBox.lat_sw && // Lat SW
+            e.bounds._southWest.lng > self.utility.indonesiaBoundingBox.lng_sw && // Lng SW
+            e.bounds._northEast.lat < self.utility.indonesiaBoundingBox.lat_ne && // Lat NE
+            e.bounds._northEast.lng < self.utility.indonesiaBoundingBox.lng_ne // Lng NE
           ) {
             self.map.flyTo(e.latlng, 12);
           } else {
             $('#screen').show();
           }
-        } else {
-          $('#screen').show();
         }
       });
       self.map.on('locationerror', () => {
@@ -240,7 +265,6 @@ export class DisasterMap {
         $('#screen').show();
       });
     }
-
     // Broward Mask TODO only for Broward
     if (self.utility.config.dep_name === 'riskmap_us') {
       //Create style config
