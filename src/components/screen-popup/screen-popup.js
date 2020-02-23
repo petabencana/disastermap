@@ -25,7 +25,7 @@ export class ScreenPopup {
     this.configData = Config;
 
     $(document).click( function() {
-      $('#dropdown_city').hide('slow');
+      $('#dropdown_city').hide();
     });
 
     $('#screen').click( function(e) {
@@ -64,19 +64,19 @@ export class ScreenPopup {
       $(this).toggleClass('clicked');
     });
     this.searchText = newval.toLowerCase();
-    // if (this.searchResult > 0) {
-    //   $('#dropdown_city').show();
-    // } else {
-    //   $('#dropdown_city').hide();
-    // }
+    if (this.searchResult.length > 3) {
+      $('#dropdown_city').show();
+    } else {
+      $('#dropdown_city').hide();
+    }
     const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
       return value.indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
     this.searchResult = newObj;
-    if (this.searchResult <= 0) {
-      $('#dropdown_city').hide();
-    } else $('#dropdown_city').show();
+    // if (this.searchResult <= 3) {
+    //   $('#dropdown_city').hide();
+    // } else $('#dropdown_city').show();
   }
 
   resizeSidePane() {

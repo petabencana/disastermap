@@ -1,7 +1,5 @@
 <template>
   <require from="./screen-popup.css"></require>
-  <require from="./side-pane.css"></require>
-
 
       <div id="screen">
         <div class="row">
@@ -16,17 +14,15 @@
             />
 
             <!-- <div class="panel p-0 m-0"> -->
-              <div id="dropdown_city" class="row p-2 m-0">
-                <div if.bind = 'searchResult.length > 0' class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="
-                height: 700px;">
-                    <ul class=" p-0" if.bind="searchText.length > 0" >
+              <div class="row p-2 m-0">
+                <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="position: absolute;display: none;">
+                    <ul  class=" p-0" if.bind="searchText.length > 0" style="height: 700px;">
                         <li><b>${locale.search_header}</b></li>
                         <li class ="dropUl p-2" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
                     </ul>
               </div>
             </div>
             <!-- </div> -->
-
             
       
           <!-- <div id="termsPopup">
