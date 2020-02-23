@@ -1,9 +1,11 @@
 <template>
   <require from="./screen-popup.css"></require>
+  <require from="./side-pane.css"></require>
+
 
       <div id="screen">
-          <!-- <div class="row p-2 m-0"> -->
-          <div id="cityPopup" class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+        <div class="row">
+          <div id="cityPopup" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
             <input id="search_city_input"
               type="text"
               class="live-search-box"
@@ -12,7 +14,8 @@
               value.bind="query & throttle"
               autofocus
             />
-            <!-- <i class="fa fa-search position" aria-hidden="true"></i> -->
+
+            <!-- <div class="panel p-0 m-0"> -->
               <div id="dropdown_city" class="row p-2 m-0">
                 <div if.bind = 'searchResult.length > 0' class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 searchDropDown p-2 mt-4" style="
                 height: 700px;">
@@ -22,8 +25,11 @@
                     </ul>
               </div>
             </div>
+            <!-- </div> -->
+
+            
       
-          <div id="termsPopup">
+          <!-- <div id="termsPopup">
             <div id="tabRow">
               <div
                 repeat.for="switch of termscontents"
@@ -45,10 +51,7 @@
             <div id="closeRow">
               <p click.delegate="closePopup()">Close&nbsp;&nbsp;&nbsp;&nbsp;</p>
             </div>
-          </div>
+          </div> -->
         </div>
-       <!-- </div> -->
-   </div>
-  
-  
+        </div>
 </template>

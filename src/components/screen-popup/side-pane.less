@@ -1,0 +1,411 @@
+@import "../../resources/style_sheets/theme_guide.less";
+
+#tabsBar {
+  position: relative;
+  width: 100%;
+  height: @bar-heights;
+  border: none;
+  border-bottom: 1px solid @banjir-blue;
+  & ul.tabs {
+    bottom: -4px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    // width: 100%;
+    float: right;
+    & li {
+      float: left;
+      height: 100%;
+      text-align: center;
+      &.paneTabs {
+        width: 24%;
+        & div.tabLinks {
+          width: 100%;
+          cursor: pointer;
+          line-height: 40px;
+          .bodylight-mixin(21px);
+          & p {
+            display: none;
+            position: absolute;
+            bottom: -75%;
+            width: 24%;
+            .bodylight-mixin(14px);
+            color: @banjir-blue;
+            line-height: 14px;
+            // text-transform: capitalize;
+          }
+          &.active {
+            color: @banjir-blue;
+            border-bottom: 4px solid @banjir-blue;
+            & p {
+              display: block;
+            }
+          }
+          &:hover {
+            color: @blue-hover;
+            & p {
+              display: block;
+              color: @blue-hover;
+            }
+          }
+        }
+      }
+      &.langTab {
+        position: absolute;
+        right: 0;
+        margin-top: 6px;
+        padding-right: 18px;
+        & #langDropdown {
+          width: 50px;
+          -webkit-appearance: button;
+          border: 1px solid @banjir-blue;
+          background: @snow-white;
+          outline: none;
+          .bodylight-mixin(12px);
+          line-height: 28px;
+          cursor: pointer;
+          text-align-last: center;
+          &:hover {
+            color: @banjir-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+#paneContent {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  & div.contentWrapper {
+    // padding: 30px 12px 0 12px;
+
+    &#content-map {
+      overflow: hidden;
+      & p {
+        .bodymedium-mixin(14px);
+        margin-bottom: 8px;
+      }
+      & label {
+        .linklight-mixin(14px);
+        // text-transform: capitalize;
+        padding-right: 10px;
+      }
+      & .normal {
+        .bodylight-mixin(14px);
+        // text-transform: capitalize;
+        padding-right: 10px;
+        margin: 0;
+      }
+      & #legend {
+        margin-top: 20px;
+        border-bottom: 1px solid @banjir-blue;
+      }
+    }
+
+    &#content-info {
+      overflow: hidden;
+      & #headLogos {
+        width: 90%;
+        margin: 30px auto;
+
+        table-layout: fixed;
+        & #usaidLogo {
+          width: 75%;
+        }
+        & #yayasanLogo {
+          width: 100%;
+        }
+      }
+      & #logos {
+        margin: 10px auto;
+      }
+      & p {
+        .bodyregular-mixin(14px);
+        width: 90%;
+        margin: 15px auto;
+        & a {
+          .linkmedium-mixin(14px);
+        }
+        & b {
+          .bodymedium-mixin(14px);
+          color: @banjir-blue;
+        }
+        &#termslink {
+          margin-top: 0px;
+          margin-bottom: 0px;
+          text-align: center;
+          .linkmedium-mixin(14px);
+          // text-transform: capitalize;
+          text-decoration: underline;
+        }
+        &#intro {
+          .bodyregular-mixin(14px);
+          text-align: left;
+          margin: 12px auto;
+          width: 90%;
+        }
+        &#description {
+          .bodyregular-mixin(12px);
+          text-align: left;
+          margin: 12px auto;
+          width: 90%;
+          line-height: 1.4;
+        }
+        &#info {
+          text-align: center;
+          margin: 12px auto;
+          width: 90%;
+        }
+        &#disclaimer {
+          & i {
+            .bodylight-mixin(14px);
+            color: @steel-gray;
+          }
+        }
+        &#usaid {
+          .bodylight-mixin(12px);
+          color: @steel-gray;
+        }
+      }
+      & #partners {
+        width: 90%;
+        margin: auto;
+        table-layout: fixed;
+        border-bottom: 1px solid @banjir-blue;
+        border-top: 1px solid @banjir-blue;
+        padding-bottom: 10px;
+        border-spacing: 7px;
+        border-collapse: separate;
+        & tr.label {
+          height: 18px;
+          & p {
+            .bodylight-mixin(12px);
+            margin: 10px 0 4px 0;
+            padding: 0;
+          }
+        }
+        & .bnpbLogo {
+          width: 240px;
+        }
+        & .usaidLogo {
+          width: 240px;
+        }
+        & .partnerLogo {
+          height: 35px;
+          width: auto;
+          padding: 5px;
+        }
+      }
+      & #pbLogo {
+        width: 90%;
+        margin: 8px auto;
+        text-align: center;
+        & img {
+          width: 180px;
+        }
+      }
+    }
+
+    &#content-report {
+      overflow: hidden;
+      & table,
+      tr,
+      td {
+        padding: 0;
+        width: 100%;
+      }
+      & table#reportTable {
+        & tr.vidRows {
+          & table.vidTable {
+            margin: 0;
+            & tr {
+              & td {
+                border-bottom: 1px solid @banjir-blue;
+                &.labelRow {
+                  cursor: pointer;
+                  border: none;
+                  .bodyregular-mixin(14px);
+                  &.active {
+                    color: @banjir-blue;
+                  }
+                  &:hover {
+                    color: @blue-hover;
+                  }
+                  & p {
+                    margin: 0;
+                    padding: 0;
+                    &.labelText {
+                      float: left;
+                    }
+                    &.arrows {
+                      float: right;
+                      display: block;
+                    }
+                    &.up {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+            & tr.wrapRow {
+              & .videoWrapper {
+                display: none;
+                width: 100%;
+                height: auto;
+                .bodyregular-mixin(14px);
+                & iframe {
+                  width: 100%;
+                  border: none;
+                }
+                & p {
+                  margin: 0;
+                  padding: 0;
+                  & ul {
+                    list-style: none;
+                    .bodylight-mixin(14px);
+                    line-height: 21px;
+                    padding: 0;
+                  }
+                  & a {
+                    .linklight-mixin(14px);
+                    line-height: 21px;
+                    & i {
+                      font-size: 18px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Ganesh N
+
+.paneTabs a {
+  color: wheat;
+  text-decoration: none;
+}
+.paneTabs {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  // text-transform: capitalize;
+  border-bottom: 1px solid;
+  width: 100%;
+}
+.accordion {
+  // background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  // background-color: white;
+  overflow: hidden;
+  color: #000;
+}
+.cities {
+  color: #a29c9c;
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  font-size: 13px;
+  transition: 0.4s;
+}
+
+// div#sidePane {
+//   background: #000 !important;
+// }
+
+.languageClass{
+  color: #000;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+input#search_city_input:focus {
+  width: 95%;
+  position: absolute;
+  right: 7px;
+}
+
+@media screen 
+  and (min-device-width: 786px) 
+  and (max-device-width: 1200px) {
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 352px !important;
+  }
+  }
+
+  @media screen 
+  and (min-device-width: 1270px) 
+  and (max-device-width: 1280px) {
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 297px !important;
+  }
+  }
+
+  /* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+and (device-width: 360px) 
+and (device-height: 640px) 
+and (-webkit-device-pixel-ratio: 4) {
+  div#sidePane {
+    margin-right: 8px !important;
+    width: 345px !important;
+}
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 345px !important;
+  }
+}
+
+/* ----------- Galaxy S3 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) {
+    div#sidePane {
+      margin-right: 8px !important;
+      width: 345px !important;
+  }
+}

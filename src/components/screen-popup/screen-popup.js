@@ -22,6 +22,8 @@ export class ScreenPopup {
   constructor(Config) {
     this.seltab = 'about';
     this.config = Config.map;
+    this.configData = Config;
+
     $(document).click( function() {
       $('#dropdown_city').hide('slow');
     });
@@ -32,6 +34,18 @@ export class ScreenPopup {
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
     this.searchResult = Object.keys(this.config.sub_regions);
+    this.languages = this.config.supported_languages;
+
+
+    //menu
+
+    // this.lang_obj = {};
+    // for (let lang of this.languages) {
+    //   if (Locales.languages.hasOwnProperty(lang.key)) {
+    //     this.lang_obj[lang.key] = Locales.languages[lang.key];
+    //   }
+    // }
+    // this.locale = {};
 
   }
 
