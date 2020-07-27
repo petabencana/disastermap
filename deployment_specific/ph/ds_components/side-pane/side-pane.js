@@ -1,7 +1,7 @@
-import { bindable, customElement, inject } from './aurelia-framework';
-import $ from './jquery';
-import { Config } from './resources/config';
-import { Locales } from './resources/locales/locales';
+import { bindable, customElement, inject } from 'aurelia-framework';
+import $ from 'jquery';
+import { Config } from '../../resources/config';
+import { Locales } from '../../resources/locales/locales';
 
 //start-aurelia-decorators
 @customElement('side-pane')
