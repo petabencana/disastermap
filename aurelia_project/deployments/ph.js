@@ -18,7 +18,7 @@ export default {
     'sub_regions': {},
     'region_center': [14.49, 120.57],
     'start_city_center': [14.49, 120.57],
-    'starting_zoom': 5.5,
-    'minimum_zoom': 5
+    'starting_zoom': 8.5,
+    'minimum_zoom': 8
   }
 };
