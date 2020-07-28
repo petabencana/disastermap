@@ -3,7 +3,7 @@
 
       <div id="screen">
 
-          <div id="cityPopup" class="popupContent">
+          <div id="cityPopup" class="popupContent" style.bind="cityPopupDisplayStyle">
             <div class='search-input-wrapper'>
             <input
               id="search_city_input"
@@ -14,7 +14,7 @@
               value.bind="query & debounce:200"
               blur.trigger="handleInputBlur()"
               focus.trigger="handleInputFocus()"
-              
+
             />
             <div class='search-icon-wrapper'>
               <img id="search_icon"class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <div id='startPopUpContainer'>
+        <div id='startPopUpContainer' style.bind="startPopupDisplayStyle">
           <div id="startPopup">
             <div id="header">
               <div class='content'>

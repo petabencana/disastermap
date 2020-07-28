@@ -1,6 +1,7 @@
 import { bindable, customElement, demoIntercept } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
+import dep from '../../deployment.js'
 
 //start-aurelia-decorators
 @customElement('screen-popup')
@@ -23,6 +24,8 @@ export class ScreenPopup {
     this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
+    this.cityPopupDisplayStyle = dep.name === 'mapakalamidad' ? { display: 'none !important'} : { display: 'block !important'};
+    this.startPopupDisplayStyle = dep.name === 'mapakalamidad' ? { display: 'none !important'} : { display: 'block !important'};
 
     $(document).click( function(e) {
       if (e.target.id === 'search_icon' && window.innerWidth < 500) {
@@ -50,6 +53,7 @@ export class ScreenPopup {
     this.popupResult = Object.keys(this.config.sub_regions);
     this.languages = this.config.supported_languages;
     this.popupText = '';
+
   }
 
   switchTab(name) {
