@@ -1,4 +1,5 @@
 export default {
+  id: 'ph',
   name: 'mapakalamidad',
   height_units: 'cm',
   supported_languages: [
@@ -6,7 +7,13 @@ export default {
     { key: 'id', name: 'Bahasa', code: 'BI' }
   ],
   map: {
-    'instance_regions': {},
+    'instance_regions': {
+      'manila': {
+        'region': 'ID-BA',
+        'bounds': { 'sw': [14.027, 120.015], 'ne': [15.303, 121.677] },
+        'center': [14.49, 120.57]
+      },
+    },
     'default_region': {
       'region': 'manila',
       'bounds': {

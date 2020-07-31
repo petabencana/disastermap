@@ -24,8 +24,8 @@ export class ScreenPopup {
     this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
-    this.cityPopupDisplayStyle = dep.name === 'mapakalamidad' ? { display: 'none !important'} : { display: 'block !important'};
-    this.startPopupDisplayStyle = dep.name === 'mapakalamidad' ? { display: 'none !important'} : { display: 'block !important'};
+    this.cityPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
+    this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
 
     $(document).click( function(e) {
       if (e.target.id === 'search_icon' && window.innerWidth < 500) {

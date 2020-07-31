@@ -1,4 +1,5 @@
 export default {
+  id: 'pb',
   name: 'petabencana',
   height_units: 'cm',
   supported_languages: [

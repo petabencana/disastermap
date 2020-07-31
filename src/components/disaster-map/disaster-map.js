@@ -1,4 +1,5 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
+import dep from '../../deployment.js';
 import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
@@ -26,6 +27,7 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
+
   }
 
   togglePane(ref, action, clearSelection) {
@@ -88,6 +90,7 @@ export class DisasterMap {
       $(ref).fadeIn(200);
     }
   }
+
 
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
@@ -276,5 +279,7 @@ export class DisasterMap {
         this.viewReports(null, false);
       }
     };
+
+    this.viewRegionReports(dep.map.default_region.region, true);
   }
 }
