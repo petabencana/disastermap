@@ -72,40 +72,40 @@
             </table>
           </div>
         </div>
-        <div  class="buttons" title="${webMenu.locale.fire}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('fire')">
+        <div class="buttons" title="${webMenu.locale.fire}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('fire')">
           <img id="fire" style="width:60px" src="/assets/icons/Add_Report_Icon_Fire.png">
           <div class="row" id="fireLink">
             <table class="table table-borderless">
               <tr class="row report">
-                <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-                <div class="reportFireBtn">
-                  <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                <img style="width: 310px;" src=${webMenu.locale.fire_flow_img}>
+                <div class="reportBtn reportFireBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_fire_report}" click.delegate="reportDisaster('fire')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
           </div>
-              </div>
+        </div>
         <div  class="buttons" title="${webMenu.locale.haze}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('haze')">
           <img id="haze" style="width:60px" src="/assets/icons/Add_Report_Icon_Haze.png">
           <div class="row" id="hazeLink">
             <table class="table table-borderless">
               <tr class="row report">
-                <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-                <div class="reportHazeBtn">
-                  <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                <img style="width: 250px;" src=${webMenu.locale.haze_flow_img}>
+                <div class=" reportBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_haze_report}" click.delegate="reportDisaster('haze')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
           </div>
-              </div>
+        </div>
         <div  class="buttons" title="${webMenu.locale.wind}" data-toggle="tooltip" data-placement="left" click.delegate="selectReport('wind')">
           <img id="wind" id="icon" style="width:60px" src="/assets/icons/wind.svg">
           <div class="row" id="windLink">
             <table class="table table-borderless">
               <tr class="row report">
-                <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-                <div class="reportWindBtn">
-                  <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                <img style="width: 295px;" src=${webMenu.locale.wind_flow_img}>
+                <div class="reportBtn reportWindBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_wind_report}" click.delegate="reportDisaster('wind')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>
@@ -116,9 +116,9 @@
           <div class="row reportLink" id="volcanoLink">
             <table class="table table-borderless">
               <tr class="row report">
-                <p class="commingSoon p-2 m-0">${webMenu.locale.coming_soon_2020}</p>
-                <div class="volcanoBtn">
-                  <input type="button" class="btn btn-grey coming_Soon_btn" value="${webMenu.locale.comming_soon}" />
+                <img style="width: 250px;" src=${webMenu.locale.volcano_flow_img}>
+                <div class="reportBtn volcanoBtn">
+                  <input type="button" class="btn buttonReprt" value="${webMenu.locale.add_volcano_report}" click.delegate="reportDisaster('volcano')" style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"/>
                 </div>
               </tr>
             </table>

@@ -4,6 +4,7 @@ import { inject, noView } from 'aurelia-framework';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import { Config } from 'resources/config';
+import dep from '../../deployment.js';
 import { LocationService } from './location-service';
 import { notify } from 'notifyjs-browser'; //Jquery plugin
 
@@ -58,7 +59,6 @@ export class MapUtility {
       $('#report').show();
       return self.config.default_region;
     } else if (self.isCitySupported(cityName)) {
-
       // supported city
       $('#screen').css('z-index', 'auto');
       $('#dropdown_city').hide();
@@ -81,14 +81,14 @@ export class MapUtility {
 
   parseRegion(regionName) {
     let self = this;
-    let defaultRegion = 'java';
+    let defaultRegion = dep.id === 'ph' ? dep.map.default_region.region : 'java';
 
     if (!regionName) {
       return defaultRegion;
     } else if (self.isRegionSupported(regionName)) {
       self.selectedRegion = self.config.sub_regions[regionName];
       return self.config.sub_regions[regionName].province;
-    } 
+    }
     // invalid region
     return defaultRegion;
   }
@@ -116,6 +116,7 @@ export class MapUtility {
     }
     else {
       map.flyTo(cityObj.center, 10);
+
     }
     // .once('moveend zoomend', (e) => {
     //   map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);

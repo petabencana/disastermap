@@ -1,4 +1,5 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
+import dep from '../../deployment.js';
 import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
@@ -26,6 +27,7 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
+
   }
 
   togglePane(ref, action, clearSelection) {
@@ -89,6 +91,7 @@ export class DisasterMap {
     }
   }
 
+
   // Load all reports of a searched sub region
   viewRegionReports(regionName, pushState) {
     let self = this;
@@ -115,7 +118,7 @@ export class DisasterMap {
         // Show timeperiod notification
         self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
           .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{hoursplaceholder}', stats.timeperiod / 3600).replace('{provinceplaceholder}', cityName);
+            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
             self.utility.statsNotification(msg);
           });
 
@@ -276,5 +279,7 @@ export class DisasterMap {
         this.viewReports(null, false);
       }
     };
+
+    this.viewRegionReports(dep.map.default_region.region, true);
   }
 }

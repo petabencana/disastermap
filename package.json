@@ -7,7 +7,6 @@
     "url": "git+https://github.com/urbanriskmap/riskmap"
   },
   "scripts": {
-    "start_ab_local": "au run --env dev --watch --dep pb",
     "start": "au run --env dev --watch --dep $DEP --data_server_key $DATA_SERVER_KEY",
     "test": "au build --env dev --dep pb --data_server_key $DATA_SERVER_KEY",
     "build": "rm -rf scripts/* && au build --env prod --dep $DEP --data_server_key $DATA_SERVER_KEY",
@@ -23,7 +22,7 @@
     "aurelia-protractor-plugin": "1.0.3",
     "bluebird": "3.5.0",
     "chart.js": "2.7.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.1",
     "leaflet": "1.0.3",
     "leaflet.markercluster": "^1.4.1",
     "less": "^3.8.1",

@@ -24,8 +24,24 @@ export default {
     report_timeperiod: 43200,
     default_language: 'id',
     tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
-    data_server: 'https://data-dev.petabencana.id/',
-    cards_server: 'https://cards-dev.petabencana.id/',
+    data_server: 'http://localhost:8001/',
+    cards_server: 'http://localhost:4200/',
+    app: 'https://dev.petabencana.id/',
+    deep_links: [
+      {name: 'facebook', link: 'http://m.me/CognicityDev.id'},
+      {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Laporkan+banjir&via=petabencana'}, //TODO : fill after twitter DM bot is created for Petabencana.
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'},
+      {name: 'telegram', link: 'https://telegram.me/CognicityDevBot'}
+    ],
+    data_server_key: '{data_server_key}'
+  },
+  mapakalamidad: {
+    title: 'Mapakalamidad.ph',
+    report_timeperiod: 43200,
+    default_language: 'id',
+    tile_layer: 'https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
+    data_server: 'http://localhost:8001/',
+    cards_server: 'http://localhost:4200/',
     app: 'https://dev.petabencana.id/',
     deep_links: [
       {name: 'facebook', link: 'http://m.me/CognicityDev.id'},

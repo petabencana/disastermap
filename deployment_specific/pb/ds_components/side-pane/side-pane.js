@@ -65,13 +65,13 @@ export class SidePane {
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
-      { en: 'en floods last received', id: 'id floods last received'},
-      { en: 'en eq road access last received', id: 'id eq road access last received'},
-      { en: 'en eq_structure_fail last received', id: 'id eq_structure_fail last received'},
-      { en: 'en wind last received', id: 'id wind last received'},
-      { en: 'en fire last received', id: 'id fire last received'},
-      { en: 'en haze last received', id: 'id haze last received'},
-      { en: 'en volcano last received', id: 'id volcano last received'}
+      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
+      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'}
     ]
 
     //legends data
