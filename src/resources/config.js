@@ -14,6 +14,7 @@ export class Config {
     this.map.cards_server = env[dep.name].cards_server;
     this.map.tile_layer = env[dep.name].tile_layer;
     this.map.app = env[dep.name].app;
+    // mapboxgl.accessToken = 'MAPBOX_ACCESS_TOKENpk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNqMnFraWVzYzAyd24ycXRqMmpvbmhyZ2QifQ.xc_v7umok760t2q6NZK1RA';
     this.map.report_timeperiod = env[dep.name].report_timeperiod;
 
     this.title = env[dep.name].title;

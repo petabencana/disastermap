@@ -189,92 +189,99 @@ export class DisasterMap {
     let self = this;
 
     // Initialize leaflet map
-    self.map = L.map('mapContainer', {
-      attributionControl: false, //include in side pane
-      zoomControl: false,
-      center: self.utility.config.region_center,
-      zoom: self.utility.config.starting_zoom,
-      minZoom: self.utility.config.minimum_zoom,
-      zoomSnap: 0.25
+    // self.map = L.map('mapContainer', {
+    //   attributionControl: false, //include in side pane
+    //   zoomControl: false,
+    //   center: self.utility.config.region_center,
+    //   zoom: self.utility.config.starting_zoom,
+    //   minZoom: self.utility.config.minimum_zoom,
+    //   zoomSnap: 0.25
+    // });
+    mapboxgl.accessToken = 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ';
+    self.map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/outdoors-v9',
+      center: [self.utility.config.region_center[1], self.utility.config.region_center[0]],
+      zoom: self.utility.config.starting_zoom
     });
-
+    self.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
     // Add base tile layers
-    L.tileLayer(self.utility.config.tile_layer, {
-      detectRetina: true,
-      subdomains: 'abc',
-      ext: 'png'
-    }).addTo(self.map);
+    // L.tileLayer(self.utility.config.tile_layer, {
+    //   detectRetina: true,
+    //   subdomains: 'abc',
+    //   ext: 'png'
+    // }).addTo(self.map);
 
     // Add scale control
-    L.control.scale({
-      position: 'bottomleft',
-      metric: true,
-      imperial: false
-    }).addTo(self.map);
+    // L.control.scale({
+    //   position: 'bottomleft',
+    //   metric: true,
+    //   imperial: false
+    // }).addTo(self.map);
 
     // Add zoom control
-    L.control.zoom({
-      position: 'bottomleft'
-    }).addTo(self.map);
+    // L.control.zoom({
+    //   position: 'bottomleft'
+    // }).addTo(self.map);
 
 
     // Add custom leaflet control for geolocation
-    L.Control.GeoLocate = L.Control.extend({
-      onAdd: () => {
-        return self.utility.geolocateContainer(self.map, self.layers, self.togglePane);
-      }
-    });
-    L.control.geoLocate = (opts) => {
-      return new L.Control.GeoLocate(opts);
-    };
-    L.control.geoLocate({
-      position: 'bottomleft'
-    }).addTo(self.map);
+    // L.Control.GeoLocate = L.Control.extend({
+    //   onAdd: () => {
+    //     return self.utility.geolocateContainer(self.map, self.layers, self.togglePane);
+    //   }
+    // });
+    // L.control.geoLocate = (opts) => {
+    //   return new L.Control.GeoLocate(opts);
+    // };
+    // L.control.geoLocate({
+    //   position: 'bottomleft'
+    // }).addTo(self.map);
 
-    let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
-    let logoContainer = document.getElementById("logoContainer");
+    // let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+    // let logoContainer = document.getElementById("logoContainer");
 
-    mapControlsContainer.appendChild(logoContainer);
+    // mapControlsContainer.appendChild(logoContainer);
 
     // Find user location & store in background
-    self.map.locate({
-      setView: false
-    });
-    self.map.on('locationfound', (e) => {
-      self.utility.onLocationFound(e);
-    });
-    self.map.on('locationerror', () => {
-      self.utility.clientLocation = null;
-    });
+    // self.map.locate({
+    //   setView: false
+    // });
+    // self.map.on('locationfound', (e) => {
+    //   self.utility.onLocationFound(e);
+    // });
+    // self.map.on('locationerror', () => {
+    //   self.utility.clientLocation = null;
+    // });
 
     // Broward Mask TODO only for Broward
-    if (self.utility.config.dep_name === 'riskmap_us') {
-      //Create style config
-      let regionOverlayStyle = {
-        fillColor: '#000000',
-        weight: 0,
-        fillOpacity: 0.25
-      };
-      //Parse geojson text file
-      $.getJSON('assets/overlays/region_overlay.json', data => {
-        L.geoJSON(data, {
-          style: regionOverlayStyle
-        }).addTo(self.map);
-      });
-    }
+    // if (self.utility.config.dep_name === 'riskmap_us') {
+    //   //Create style config
+    //   let regionOverlayStyle = {
+    //     fillColor: '#000000',
+    //     weight: 0,
+    //     fillOpacity: 0.25
+    //   };
+    //   //Parse geojson text file
+    //   $.getJSON('assets/overlays/region_overlay.json', data => {
+    //     L.geoJSON(data, {
+    //       style: regionOverlayStyle
+    //     }).addTo(self.map);
+    //   });
+    // }
 
-    // Check against queried city param
-    if (self.querycity) {
-      self.viewReports(self.querycity, true);
-    }
+    // // Check against queried city param
+    // if (self.querycity) {
+    //   self.viewReports(self.querycity, true);
+    // }
 
-    //If user navigates through history, load city as per stateObj, but do not register new pushState
-    window.onpopstate = (e) => {
-      if (e.state.city !== null) {
-        this.viewReports(e.state.city, false);
-      } else {
-        this.viewReports(null, false);
-      }
-    };
+    // //If user navigates through history, load city as per stateObj, but do not register new pushState
+    // window.onpopstate = (e) => {
+    //   if (e.state.city !== null) {
+    //     this.viewReports(e.state.city, false);
+    //   } else {
+    //     this.viewReports(null, false);
+    //   }
+    // };
   }
 }
