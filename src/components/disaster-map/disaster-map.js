@@ -1,5 +1,4 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
-import * as L from 'leaflet';
 import $ from 'jquery';
 import { MapLayers } from './map-layers';
 import { MapUtility } from './map-utility';

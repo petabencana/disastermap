@@ -111,11 +111,15 @@ export class MapUtility {
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
     if (self.selectedRegion) {
-      map.flyTo(self.selectedRegion.center, 10);
+      map.flyTo({
+        'center': [self.selectedRegion.center[1], self.selectedRegion.center[0]],
+        'zoom': 10});
       self.selectedRegion = undefined;
-    }
-    else {
-      map.flyTo(cityObj.center, 10);
+    } else {
+      map.flyTo({
+        'center': [cityObj.center[1], cityObj.center[0]],
+        'zoom': 10
+      });
     }
     // .once('moveend zoomend', (e) => {
     //   map.setMaxBounds([cityObj.bounds.sw, cityObj.bounds.ne]);
