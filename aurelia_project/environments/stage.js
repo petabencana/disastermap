@@ -35,9 +35,9 @@ export default {
     title: 'Mapakalamidad.ph',
     default_language: 'tl',
     tile_layer: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
-    data_server: 'https://data.mapakalamidad.ph/',
+    data_server: 'https://data-dev.mapakalamidad.ph/',
     data_server_key: '{data_server_key}',
-    cards_server: 'https://cards.mapakalamidad.ph/',
+    cards_server: 'https://cards-dev.mapakalamidad.ph/',
     app: 'https://mapakalamidad.ph/',
     deep_links: [
       {name: 'facebook', link: 'https://www.facebook.com/petabencana.id/'},
