@@ -140,7 +140,7 @@ export default {
     },
     'region_center': [14.8, 121.107],
     'start_city_center': [14.8, 121.107],
-    'starting_zoom': 8.75,
-    'minimum_zoom': 8
+    'starting_zoom': 5.5,
+    'minimum_zoom': 5
   }
 };
