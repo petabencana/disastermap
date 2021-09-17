@@ -39,7 +39,7 @@ const id = {
       'report': 'Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'TUNGKOL SA <p class="about_subscript">Kasalukuyang sinusuporta ang Probinsya Ng Pampanga at ang Lungsod ng Quezon</p>'
+      'about': 'TUNGKOL SA'
     }
   },
   'report_info': {
