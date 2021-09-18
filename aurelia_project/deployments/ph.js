@@ -136,7 +136,581 @@ export default {
       'Cordillera Administrative Region': { 'province': 'Cordillera Administrative Region', 'center': [17.5894, 121.0701] },
       'Rehiyong Pampangisiwaan ng Cordillera': { 'province': 'Cordillera Administrative Region', 'center': [17.5894, 121.0701] },
       'Bangsamoro Autonomous Region of Muslim Mindanao': { 'province': 'Bangsamoro Autonomous Region of Muslim Mindanao', 'center': [6.7928, 121.6648] },
-      'Rehiyong Awtonomo ng Bangsamoro sa Muslim Mindanao': { 'province': 'Bangsamoro Autonomous Region of Muslim Mindanao', 'center': [6.7928, 121.6648] }
+      'Rehiyong Awtonomo ng Bangsamoro sa Muslim Mindanao': { 'province': 'Bangsamoro Autonomous Region of Muslim Mindanao', 'center': [6.7928, 121.6648] },
+      "Abra": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "Agusan del Norte": {
+        "province": "Caraga Region",
+        "center": [
+            9.2631,
+            125.782
+        ]
+    },
+    "Agusan del Sur": {
+        "province": "Caraga Region",
+        "center": [
+            9.2631,
+            125.782
+        ]
+    },
+    "Aklan": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Albay": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "Antique": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Apayao": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "Aurora": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Basilan": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Bataan": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Batanes": {
+        "province": "Cagayan Valley",
+        "center": [
+            18.7243,
+            121.6045
+        ]
+    },
+    "Batangas": {
+        "province": "CALABARZON",
+        "center": [
+            14.2477,
+            121.6974
+        ]
+    },
+    "Benguet": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "Biliran": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Bohol": {
+        "province": "Central Visayas",
+        "center": [
+            10.4603,
+            123.68
+        ]
+    },
+    "Bukidnon": {
+        "province": "Northern Mindanao",
+        "center": [
+            8.3929,
+            124.4432
+        ]
+    },
+    "Bulacan": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Cagayan": {
+        "province": "Cagayan Valley",
+        "center": [
+            18.7243,
+            121.6045
+        ]
+    },
+    "Camarines Norte": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "Camarines Sur": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "Camiguin": {
+        "province": "Northern Mindanao",
+        "center": [
+            8.3929,
+            124.4432
+        ]
+    },
+    "Capiz": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Catanduanes": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "Cavite": {
+        "province": "CALABARZON",
+        "center": [
+            14.2477,
+            121.6974
+        ]
+    },
+    "Cebu": {
+        "province": "Central Visayas",
+        "center": [
+            10.4603,
+            123.68
+        ]
+    },
+    "Compostela Valley": {
+        "province": "Davao Region",
+        "center": [
+            6.7067,
+            125.7709
+        ]
+    },
+    "Davao del Norte": {
+        "province": "Davao Region",
+        "center": [
+            6.7067,
+            125.7709
+        ]
+    },
+    "Davao del Sur": {
+        "province": "Davao Region",
+        "center": [
+            6.7067,
+            125.7709
+        ]
+    },
+    "Davao Oriental": {
+        "province": "Davao Region",
+        "center": [
+            6.7067,
+            125.7709
+        ]
+    },
+    "Dinagat Islands": {
+        "province": "Caraga Region",
+        "center": [
+            9.2631,
+            125.782
+        ]
+    },
+    "Eastern Samar": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Guimaras": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Ifugao": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "Ilocos Norte": {
+        "province": "Ilocos Region",
+        "center": [
+            17.0423,
+            120.5601
+        ]
+    },
+    "Ilocos Sur": {
+        "province": "Ilocos Region",
+        "center": [
+            17.0423,
+            120.5601
+        ]
+    },
+    "Iloilo": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Isabela": {
+        "province": "Cagayan Valley",
+        "center": [
+            18.7243,
+            121.6045
+        ]
+    },
+    "Kalinga": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "La Union": {
+        "province": "Ilocos Region",
+        "center": [
+            17.0423,
+            120.5601
+        ]
+    },
+    "Laguna": {
+        "province": "CALABARZON",
+        "center": [
+            14.2477,
+            121.6974
+        ]
+    },
+    "Lanao del Norte": {
+        "province": "Northern Mindanao",
+        "center": [
+            8.3929,
+            124.4432
+        ]
+    },
+    "Lanao del Sur": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Leyte": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Maguindanao": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Marinduque": {
+        "province": "MIMAROPA",
+        "center": [
+            11.3356,
+            119.7513
+        ]
+    },
+    "Masbate": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "National Capital Region": {
+        "province": "National Capital Region",
+        "center": [
+            14.57882,
+            121.0349
+        ]
+    },
+    "Misamis Occidental": {
+        "province": "Northern Mindanao",
+        "center": [
+            8.3929,
+            124.4432
+        ]
+    },
+    "Misamis Oriental": {
+        "province": "Northern Mindanao",
+        "center": [
+            8.3929,
+            124.4432
+        ]
+    },
+    "Mountain Province": {
+        "province": "Cordillera Administrative Region",
+        "center": [
+            17.5894,
+            121.0701
+        ]
+    },
+    "Negros Occidental": {
+        "province": "Western Visayas",
+        "center": [
+            10.9452,
+            122.488
+        ]
+    },
+    "Negros Oriental": {
+        "province": "Central Visayas",
+        "center": [
+            10.4603,
+            123.68
+        ]
+    },
+    "North Cotabato": {
+        "province": "SOCCSKSARGEN",
+        "center": [
+            6.7589,
+            124.7412
+        ]
+    },
+    "Northern Samar": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Nueva Ecija": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Nueva Vizcaya": {
+        "province": "Cagayan Valley",
+        "center": [
+            18.7243,
+            121.6045
+        ]
+    },
+    "Occidental Mindoro": {
+        "province": "MIMAROPA",
+        "center": [
+            11.3356,
+            119.7513
+        ]
+    },
+    "Oriental Mindoro": {
+        "province": "MIMAROPA",
+        "center": [
+            11.3356,
+            119.7513
+        ]
+    },
+    "Palawan": {
+        "province": "MIMAROPA",
+        "center": [
+            11.3356,
+            119.7513
+        ]
+    },
+    "Pampanga": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Pangasinan": {
+        "province": "Ilocos Region",
+        "center": [
+            17.0423,
+            120.5601
+        ]
+    },
+    "Quezon": {
+        "province": "CALABARZON",
+        "center": [
+            14.2477,
+            121.6974
+        ]
+    },
+    "Quirino": {
+        "province": "Cagayan Valley",
+        "center": [
+            18.7243,
+            121.6045
+        ]
+    },
+    "Rizal": {
+        "province": "CALABARZON",
+        "center": [
+            14.2477,
+            121.6974
+        ]
+    },
+    "Romblon": {
+        "province": "MIMAROPA",
+        "center": [
+            11.3356,
+            119.7513
+        ]
+    },
+    "Samar": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Sarangani": {
+        "province": "SOCCSKSARGEN",
+        "center": [
+            6.7589,
+            124.7412
+        ]
+    },
+    "Shariff Kabunsuan": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Siquijor": {
+        "province": "Central Visayas",
+        "center": [
+            10.4603,
+            123.68
+        ]
+    },
+    "Sorsogon": {
+        "province": "Bicol Region",
+        "center": [
+            13.1761,
+            123.3369
+        ]
+    },
+    "South Cotabato": {
+        "province": "SOCCSKSARGEN",
+        "center": [
+            6.7589,
+            124.7412
+        ]
+    },
+    "Southern Leyte": {
+        "province": "Eastern Visayas",
+        "center": [
+            11.52,
+            124.9185
+        ]
+    },
+    "Sultan Kudarat": {
+        "province": "SOCCSKSARGEN",
+        "center": [
+            6.7589,
+            124.7412
+        ]
+    },
+    "Sulu": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Surigao del Norte": {
+        "province": "Caraga Region",
+        "center": [
+            9.2631,
+            125.782
+        ]
+    },
+    "Surigao del Sur": {
+        "province": "Caraga Region",
+        "center": [
+            9.2631,
+            125.782
+        ]
+    },
+    "Tarlac": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Tawi-Tawi": {
+        "province": "Bangsamoro Autonomous Region of Muslim Mindanao",
+        "center": [
+            6.7928,
+            121.6648
+        ]
+    },
+    "Zambales": {
+        "province": "Central Luzon",
+        "center": [
+            15.3798,
+            120.8824
+        ]
+    },
+    "Zamboanga del Norte": {
+        "province": "Zamboanga Peninsula",
+        "center": [
+            7.9568,
+            122.8434
+        ]
+    },
+    "Zamboanga del Sur": {
+        "province": "Zamboanga Peninsula",
+        "center": [
+            7.9568,
+            122.8434
+        ]
+    },
+    "Zamboanga Sibugay": {
+        "province": "Zamboanga Peninsula",
+        "center": [
+            7.9568,
+            122.8434
+        ]
+    }
     },
     'region_center': [14.8, 121.107],
     'start_city_center': [14.8, 121.107],
