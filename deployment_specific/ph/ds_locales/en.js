@@ -38,7 +38,7 @@ const en = {
       'map': 'map',
       'report': 'Report',
       'legend': 'Legend',
-      'about': 'About <p class="about_subscript">Currently supporting Pampanga and Quezon City</p>'
+      'about': 'About'
     }
   },
   'report_info': {

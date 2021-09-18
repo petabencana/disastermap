@@ -14,8 +14,8 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
-  'popup_text': 'Pilih Provinsi untuk melanjutkan',
-  'search_header': 'Pilih Wilayah',
+  'popup_text': 'Pumili ng Lalawigan para Magpatuloy',
+  'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
   'fire': 'Sunog',
@@ -39,7 +39,7 @@ const id = {
       'report': 'Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'TUNGKOL SA <p class="about_subscript">Kasalukuyang sinusuporta ang Probinsya Ng Pampanga at ang Lungsod ng Quezon</p>'
+      'about': 'TUNGKOL SA'
     }
   },
   'report_info': {

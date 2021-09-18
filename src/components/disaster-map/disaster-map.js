@@ -280,6 +280,6 @@ export class DisasterMap {
       }
     };
 
-    dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
+    // dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
   }
 }

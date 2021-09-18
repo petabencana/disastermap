@@ -111,7 +111,7 @@ export class MapUtility {
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
     if (self.selectedRegion) {
-      // map.flyTo(self.selectedRegion.center, 10);
+      map.flyTo(self.selectedRegion.center, 10);
       self.selectedRegion = undefined;
     }
     else {
