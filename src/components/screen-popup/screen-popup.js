@@ -88,7 +88,7 @@ export class ScreenPopup {
     $('#popupResults').on('click', function() {
       $(this).toggleClass('clicked');
     });
-    const map = Object.keys(this.config.instance_regions);
+    const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
     });
