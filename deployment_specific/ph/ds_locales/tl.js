@@ -7,7 +7,7 @@ const id = {
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'I-ULAT',
-  'add_report': 'I-ULAT AND BAHA',
+  'add_report': 'I-ULAT ANG BAHA',
   'add_eq_report': 'Laporkan gempa',
   'add_haze_report': 'Laporkan Kabut Asap',
   'add_wind_report': 'Laporkan Angin Kencang',
