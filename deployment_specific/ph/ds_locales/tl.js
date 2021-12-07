@@ -14,7 +14,7 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
-  'popup_text': 'Pumili ng Rehiyon para Magpatuloy',
+  'popup_text': 'Pumili ng Lugar para Magpatuloy',
   'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
