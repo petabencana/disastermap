@@ -977,7 +977,7 @@ export default {
                 120.718
             ]
         },
-        "Pe\u00b1arrubia": {
+        "Peñarrubia": {
             "province": "Cordillera Administrative Region",
             "center": [
                 17.538,
@@ -2594,7 +2594,7 @@ export default {
                 120.78
             ]
         },
-        "Do\u00b1a Remedios Trinidad": {
+        "Doña Remedios Trinidad": {
             "province": "Central Luzon",
             "center": [
                 15.063,
@@ -2825,7 +2825,7 @@ export default {
                 123.048
             ]
         },
-        "Pe\u00b1ablanca": {
+        "Peñablanca": {
             "province": "Cagayan Valley",
             "center": [
                 17.678,
@@ -2860,7 +2860,7 @@ export default {
                 120.999
             ]
         },
-        "Santo Ni\u00b1o": {
+        "Santo Niño": {
             "province": "Cagayan Valley",
             "center": [
                 17.922,
@@ -3301,7 +3301,7 @@ export default {
                 120.898
             ]
         },
-        "Dasmari\u00b1as": {
+        "Dasmariñas": {
             "province": "CALABARZON",
             "center": [
                 14.319,
@@ -5163,7 +5163,7 @@ export default {
                 121.258
             ]
         },
-        "Bi\u00b1an": {
+        "Biñan": {
             "province": "CALABARZON",
             "center": [
                 14.305,
@@ -5233,7 +5233,7 @@ export default {
                 121.446
             ]
         },
-        "Los Ba\u00b1os": {
+        "Los Baños": {
             "province": "CALABARZON",
             "center": [
                 14.158,
@@ -6395,7 +6395,7 @@ export default {
                 121.033
             ]
         },
-        "Las Pi\u00b1as": {
+        "Las Piñas": {
             "province": "Metropolitan Manila",
             "center": [
                 14.443,
@@ -6451,7 +6451,7 @@ export default {
                 120.944
             ]
         },
-        "Para\u00b1aque": {
+        "Parañaque": {
             "province": "Metropolitan Manila",
             "center": [
                 14.484,
@@ -7515,7 +7515,7 @@ export default {
                 120.913
             ]
         },
-        "Mu\u00b1oz City": {
+        "Muñoz City": {
             "province": "Central Luzon",
             "center": [
                 15.729,
@@ -7543,7 +7543,7 @@ export default {
                 121.159
             ]
         },
-        "Pe\u00b1aranda": {
+        "Peñaranda": {
             "province": "Central Luzon",
             "center": [
                 15.355,
