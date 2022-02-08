@@ -78,7 +78,7 @@ export class DisasterMap {
         if ((self.querylanguage || self.querytab) && !self.reportid) {
           if (!self.selected_city && self.utility.isCitySupported(self.querycity)) {
             self.selected_city = self.querycity; //selected_city given a value from params only when viewReports / changeCity run
-            history.pushState({ city: self.selected_city, report_id: null }, 'city', 'map/' + self.selected_city);
+            history.pushState({city: self.selected_city, report_id: null}, 'city', 'map/' + self.selected_city);
           } else if (self.selected_city) {
             history.pushState({ city: self.selected_city, report_id: null }, 'city', 'map/' + self.selected_city);
           } else {
@@ -127,7 +127,10 @@ export class DisasterMap {
             self.layers.activeReports[self.reportid].fire('click');
             self.selected_city = cityName;
             if (pushState) {
-              history.pushState({ city: cityName, report_id: self.reportid }, 'city', 'map/' + cityName + '/' + self.reportid);
+              history.pushState({
+                city: cityName,
+                report_id: self.reportid
+              }, 'city', 'map/' + cityName + '/' + self.reportid);
             }
           }
         } else if (self.reportid && !self.layers.activeReports.hasOwnProperty(self.reportid)) {
@@ -140,7 +143,10 @@ export class DisasterMap {
                 report.fire('click');
                 self.selected_city = cityName;
                 if (pushState) {
-                  history.pushState({ city: cityName, report_id: self.reportid }, 'city', 'map/' + cityName + '/' + self.reportid);
+                  history.pushState({
+                    city: cityName,
+                    report_id: self.reportid
+                  }, 'city', 'map/' + cityName + '/' + self.reportid);
                 }
               } else {
                 //Case 2B: fly to city with report id
@@ -152,19 +158,22 @@ export class DisasterMap {
                         queriedReport.fire('click');
                         self.selected_city = queryReportCity;
                         if (pushState) {
-                          history.pushState({ city: queryReportCity, report_id: self.reportid }, 'city', 'map/' + queryReportCity + '/' + self.reportid);
+                          history.pushState({
+                            city: queryReportCity,
+                            report_id: self.reportid
+                          }, 'city', 'map/' + queryReportCity + '/' + self.reportid);
                         }
                       });
                   });
               }
             }).catch(() => {
-              self.utility.noReportNotification(cityName, self.reportid);
-              self.selected_city = cityName;
-              self.reportid = null;
-              if (pushState) {
-                history.pushState({ city: cityName, report_id: null }, 'city', 'map/' + cityName);
-              }
-            });
+            self.utility.noReportNotification(cityName, self.reportid);
+            self.selected_city = cityName;
+            self.reportid = null;
+            if (pushState) {
+              history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
+            }
+          });
         } else if (!self.reportid) {
           // No report id in query
           if (self.utility.isCitySupported(cityName)) {
@@ -208,7 +217,8 @@ export class DisasterMap {
 
     L.control.attribution({
       position: 'bottomleft',
-      prefix: '<a href="http://mapbox.com/about/maps" class="mapbox-logo" target="_blank">Mapbox</a>'}).addTo(self.map);
+      prefix: '<a href="http://mapbox.com/about/maps" class="mapbox-logo" target="_blank">Mapbox</a>'
+    }).addTo(self.map);
 
     // Add base tile layers
     L.tileLayer(self.utility.config.tile_layer, {
@@ -289,6 +299,8 @@ export class DisasterMap {
       }
     };
 
-    dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
+    dep.map.initial_load.forEach(function(region) {
+      self.viewRegionReports(region, false);
+    });
   }
 }

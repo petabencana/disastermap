@@ -1,12 +1,11 @@
 //Utility functions for manipulating leaflet map layers
 
-import { inject, noView } from 'aurelia-framework';
+import {inject, noView} from 'aurelia-framework';
 import * as L from 'leaflet';
 // eslint-disable-next-line no-unused-vars
-import markerClusterGroup from 'leaflet.markercluster';
 import Chart from 'chart';
-import { Config } from 'resources/config';
-import { HttpClient } from 'aurelia-http-client';
+import {Config} from 'resources/config';
+import {HttpClient} from 'aurelia-http-client';
 import * as topojson from 'topojson-client';
 
 //start-aurelia-decorators
@@ -294,7 +293,7 @@ export class MapLayers {
     if (feature.properties.report_data) {
       self.selReportType = feature.properties.report_data.report_type;
     }
-    
+
   }
 
   reportInteraction(feature, layer, cityName, map, togglePane) {
@@ -579,7 +578,7 @@ export class MapLayers {
                 }, this)
               }
             }
-            
+
           }, this)
         }).catch(() => reject(null));
     });
@@ -592,7 +591,7 @@ export class MapLayers {
       filter: function(feature, layer) {
         if (reportType) {
           let reportData = feature.properties.report_data || {'report_type': ''};
-          return reportData.report_type === reportType;
+          return reportData.report_type === reportType && feature.properties.partner_code !== '';
         }
         return feature.properties.disaster_type === disaster;
       },
@@ -601,14 +600,13 @@ export class MapLayers {
       },
       pointToLayer: (feature, latlng) => {
         let reportIconNormal = self.getReportIcon(feature);
-        if(feature.properties.disaster_type == "fire") {
+        if(feature.properties.disaster_type === "fire") {
           const radius = map.distance(L.latLng(feature.properties.report_data.fireRadius.lat, feature.properties.report_data.fireRadius.lng), latlng)
-          const fireCircle = new L.Circle(latlng, {
+          return new L.Circle(latlng, {
             radius: radius,
             className: "fire-distance",
-            fillOpacity: 0.25 
+            fillOpacity: 0.25
           });
-          return fireCircle;
         }
         return L.marker(latlng, {
           icon: reportIconNormal,
@@ -619,7 +617,7 @@ export class MapLayers {
     let markers = L.markerClusterGroup({ iconCreateFunction: this.iconCreateFunction() });
     markers.addLayer(self.reports);
     markers.addTo(map);
-    if (disaster == 'fire') this.fireMarkers = markers;
+    if (disaster === 'fire') this.fireMarkers = markers;
   }
 
   iconCreateFunction() {
