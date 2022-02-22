@@ -250,8 +250,9 @@ export class MapLayers {
       if (feature.properties.disaster_type === "fire" && !self.fireMarker)
       // {e.target.setStyle({"className": "fire-distance-selected"}); e.target._updatePath()}
       { e.target.setStyle({ "fillOpacity": .5 }); }
-      else
-        e.target.setIcon(reportIconSelected);
+      //TODO: fixme
+      // else
+      //   e.target.setIcon(reportIconSelected);
       self.popupContent = {};
       for (let prop in feature.properties) {
         self.popupContent[prop] = feature.properties[prop];
@@ -263,22 +264,24 @@ export class MapLayers {
       self.selected_report = e;
     } else if (e.target === self.selected_report.target) {
       // Case 2 : clicked report icon same as selected report
-      if (feature.properties.disaster_type == "fire" && !self.fireMarker)
+      if (feature.properties.disaster_type === "fire" && !self.fireMarker)
         // e.target.setStyle ({ "className": "fire-distance" })
         e.target.setStyle({ "fillOpacity": .25 })
-      else
-        e.target.setIcon(reportIconNormal);
+      //TODO: fixme
+      // else
+      //   e.target.setIcon(reportIconNormal);
       history.pushState({ city: cityName, report_id: null }, 'city', 'map/' + cityName);
       togglePane('#infoPane', 'hide', false);
       self.selected_report = null;
     } else if (e.target !== self.selected_report.target) {
       // Case 3 : clicked new report icon, while previous selection needs to be reset
       self.revertIconToNormal(self.selected_report.target.feature);
-      if (feature.properties.disaster_type == "fire" && !self.fireMarker)
+      if (feature.properties.disaster_type === "fire" && !self.fireMarker)
         // e.target.setStyle({ "className": "fire-distance-selected" })
         e.target.setStyle({ "fillOpacity": .5 })
-      else
-        e.target.setIcon(reportIconSelected);
+      //TODO: fixme
+      // else
+      //   e.target.setIcon(reportIconSelected);
       self.popupContent = {};
       for (let prop in feature.properties) {
         self.popupContent[prop] = feature.properties[prop];
@@ -503,7 +506,7 @@ export class MapLayers {
               return entry.properties.disaster_type === 'fire'
             })
             this.map = map
-            data = this.addDisasterLevels(data)
+            data = this.addDisasterLevelsToData(data)
             this.addCluster(data, cityName, map, togglePane, 'flood');
             this.addDisasterIconLayers(map);
             this.addCluster(data, cityName, map, togglePane, 'haze');
@@ -636,6 +639,7 @@ export class MapLayers {
   }
 
   addCluster(data, cityName, map, togglePane, disaster, reportType) {
+    let self = this;
     let reports = data
     reports.features = data.features.filter(feature => {
       if (reportType) {
@@ -656,21 +660,21 @@ export class MapLayers {
       'id': 'cluster-' + disaster,
       'source': disaster,
       'type': 'circle',
-      // filter: ['has', 'point_count'],
+      filter: ['has', 'point_count'],
       // paint: {
       //   'circle-radius': 0
       // }
     });
 
-    // map.addLayer({
-    //   'id': 'uncluster-' + disaster,
-    //   'source': disaster,
-    //   'type': 'circle',
-    //   filter: ['!', ['has', 'point_count']],
-    //   paint: {
-    //     'circle-radius': 10
-    //   }
-    // });
+    map.addLayer({
+      'id': 'unclustered-' + disaster,
+      'source': disaster,
+      'type': 'circle',
+      filter: ['!', ['has', 'point_count']],
+      paint: {
+        'circle-radius': 10
+      }
+    });
 
     map.on('click', 'cluster-' + disaster, function (e) {
       console.log("clicked")
@@ -689,6 +693,13 @@ export class MapLayers {
           });
         }
       );
+    });
+
+    map.on('click', 'unclustered-' + disaster, function (e) {
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: ['unclustered-' + disaster]
+      });
+      self.markerClickHandler(e, features[0], cityName, map, togglePane);
     });
     map.loadImage('assets/icons/Add_Report_Icon_Flood.png', function (error, image) {
       if (error) throw error;
@@ -781,32 +792,6 @@ export class MapLayers {
     }
   }
 
-  getAvgDisasterSevearity(type, subType, reportMarkers) {
-    switch (type) {
-      case 'flood':
-        let avgDepth = this.getAverageFloodDepth(reportMarkers);
-        return this._getFloodSevearity(avgDepth);
-      case 'earthquake':
-        if (subType === 'road') {
-          let avgAccessability = this.getAverageAccessability(reportMarkers);
-          return this._getAccessabilitySevearityGroup(avgAccessability);
-        } else if (subType === 'structure') {
-          let avgStructureFailure = this.getAvgStructureFailure(reportMarkers);
-          return this._getStructureFailureSevearity(avgStructureFailure);
-        }
-        break;
-      case 'wind':
-        let avgImpact = this.getAverageWindImpact(reportMarkers);
-        return this._getWindSevearity(avgImpact);
-      case 'haze':
-        let avgAirQuality = this.getAverageAirQuality(reportMarkers);
-        return this._getAQSevearity(avgAirQuality);
-      case 'fire':
-        return 'high';
-      default:
-        return 'low';
-    }
-  }
 
   getDisasterSevearity(feature) {
     let disasterType = feature.properties.disaster_type;
@@ -866,64 +851,6 @@ export class MapLayers {
         break;
     }
     return level;
-  }
-
-  getAvgStructureFailure(reportMarkers) {
-    let totalStructureFailure = 0;
-    reportMarkers.forEach(function (report, index) {
-      const reportData = report.properties.report_data || { 'structureFailure': 0 };
-      totalStructureFailure += reportData.structureFailure || 0;
-    });
-    return totalStructureFailure / reportMarkers.length;
-  }
-
-  getAverageAccessability(reportMarkers) {
-    let totalAccessability = 0;
-    reportMarkers.forEach(function (report, index) {
-      let accessability = 0;
-      const reportData = report.properties.report_data || { 'accessabilityFailure': 0 };
-      accessability = reportData.accessabilityFailure || 0;
-      switch (accessability) {
-        case 0: totalAccessability += 0.5; break;
-        case 1: totalAccessability += 1.0; break;
-        case 2: totalAccessability += 1.4; break;
-        case 3: totalAccessability += 1.8; break;
-        case 4: totalAccessability += 2.2; break;
-        default: totalAccessability += 0; break;
-      }
-    });
-    return totalAccessability / reportMarkers.length;
-  }
-
-
-  getAverageFloodDepth(reportMarkers) {
-    let depth = 0;
-    reportMarkers.forEach(function (report, index) {
-      const reportData = report.properties.report_data || { 'flood_depth': 0 };
-      depth += reportData.flood_depth || 0;
-    });
-    // for (let report in report_markers) {
-    //   depth += report.feature.properties.report_data['flood_depth'];
-    // }
-    return depth / reportMarkers.length;
-  }
-
-  getAverageAirQuality(reportMarkers) {
-    let aq = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 };
-    reportMarkers.forEach(function (report, index) {
-      const reportData = report.properties.report_data || { 'airQuality': 0 };
-      aq[reportData['airQuality']] = aq[reportData['airQuality']] + 1;
-    });
-    return Object.keys(aq).reduce((a, b) => aq[a] > aq[b] ? a : b);
-  }
-
-  getAverageWindImpact(reportMarkers) {
-    let impact = { 0: 0, 1: 0, 2: 0 };
-    reportMarkers.forEach(function (report, index) {
-      const reportData = report.properties.report_data || { 'impact': 0 };
-      impact[reportData['impact']] = impact[reportData['impact']] + 1;
-    });
-    return Object.keys(impact).reduce((a, b) => impact[a] > impact[b] ? a : b);
   }
 
   addFloodExtents(cityName, cityRegion, map, togglePane) {
@@ -1012,7 +939,7 @@ export class MapLayers {
     }
   }
 
-  addDisasterLevels(data) {
+  addDisasterLevelsToData(data) {
     let self = this;
     data.features = data.features.map(function (item) {
       item.properties.disasterLevel = self.getDisasterSevearity(item);
