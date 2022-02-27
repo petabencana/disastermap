@@ -16,6 +16,7 @@ import { Promise } from 'bluebird';
 export class MapLayers {
   constructor(Config) {
     this.activeReports = {}; // List of available reports (filtered by city, time: last 1 hour)
+    this.queriedReports = {};
     this.config = Config.map;
     this.selReportType = null;
     this.fireMarkers = null;
@@ -613,22 +614,40 @@ export class MapLayers {
       "flood": [
         {
           "icon": "assets/icons/flood_low.png",
-          "filter": ['all',['==', 'disasterLevel', 'low']],
+          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', false]],
           "size": 0.05,
           "level": "low"
         },
         {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'low'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "low_selected"
+        },
+        {
           "icon": "assets/icons/flood_medium.png",
-          "filter": ['all',['==', 'disasterLevel', 'medium']],
+          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', false]],
           "size": 0.05,
           "level": "medium"
         },
         {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'medium'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "medium_selected"
+        },
+        {
           "icon": "assets/icons/flood_high.png",
-          "filter": ['all',['==', 'disasterLevel', 'high']],
+          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', false]],
           "size": 0.05,
           "level": "high"
-        }
+        },
+        {
+          "icon": "assets/icons/web_report.png",
+          "filter": ['all',['==', 'disasterLevel', 'high'],['==', 'clicked', true]],
+          "size": 0.05,
+          "level": "high_selected"
+        },
       ]
     }
     Object.keys(iconMap).forEach( function (disaster) {
@@ -648,7 +667,7 @@ export class MapLayers {
       }
       return feature.properties.disaster_type === disaster;
     })
-
+    this.queriedReports[disaster] = Object.assign({}, reports);
     map.addSource(disaster, {
       'type': 'geojson',
       'data': reports,
@@ -699,6 +718,12 @@ export class MapLayers {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ['unclustered-' + disaster]
       });
+       self.queriedReports[disaster].features.forEach(function (feature, index) {
+        if (feature.properties.url === features[0].properties.url) {
+          self.queriedReports[disaster].features[index].properties.clicked = !self.queriedReports[disaster].features[index].properties.clicked;
+          map.getSource(disaster).setData(self.queriedReports[disaster]);
+        }
+      })
       self.markerClickHandler(e, features[0], cityName, map, togglePane);
     });
     map.loadImage('assets/icons/Add_Report_Icon_Flood.png', function (error, image) {
@@ -943,6 +968,7 @@ export class MapLayers {
     let self = this;
     data.features = data.features.map(function (item) {
       item.properties.disasterLevel = self.getDisasterSevearity(item);
+      item.properties.clicked = false;
       return item;
     });
     return data;
