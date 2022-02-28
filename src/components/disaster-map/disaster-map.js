@@ -255,11 +255,12 @@ export class DisasterMap {
     //   self.utility.clientLocation = null;
     // });
 
-
-    // Check against queried city param
-    // if (self.querycity) {
-    //   self.viewReports(self.querycity, true);
-    // }
+    self.map.on('load', function() {
+      // Check against queried city param
+      if (self.querycity) {
+        self.viewReports(self.querycity, true);
+      }
+    });
 
     //If user navigates through history, load city as per stateObj, but do not register new pushState
     // window.onpopstate = (e) => {
