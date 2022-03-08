@@ -132,7 +132,6 @@ export default {
       'Rehiyon ng Davao': { 'province': 'Davao Region', 'center': [6.7067, 125.7709] },
       'SOCCSKSARGEN': { 'province': 'SOCCSKSARGEN', 'center': [6.7589, 124.7412] },
       'Caraga Region': { 'province': 'Caraga Region', 'center': [9.2631, 125.7820] },
-      'Caraga': { 'province': 'Caraga Region', 'center': [9.2631, 125.7820] },
       'Cordillera Administrative Region': { 'province': 'Cordillera Administrative Region', 'center': [17.5894, 121.0701] },
       'Rehiyong Pampangisiwaan ng Cordillera': { 'province': 'Cordillera Administrative Region', 'center': [17.5894, 121.0701] },
       'Bangsamoro Autonomous Region of Muslim Mindanao': { 'province': 'Bangsamoro Autonomous Region of Muslim Mindanao', 'center': [6.7928, 121.6648] },
@@ -145,7 +144,7 @@ export default {
         ]
       },
       'San Isidro': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.939,
           126.07
@@ -201,42 +200,42 @@ export default {
         ]
       },
       'Butuan City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.915,
           125.576
         ]
       },
       'Cabadbaran City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.139,
           125.655
         ]
       },
       'Carmen': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.178,
           125.939
         ]
       },
       'Jabonga': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.353,
           125.606
         ]
       },
       'Kitcharao': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.414,
           125.635
         ]
       },
       'Las Nieves': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.722,
           125.436
@@ -250,21 +249,21 @@ export default {
         ]
       },
       'Mainit Lake': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.495,
           125.519
         ]
       },
       'Nasipit': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.922,
           125.33
         ]
       },
       'Remedios T. Romualdez': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.062,
           125.658
@@ -278,7 +277,7 @@ export default {
         ]
       },
       'Tubay': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.212,
           125.553
@@ -425,7 +424,7 @@ export default {
         ]
       },
       'Burgos': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.011,
           126.07
@@ -810,7 +809,7 @@ export default {
         ]
       },
       'Pilar': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.871,
           126.08
@@ -992,14 +991,14 @@ export default {
         ]
       },
       'Bayugan City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.782,
           125.77
         ]
       },
       'Bunawan': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.214,
           126.06
@@ -1013,14 +1012,14 @@ export default {
         ]
       },
       'Loreto': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.369,
           125.618
         ]
       },
       'Prosperidad': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.694,
           125.896
@@ -1034,7 +1033,7 @@ export default {
         ]
       },
       'San Francisco': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.723,
           125.416
@@ -1048,35 +1047,35 @@ export default {
         ]
       },
       'Santa Josefa': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.028,
           126.022
         ]
       },
       'Sibagat': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.98,
           125.774
         ]
       },
       'Talacogon': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.429,
           125.806
         ]
       },
       'Trento': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.07,
           126.194
         ]
       },
       'Veruela': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.039,
           125.751
@@ -2189,7 +2188,7 @@ export default {
         ]
       },
       'Cortes': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.222,
           126.158
@@ -3428,7 +3427,7 @@ export default {
         ]
       },
       'Alegria': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.489,
           125.603
@@ -4030,35 +4029,35 @@ export default {
         ]
       },
       'Basilisa': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.08,
           125.546
         ]
       },
       'Cagdianao': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.027,
           125.651
         ]
       },
       'Dinagat': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.976,
           125.6
         ]
       },
       'Libjo': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.187,
           125.562
         ]
       },
       'Tubajon': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.285,
           125.581
@@ -5073,7 +5072,7 @@ export default {
         ]
       },
       'San Agustin': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.722,
           126.119
@@ -5521,7 +5520,7 @@ export default {
         ]
       },
       'Tubod': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.575,
           125.567
@@ -6368,7 +6367,7 @@ export default {
         ]
       },
       'Placer': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.637,
           125.566
@@ -7824,7 +7823,7 @@ export default {
         ]
       },
       'Socorro': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.656,
           125.943
@@ -8286,7 +8285,7 @@ export default {
         ]
       },
       'Sison': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.673,
           125.49
@@ -8384,7 +8383,7 @@ export default {
         ]
       },
       'General Luna': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.781,
           126.138
@@ -9371,182 +9370,182 @@ export default {
         ]
       },
       'Bacuag': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.571,
           125.629
         ]
       },
       'Claver': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.475,
           125.785
         ]
       },
       'Dapa': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.771,
           126.054
         ]
       },
       'Del Carmen': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.864,
           125.983
         ]
       },
       'Gigaquit': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.503,
           125.687
         ]
       },
       'Mainit': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.565,
           125.499
         ]
       },
       'Malimono': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.574,
           125.435
         ]
       },
       'San Benito': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.944,
           126.008
         ]
       },
       'Santa Monica': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           10.027,
           126.05
         ]
       },
       'Surigao City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.793,
           125.549
         ]
       },
       'Tagana-An': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.71,
           125.59
         ]
       },
       'Barobo': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.522,
           126.151
         ]
       },
       'Bayabas': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.967,
           126.26
         ]
       },
       'Bislig City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.201,
           126.312
         ]
       },
       'Cagwait': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.887,
           126.232
         ]
       },
       'Cantilan': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.275,
           125.89
         ]
       },
       'Carrascal': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.353,
           125.854
         ]
       },
       'Hinatuan': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.412,
           126.327
         ]
       },
       'Lanuza': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.169,
           126.026
         ]
       },
       'Lianga': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.623,
           126.056
         ]
       },
       'Lingig': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.064,
           126.389
         ]
       },
       'Madrid': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.216,
           125.898
         ]
       },
       'Marihatag': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.795,
           126.142
         ]
       },
       'Tagbina': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.437,
           126.182
         ]
       },
       'Tago': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           8.938,
           126.132
         ]
       },
       'Tandag City': {
-        'province': 'Caraga',
+        'province': 'Caraga Region',
         'center': [
           9.074,
           126.058
