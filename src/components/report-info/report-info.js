@@ -325,6 +325,23 @@ export class ReportInfo {
     return this.popupcontent.text;
   }
 
+  //start-aurelia-decorators
+  @computedFrom("popupcontent")
+  //end-aurelia-decorators
+  get isPartnerImage() {
+    return !!this.popupcontent.partner_icon;
+  }
+    
+  //start-aurelia-decorators
+  @computedFrom("popupcontent")
+  //end-aurelia-decorators
+  get fetchPartnerImage() {
+    // To remove the signed part from the url
+    let partnerImage = this.popupcontent.partner_icon.split("?")
+    return partnerImage[0];
+  }
+
+  
   attached() {
     let self = this;
 
