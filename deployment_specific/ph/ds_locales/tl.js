@@ -43,7 +43,7 @@ const id = {
     }
   },
   'report_info': {
-    'share_msg': 'Baha%20pada%20mapaklamidad%2Eph',
+    'share_msg': 'Baha%20sa%20mapaklamidad%2Eph',
     'water_depth': 'Lebel ng Baha:',
     'disturbance_key': 'Rusak:',
     'access_key': 'Akses Jalan:',
