@@ -1,9 +1,5 @@
-## DEPRECATED
-
-This repository contains client-side code for risk map instances 2016-2018. Development is now in the new [riskmap-ng](https://github.com/urbanriskmap/riskmap-ng) project. All instances should switch to this new codebase.
-
 ### RiskMap
-Client map  application for CogniCity. Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
+Client map  application for [PetaBencana platform](https://petabencana.id) . Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
 <br>
 <br>
 This platform is built using the Aurelia framework, which has a few prerequisites. To get started, follow the machine & application setup steps.

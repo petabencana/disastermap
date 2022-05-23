@@ -27,7 +27,6 @@ export class DisasterMap {
       this.cities.push(city);
     }
     this.selected_city = null;
-
   }
 
   togglePane(ref, action, clearSelection) {
@@ -113,14 +112,14 @@ export class DisasterMap {
   viewReports(cityName, pushState) {
     let self = this;
 
-    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.togglePane)
+    self.utility.changeCity(cityName, self.reportid, self.map, self.layers, self.locale.reports_stats, self.togglePane)
       .then(() => {
         // Show timeperiod notification
-        self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
-          .then(stats => {
-            let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
-            self.utility.statsNotification(msg);
-          });
+        // self.layers.getStats(self.utility.parseCityObj(cityName, false).region)
+        //   .then(stats => {
+        //     let msg = this.locale.reports_stats.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        //     self.utility.statsNotification(msg);
+        //   });
 
         if (self.reportid && self.layers.activeReports.hasOwnProperty(self.reportid)) {
           //Case 1: Active report id in current city
@@ -146,7 +145,7 @@ export class DisasterMap {
               } else {
                 //Case 2B: fly to city with report id
                 let queryReportCity = self.utility.parseCityName(reportRegion, self.cities);
-                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.togglePane)
+                self.utility.changeCity(queryReportCity, self.reportid, self.map, self.layers, self.locale, self.togglePane)
                   .then(() => {
                     self.layers.addSingleReport(self.reportid)
                       .then(queriedReport => {
@@ -183,7 +182,7 @@ export class DisasterMap {
         }
       }).catch(() => {
         //Case 3: .addReports not resolved for specified city
-        self.utility.noReportNotification(cityName, null);
+        // self.utility.noReportNotification(cityName, null);
         self.reportid = null;
       });
   }
@@ -198,8 +197,18 @@ export class DisasterMap {
       center: self.utility.config.region_center,
       zoom: self.utility.config.starting_zoom,
       minZoom: self.utility.config.minimum_zoom,
-      zoomSnap: 0.25
+      zoomSnap: 0.25,
+      maxZoom: 20
     });
+
+    const credits = L.control.attribution().addTo(self.map);
+    credits.addAttribution(
+      `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
+    );
+
+    L.control.attribution({
+      position: 'bottomleft',
+      prefix: '<a href="http://mapbox.com/about/maps" class="mapbox-logo" target="_blank">Mapbox</a>'}).addTo(self.map);
 
     // Add base tile layers
     L.tileLayer(self.utility.config.tile_layer, {
@@ -224,7 +233,7 @@ export class DisasterMap {
     // Add custom leaflet control for geolocation
     L.Control.GeoLocate = L.Control.extend({
       onAdd: () => {
-        return self.utility.geolocateContainer(self.map, self.layers, self.togglePane);
+        return self.utility.geolocateContainer(self.map, self.layers, self.locale.reports_stats, self.togglePane);
       }
     });
     L.control.geoLocate = (opts) => {

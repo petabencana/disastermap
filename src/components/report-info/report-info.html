@@ -31,9 +31,14 @@
       <p show.bind="evacArea === true || evacArea === false" class="textTitle"><span class='textKey'>${locale.report_info.evacuateKey}</span><br> ${evacArea ? locale.report_info.evacuateVal[0] : locale.report_info.evacuateVal[1]}</p>
       <p show.bind="structureFailure" class="textTitle">${locale.report_info.structure_key} <span class.bind=sevearity> ${structureFailure} <span></p>
       <p show.bind="reportevent" class="textTitle">${locale.prep_menu.btn_names[reportevent]}</p>
-      <p id="source">${locale.report_info.source}&nbsp;
+      <p if.bind="!isPartnerImage" id="source">${locale.report_info.source}&nbsp;
         <a target="_blank" href.bind="links[source]">
           <img id="sourceImg" src.bind="'assets/icons/img_' + source + '.svg'" width="18" height="18"></img>
+        </a>
+      </p>
+      <p if.bind="isPartnerImage" id="source">${locale.report_info.source}&nbsp;
+        <a target="_blank" href.bind="links[source]">
+          <img id="sourceImg" src.bind=[fetchPartnerImage] width="18" height="18"></img>
         </a>
       </p>
       <p id="timeStamp">${timestamp}</p>

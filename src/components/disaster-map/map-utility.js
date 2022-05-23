@@ -25,6 +25,7 @@ $.notify.addStyle('mapInfo', {
 @inject(Config, LocationService)
 //end-aurelia-decorators
 export class MapUtility {
+
   constructor(Config, LocationService) {
     this.config = Config.map;
     this.locService = LocationService;
@@ -102,7 +103,7 @@ export class MapUtility {
   }
 
   // Change city from within map without reloading window
-  changeCity(cityName, reportId, map, layers, togglePane) {
+  changeCity(cityName, reportId, map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
@@ -123,11 +124,19 @@ export class MapUtility {
     //   });
     // L.rectangle([cityObj.bounds.sw, cityObj.bounds.ne], {color: '#ff7800', weight: 1}).addTo(map);
     // Add new layers
+    layers.getStats(cityObj.region)
+      .then(stats => {
+        let msg = reportsStatsMessage.replace('{reportsplaceholder}', stats.reports).replace('{provinceplaceholder}', cityName);
+        self.statsNotification(msg);
+      });
+
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
+
+
     return new Promise((resolve, reject) => {
       resolve();
     });
@@ -187,13 +196,13 @@ export class MapUtility {
     this.gpsMarker.addTo(map);
   }
 
-  viewClientLocation(map, layers, togglePane) {
+  viewClientLocation(map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     console.log(self.clientLocation);
     if (self.clientLocation) {
       if (self.clientCityIsValid) {
         //case 1: location found, location in a supported city
-        self.changeCity(self.clientCity, null, map, layers, togglePane);
+        self.changeCity(self.clientCity, null, map, layers, reportsStatsMessage, togglePane);
         map.flyTo(self.clientLocation.latlng, 15);
         if (self.gpsMarker) {
           self.gpsMarker.removeFrom(map);
@@ -213,7 +222,7 @@ export class MapUtility {
   }
 
   // Geolocation control button element & style
-  geolocateContainer(map, layers, togglePane) {
+  geolocateContainer(map, layers, reportsStatsMessage, togglePane) {
     let self = this;
     let container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
     container.innerHTML = '<i class="icon-geolocate"></i>';
@@ -226,7 +235,7 @@ export class MapUtility {
     container.style.height = '35px';
     container.style.cursor = 'pointer';
     container.onclick = () => {
-      self.viewClientLocation(map, layers, togglePane);
+      self.viewClientLocation(map, layers, reportsStatsMessage, togglePane);
     };
     return container;
   }
