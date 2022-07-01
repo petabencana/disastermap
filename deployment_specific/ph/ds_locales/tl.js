@@ -15,6 +15,7 @@ const id = {
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
   'popup_text': 'Pumili ng Lugar para Magpatuloy',
+  'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
