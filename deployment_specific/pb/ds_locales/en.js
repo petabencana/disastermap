@@ -43,6 +43,7 @@ const en = {
     }
   },
   'report_info': {
+    // 'share_msg': 'Check%20out%20my%20%23SelfieDermawan%20%40petabencana%20%21%20Your%20selfie%20could%20save%20a%20life%21%20Join%20the%20campaign%20and%20be%20on%20the%20map%21',
     'share_msg': 'Check%20flood%20reports%20on%20petabencana%2Eid',
     'water_depth': 'Flood Depth:',
     'disturbance_key': 'Disturbance:',
@@ -133,6 +134,12 @@ const en = {
       }
     }
   },
+
+  'guage_info':{
+    'title':"Alert",
+    'level':"Level"
+  },
+  
   'map_helper': 'Select city :',
   'report_content': {
     'flood': {

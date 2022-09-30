@@ -44,6 +44,7 @@ const id = {
     }
   },
   'report_info': {
+    // 'share_msg': 'Saya%20baru%20saja%20ikutan%20%23SelfieDermawan%20%21%20Yuk%20ramein%20%40petabencana%20dengan%20selfie%20mu',
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
     'water_depth': 'Tinggi Banjir:',
     'disturbance_key': 'Rusak:',
@@ -134,6 +135,11 @@ const id = {
       }
     }
   },
+  'guage_info':{
+    'title':"Peringatan",
+    'level':"Siaga"
+  },
+  
   'map_helper': 'Pilih kota:',
   'report_content': {
     'flood': {

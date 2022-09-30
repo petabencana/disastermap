@@ -182,7 +182,7 @@
         <i class="icon-cancel-circled-outline" aria-hidden="true"></i>
       </div>
 
-      <gauge-info class="infoWrapper" name.bind="mapModel.layers.popupContent.gauge_name">
+      <gauge-info show.bind="mapModel.layers.popupContent.guage_sevearity" class="infoWrapper" locale.bind="webMenu.locale" description.bind="mapModel.layers.popupContent.guage_sevearity" name.bind="mapModel.layers.popupContent.gauge_name">
       </gauge-info>
 
       <flood-info class="infoWrapper" if.bind="mapModel.layers.popupContent.state" locale.bind="webMenu.locale" areaname.bind="mapModel.layers.popupContent.area_name" districtname.bind="mapModel.layers.popupContent.parent_name" state.bind="mapModel.layers.popupContent.state" updated.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.last_updated)">
