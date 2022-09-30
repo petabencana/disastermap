@@ -7,15 +7,16 @@ const id = {
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'I-ULAT',
-  'add_report': 'I-ULAT AND BAHA',
+  'add_report': 'I-ULAT ANG BAHA',
   'add_eq_report': 'Laporkan gempa',
   'add_haze_report': 'Laporkan Kabut Asap',
   'add_wind_report': 'Laporkan Angin Kencang',
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
-  'popup_text': 'Pilih Provinsi untuk melanjutkan',
-  'search_header': 'Pilih Wilayah',
+  'popup_text': 'Pumili ng Lugar para Magpatuloy',
+  'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
+  'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
   'fire': 'Sunog',
@@ -39,7 +40,7 @@ const id = {
       'report': 'Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'TUNGKOL SA <p class="about_subscript">Kasalukuyang sinusuporta ang Probinsya Ng Pampanga at ang Lungsod ng Quezon</p>'
+      'about': 'TUNGKOL SA'
     }
   },
   'report_info': {

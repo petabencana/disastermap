@@ -25,7 +25,7 @@ export class ScreenPopup {
     this.config = Config.map;
     this.configData = Config;
     this.cityPopupDisplayStyle =  { display: 'block !important'};
-    this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
+    this.startPopupDisplayStyle = { display: 'block !important'};
     this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
 
     $(document).click( function(e) {
@@ -88,7 +88,7 @@ export class ScreenPopup {
     $('#popupResults').on('click', function() {
       $(this).toggleClass('clicked');
     });
-    const map = Object.keys(this.config.instance_regions);
+    const map = Object.keys(this.config.sub_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
     });

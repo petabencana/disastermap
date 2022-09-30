@@ -17,6 +17,7 @@ const en = {
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'popup_text': 'Select Province to continue',
+  'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
   'eq': 'Earthquake',
@@ -38,7 +39,7 @@ const en = {
       'map': 'map',
       'report': 'Report',
       'legend': 'Legend',
-      'about': 'About <p class="about_subscript">Currently supporting Pampanga and Quezon City</p>'
+      'about': 'About'
     }
   },
   'report_info': {
