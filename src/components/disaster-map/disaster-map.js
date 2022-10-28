@@ -167,13 +167,13 @@ export class DisasterMap {
                   });
               }
             }).catch(() => {
-            self.utility.noReportNotification(cityName, self.reportid);
-            self.selected_city = cityName;
-            self.reportid = null;
-            if (pushState) {
-              history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
-            }
-          });
+              self.utility.noReportNotification(cityName, self.reportid);
+              self.selected_city = cityName;
+              self.reportid = null;
+              if (pushState) {
+                history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
+              }
+            });
         } else if (!self.reportid) {
           // No report id in query
           if (self.utility.isCitySupported(cityName)) {
@@ -206,54 +206,19 @@ export class DisasterMap {
       zoom: self.utility.config.starting_zoom
     });
     self.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
+    const geolocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    });
+      // Add the control to the map.
+    self.map.addControl(geolocate, 'bottom-left');
+    geolocate.on('geolocate', (position) => {
+      self.utility.onLocationFound(position.coords);
+      // console.log('A geolocate event has occurred.', position);
+    });
 
-    // const credits = L.control.attribution().addTo(self.map);
-    // credits.addAttribution(
-    //   `© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>`
-    // );
-
-    // L.control.attribution({
-    //   position: 'bottomleft',
-    //   prefix: '<a href="http://mapbox.com/about/maps" class="mapbox-logo" target="_blank">Mapbox</a>'
-    // }).addTo(self.map);
-
-
-    // Add scale control
-    // L.control.scale({
-    //   position: 'bottomleft',
-    //   metric: true,
-    //   imperial: false
-    // }).addTo(self.map);
-
-
-    // Add custom leaflet control for geolocation
-    // L.Control.GeoLocate = L.Control.extend({
-    //   onAdd: () => {
-    //     return self.utility.geolocateContainer(self.map, self.layers, self.locale.reports_stats, self.togglePane);
-    //   }
-    // });
-    // L.control.geoLocate = (opts) => {
-    //   return new L.Control.GeoLocate(opts);
-    // };
-    // L.control.geoLocate({
-    //   position: 'bottomleft'
-    // }).addTo(self.map);
-
-    // let mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
-    // let logoContainer = document.getElementById("logoContainer");
-
-    // mapControlsContainer.appendChild(logoContainer);
-
-    // Find user location & store in background
-    // self.map.locate({
-    //   setView: false
-    // });
-    // self.map.on('locationfound', (e) => {
-    //   self.utility.onLocationFound(e);
-    // });
-    // self.map.on('locationerror', () => {
-    //   self.utility.clientLocation = null;
-    // });
 
     self.map.on('load', function() {
       // Check against queried city param

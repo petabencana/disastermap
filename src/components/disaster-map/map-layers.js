@@ -539,11 +539,8 @@ export class MapLayers {
     });
   }
 
-  floodExtentInteraction(feature, layer, cityName, map, togglePane) {
+  floodExtentInteraction(e , feature, cityName, map, togglePane) {
     let self = this;
-    layer.on({
-      click: (e) => {
-        map.panTo(layer.getCenter());
         // Check for selected report, restore icon to normal, clear variable, update browser URL
         if (self.selected_report) {
           self.revertIconToNormal(self.selected_report.target.feature);
@@ -596,8 +593,6 @@ export class MapLayers {
           togglePane("#infoPane", "show", true);
           self.selected_extent = e;
         }
-      },
-    });
   }
 
   drawGaugeChart(feature) {
@@ -717,7 +712,7 @@ export class MapLayers {
     });
   }
 
-  appendData(endPoint, localObj, map) {
+  appendData(endPoint, map) {
     let self = this;
     return new Promise((resolve, reject) => {
       self
@@ -727,7 +722,7 @@ export class MapLayers {
             console.log("Could not load map layer");
             resolve(data);
           } else {
-            localObj.addData(data);
+            // localObj.addData(data);
             // localObj.addTo(map);
             resolve(data);
           }
@@ -1631,59 +1626,8 @@ export class MapLayers {
 
   addFloodExtents(cityName, cityRegion, map, togglePane) {
     let self = this;
-    self.flood_extents = L.geoJSON(null, {
-      style: (feature, layer) => {
-        switch (feature.properties.state) {
-          case 4:
-            return {
-              cursor: "pointer",
-              fillColor: "#CC2A41",
-              weight: 0,
-              color: "#000000",
-              opacity: 0,
-              fillOpacity: 0.7,
-            };
-          case 3:
-            return {
-              cursor: "pointer",
-              fillColor: "#FF8300",
-              weight: 0,
-              color: "#000000",
-              opacity: 0,
-              fillOpacity: 0.7,
-            };
-          case 2:
-            return {
-              cursor: "pointer",
-              fillColor: "#FFFF00",
-              weight: 0,
-              color: "#000000",
-              opacity: 0,
-              fillOpacity: 0.7,
-            };
-          case 1:
-            return {
-              cursor: "pointer",
-              fillColor: "#A0A9F7",
-              weight: 0,
-              color: "#000000",
-              opacity: 0,
-              fillOpacity: 0.7,
-            };
-          default:
-            return { weight: 0, opacity: 0, fillOpacity: 0 };
-        }
-      },
-      onEachFeature: (feature, layer) => {
-        self.floodExtentInteraction(feature, layer, cityName, map, togglePane);
-      },
-    });
     self
-      .appendData(
-        "floods?admin=" + cityRegion + "&minimum_state=1",
-        self.flood_extents,
-        map
-      )
+      .appendData( "floods?admin=" + cityRegion + "&minimum_state=1",map)
       .then((data) => {
         map.addSource("floodExtents", {
           type: "geojson",
@@ -1710,6 +1654,12 @@ export class MapLayers {
             "fill-opacity": 0.7,
           },
         });
+      });
+      map.on("click", "floodExtents", function (e) {
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: ["floodExtents"],
+        });
+        self.floodExtentInteraction(e ,features[0], cityName, map, togglePane);
       });
   }
 

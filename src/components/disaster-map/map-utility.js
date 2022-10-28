@@ -107,10 +107,11 @@ export class MapUtility {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
-    layers.removeFloodExtents(map);
-    layers.removeFloodGauges(map);
+    // layers.removeFloodExtents(map);
+    // layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
+    history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
     if (self.selectedRegion) {
       map.panTo([self.selectedRegion.center[1], self.selectedRegion.center[0]], 10);
       self.selectedRegion = undefined;
@@ -162,6 +163,7 @@ export class MapUtility {
     let regions = self.config.instance_regions;
     self.clientLocation = e;
     let clientCities = [];
+    // eslint-disable-next-line no-unused-vars
     for (let city in regions) {
       self.clientCityIsValid = false;
       if (e.latitude > regions[city].bounds.sw[0] && e.longitude > regions[city].bounds.sw[1] && e.latitude < regions[city].bounds.ne[0] && e.longitude < regions[city].bounds.ne[1]) {
@@ -169,6 +171,9 @@ export class MapUtility {
         clientCities.push(regions[city].region);
         self.clientCityIsValid = true;
         // break;
+      } else {
+        //case 2: location found, but not in supported city
+        $.notify('Location out of bounds', { style: 'mapInfo', className: 'info', position: 'top center' });
       }
       if (clientCities.length > 1) {
         self.locService.filterPointInCities(e, clientCities).then( city => {
