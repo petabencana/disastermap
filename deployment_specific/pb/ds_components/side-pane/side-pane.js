@@ -43,8 +43,12 @@ export class SidePane {
       id: 'https://www.youtube.com/embed/B6tXP4wBoiI',
       en: 'https://www.youtube.com/embed/_A53C84wF7Y',
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
-    }
+    };
     this.report_methods = [
+      {
+        platform: 'whatsapp', //Match string to locale/*/translation.json > report_content.*
+        icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
+      },
       {
         platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
         icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'

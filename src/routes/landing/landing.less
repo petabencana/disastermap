@@ -5,6 +5,50 @@
   z-index: auto;
 }
 
+ /* Makes the animation pause on hover */
+ .moving-text:hover{
+  animation-play-state: paused;
+}
+
+/* The animation */
+@keyframes marquee{
+  0%{transform: translateX(100%);}
+  100%{transform: translateX(-100%);}
+}
+
+.moving-text{
+  background-color: #952026;
+  padding: 8px;
+  color: #fff;
+  position: fixed;
+  top: 70px;
+  width: max-content;
+  z-index: 2;
+  p{
+    margin: auto;
+  }
+}
+
+.social-media-link{
+  color: aqua;
+}
+
+/* media query to enable animation for only those who want it */
+@media (prefers-reduced-motion: no-preference) {
+  .moving-text{
+      animation: marquee 20s linear infinite;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .moving-text {
+    p{
+      font-size: 12px;
+      width: max-content;
+    }
+  }
+}
+
 #pageWrapper {
   position: absolute;
   .fullspan-mixin;
@@ -14,7 +58,7 @@
     height: 50px;
     position: fixed;
     border: none;
-    top: 25px;
+    top: 80px;
     left: -20px;
     z-index: 100000;
     border-radius: 5px;

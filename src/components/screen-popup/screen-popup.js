@@ -25,8 +25,25 @@ export class ScreenPopup {
     this.config = Config.map;
     this.configData = Config;
     this.cityPopupDisplayStyle =  { display: 'block !important'};
-    this.startPopupDisplayStyle = { display: 'block !important'};
+    // this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
     this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
+    this.socialMediaIcons =  [
+      {
+        'icon': 'whatsapp',
+        'icon_img': 'deployment_specific/pb/ds_assets/icons/whatsapp.svg',
+        'icon_url': 'https://bit.ly/BencanaBotWA'
+      },
+      {
+        'icon': 'messenger',
+        'icon_img': 'deployment_specific/pb/ds_assets/icons/messenger.svg',
+        'icon_url': 'https://m.me/petabencana.id'
+      },
+      {
+        'icon': 'telegram',
+        'icon_img': 'deployment_specific/pb/ds_assets/icons/telegram.svg',
+        'icon_url': 'https://t.me/bencanabot'
+      }
+    ];
 
     $(document).click( function(e) {
       if (e.target.id === 'search_icon' && window.innerWidth < 500) {
@@ -95,8 +112,11 @@ export class ScreenPopup {
     this.popupResult = newObj;
     if (this.popupResult.length > 0) {
       $('#popupResults').show();
+      $('#socialMediaContainer').hide();
     } else {
       $('#popupResults').hide();
+      $('#socialMediaContainer').show();
+
     }
   }
 

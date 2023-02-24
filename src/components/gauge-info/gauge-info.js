@@ -6,5 +6,7 @@ import {bindable, customElement} from 'aurelia-framework';
 export class GaugeInfo {
   //start-aurelia-decorators
   @bindable name;
+  @bindable locale;
+  @bindable description;
   //end-aurelia-decorators
 }

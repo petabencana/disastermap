@@ -108,15 +108,17 @@ export class MapUtility {
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
     layers.removeFloodExtents(map);
-    layers.removeFloodGauges(map);
+    // layers.removeCluster(map);
+    // layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
+    history.pushState({city: cityName, report_id: null}, 'city', 'map/' + cityName);
     if (self.selectedRegion) {
-      map.flyTo(self.selectedRegion.center, 10);
+      map.panTo([self.selectedRegion.center[1], self.selectedRegion.center[0]], 10);
       self.selectedRegion = undefined;
     }
     else {
-      map.flyTo(cityObj.center, 10);
+      map.panTo([cityObj.center[1], cityObj.center[0]], 10);
 
     }
     // .once('moveend zoomend', (e) => {
@@ -133,6 +135,8 @@ export class MapUtility {
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      layers.addEarthquakeLayers(cityName, map, togglePane);
+      layers.addVolcanoEruptionLayers(cityName, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
 
@@ -162,6 +166,7 @@ export class MapUtility {
     let regions = self.config.instance_regions;
     self.clientLocation = e;
     let clientCities = [];
+    // eslint-disable-next-line no-unused-vars
     for (let city in regions) {
       self.clientCityIsValid = false;
       if (e.latitude > regions[city].bounds.sw[0] && e.longitude > regions[city].bounds.sw[1] && e.latitude < regions[city].bounds.ne[0] && e.longitude < regions[city].bounds.ne[1]) {
@@ -169,6 +174,9 @@ export class MapUtility {
         clientCities.push(regions[city].region);
         self.clientCityIsValid = true;
         // break;
+      } else {
+        //case 2: location found, but not in supported city
+        $.notify('Location out of bounds', { style: 'mapInfo', className: 'info', position: 'top center' });
       }
       if (clientCities.length > 1) {
         self.locService.filterPointInCities(e, clientCities).then( city => {

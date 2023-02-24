@@ -1,5 +1,6 @@
 <template>
   <require from="./report-info.css"></require>
+  <div class="popupWrapper">
   <div  id="photoPreview">
     <div class="image" id="hasPhoto" show.bind="imageurl">
       <img src.bind="imageurl" click.delegate="openLightbox(fullsizeimg)">
@@ -7,7 +8,7 @@
     <div class="image" id="noPhoto" show.bind="!imageurl">
       <i show.bind="height" class="icon-flood-img phFlood" ></i>
 
-      <img show.bind="(condition || structureFailure) && disasterType !== 'flood' && !visibility && !impact" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
+      <img show.bind="(condition || structureFailure || fireDistance || evacuationNumber) && disasterType !== 'flood' && !visibility && !impact" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
 
       
       <img show.bind="visibility >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+visibilityImgPlaceholderSuffix[visibility]+".png"' class="phImage"/>
@@ -51,15 +52,15 @@
           <td>
             <!-- Downvote -->
             <!-- Use trigger when button needs to be disabled -->
-            <button class="voteButtons" disabled.bind="downvoteDisabled" click.trigger="voteHandler(-1)">
-              <i class.bind="'icon-downvote'" title.bind="voteButtons[1].tooltip"></i>
+            <button id="downVoteButton" class="voteButtons" disabled.bind="downvoteDisabled" click.trigger="voteHandler(-1)">
+            <i class.bind="'icon-downvote'" title.bind="voteButtons[1].tooltip"></i>
             </button>
           </td>
 
           <td>
             <!-- Upvote -->
             <!-- Use trigger when button needs to be disabled -->
-            <button class="voteButtons" disabled.bind="upvoteDisabled" click.trigger="voteHandler(1)">
+            <button id="upVoteButton" class="voteButtons" disabled.bind="upvoteDisabled" click.trigger="voteHandler(1)">
               <i class.bind="'icon-upvote'" title.bind="voteButtons[0].tooltip"></i>
             </button>
           </td>
@@ -87,4 +88,5 @@
     </div>
 
     </div>
+  </div>
   </template>
