@@ -29,19 +29,14 @@ export class ScreenPopup {
     this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
     this.socialMediaIcons =  [
       {
-        'icon': 'whatsapp',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/whatsapp.svg',
-        'icon_url': 'https://bit.ly/BencanaBotWA'
-      },
-      {
         'icon': 'messenger',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/messenger.svg',
-        'icon_url': 'https://m.me/petabencana.id'
+        'icon_img': 'deployment_specific/ph/ds_assets/icons/messenger.svg',
+        'icon_url': 'https://m.me/mapakalamidad'
       },
       {
         'icon': 'telegram',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/telegram.svg',
-        'icon_url': 'https://t.me/bencanabot'
+        'icon_img': 'deployment_specific/ph/ds_assets/icons/telegram.svg',
+        'icon_url': 'https://t.me/kalamidadbot'
       }
     ];
 

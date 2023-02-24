@@ -361,14 +361,14 @@ export class ReportInfo {
 
     self.socialButtons = [
       // Name string should match fontello icons name
-      {
-        name: 'twitter',
-        intent:
-          'https://twitter.com/intent/tweet?text=' +
-          self.msgText +
-          '%20' +
-          self.reportUrl
-      },
+      // {
+      //   name: 'twitter',
+      //   intent:
+      //     'https://twitter.com/intent/tweet?text=' +
+      //     self.msgText +
+      //     '%20' +
+      //     self.reportUrl
+      // },
       {
         name: 'telegram',
         intent:

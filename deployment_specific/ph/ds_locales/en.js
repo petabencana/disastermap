@@ -16,7 +16,9 @@ const en = {
   'add_volcano_report': 'Report Volcano',
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
-  'popup_text': 'Select Province to continue',
+  'popup_text': ': Search for disaster information by province',
+  'social_media_popup_header': 'Report a disaster via :',
+  'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> and <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a>.</p>',
   'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
@@ -143,16 +145,16 @@ const en = {
     'youtube': {
       'title': 'Watch Instructional Video'
     },
-    'twitter': {
-      'title': 'Report Via Twitter',
-      'steps': [
-        'Tweet @mapakalamidad using #flood ',
-        '@mapakalamidad will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
-        '@mapakalamidad will send you a reply with a link to your report',
-        'Check MapaKalamidad.ph for up-to-date disaster information'
-      ]
-    },
+    // 'twitter': {
+    //   'title': 'Report Via Twitter',
+    //   'steps': [
+    //     'Tweet @mapakalamidad using #flood ',
+    //     '@mapakalamidad will send you a one-time link to submit a disaster report',
+    //     'Open the link and follow the instructions to input hazard location, upload photo, and description.',
+    //     '@mapakalamidad will send you a reply with a link to your report',
+    //     'Check MapaKalamidad.ph for up-to-date disaster information'
+    //   ]
+    // },
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
