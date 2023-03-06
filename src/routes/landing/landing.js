@@ -173,10 +173,6 @@ export class Landing {
         window.location = self.config.cards_server + cardId + "/" + type;
       })
       .catch((err) => {
-        console.log(
-          "🚀 ~ file: landing.js ~ line 176 ~ Landing ~ reportDisaster ~ err",
-          err
-        );
       });
   }
 

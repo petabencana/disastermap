@@ -1,101 +1,129 @@
 <template>
-  <require from="./screen-popup.css"></require>
+    <require from="./screen-popup.css"></require>
 
-      <div id="screen">
-
-          <div id="cityPopup" class="popupContent" style.bind="cityPopupDisplayStyle">
-            <img class='pb-logo-header' src.bind="mainLogo" alt="logo" />
-            <div class='search-input-wrapper'>
-            <input
-              id="search_city_input"
-              type="text"
-              class="live-search-box"
-              placeholder="${locale.search_ph}"
-              model.bind="city"
-              value.bind="query & debounce:200"
-              blur.trigger="handleInputBlur()"
-              focus.trigger="handleInputFocus()"
-
-            />
-            <div class='search-icon-wrapper'>
-              <img id="search_icon"class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
-            </div>
+    <div id="screen">
+        <div id="cityPopup" class="popupContent" style.bind="cityPopupDisplayStyle">
+            <img class="pb-logo-header" src.bind="mainLogo" alt="logo" />
+            <div class="search-input-wrapper">
+                <input
+                    id="search_city_input"
+                    type="text"
+                    class="live-search-box"
+                    placeholder="${locale.search_ph}"
+                    model.bind="city"
+                    value.bind="query & debounce:200"
+                    blur.trigger="handleInputBlur()"
+                    focus.trigger="handleInputFocus()"
+                />
+                <div class="search-icon-wrapper">
+                    <img
+                        id="search_icon"
+                        class="search-icon"
+                        src="deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg"
+                        alt=""
+                    />
+                </div>
             </div>
 
             <div class="row m-0 dropdown-city-wrapper">
-              <div id="dropdown_city" if.bind = 'searchResult.length > 0' class="searchDropDown" style="position: absolute;display: none; max-height: none;">
-                  <ul  class=" p-0" if.bind="searchText.length > 0" >
-                      <li class="dropUl_header"><b>${locale.search_header}</b></li>
-                      <li class="dropUl" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
-                  </ul>
-              </div>
+                <div
+                    id="dropdown_city"
+                    if.bind="searchResult.length > 0"
+                    class="searchDropDown"
+                    style="position: absolute; display: none; max-height: none"
+                >
+                    <ul class="p-0" if.bind="searchText.length > 0">
+                        <li class="dropUl_header"><b>${locale.search_header}</b></li>
+                        <li class="dropUl" repeat.for="city of searchResult" click.delegate="switchRegion(city, true)">${city}</li>
+                    </ul>
+                </div>
             </div>
         </div>
-
 
         <div id="termsPopup">
-          <div id="tabRow">
-            <div
-              repeat.for="switch of termscontents"
-              class="termsTabs"
-              id.bind="'tab-' + switch.tab_key"
-              click.delegate="switchTab(switch.tab_key)"
-            >
-              <p>${switch.tab_name}</p>
+            <div id="tabRow">
+                <div
+                    repeat.for="switch of termscontents"
+                    class="termsTabs"
+                    id.bind="'tab-' + switch.tab_key"
+                    click.delegate="switchTab(switch.tab_key)"
+                >
+                    <p>${switch.tab_name}</p>
+                </div>
             </div>
-          </div>
-          <div id="tabContent">
-            <div
-              repeat.for="content of termscontents"
-              class="termsContents"
-              if.bind="content.tab_key == seltab"
-              innerhtml.bind="content.tab_content"
-            ></div>
-          </div>
-          <div id="closeRow">
-            <p click.delegate="closePopup()">${locale.close}&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          </div>
+            <div id="tabContent">
+                <div
+                    repeat.for="content of termscontents"
+                    class="termsContents"
+                    if.bind="content.tab_key == seltab"
+                    innerhtml.bind="content.tab_content"
+                ></div>
+            </div>
+            <div id="closeRow">
+                <p click.delegate="closePopup()">${locale.close}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </div>
         </div>
 
-        <div id='startPopUpContainer' style.bind="startPopupDisplayStyle">
-          <div id="startPopup">
-            <div id="header">
-              <div class='content'>
-                <p class='pop-up-title-text' > ${locale.popup_text} </p>
-                <!-- <p class='close-pop-up' click.delegate="closeStartPopup()"><i class='icon-cancel-circled-outline'></i></p> -->
-              </div>
-            </div>
-              <div class='popupContent'>
-                <input
-                  id="search_city"
-                  type="text"
-                  class="live-search"
-                  placeholder="${locale.search_ph}"
-                  autofocus
-                  value.bind="popupText"
-                  keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
-                />
-              <div class='search-icon-wrapper'>
-                <img class='search-icon' src='deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg' alt=''/>
-              </div>
-              <div class=footer>
-                <div class='content'>
-                  <p class='pop-up-title-text' innerhtml.bind="locale.popup_footer"> </p>
+        <div id="startPopUpContainer" style.bind="startPopupDisplayStyle">
+            <div id="startPopup">
+                <div id="header">
+                    <div class="content">
+                        <p class="pop-up-title-text">${locale.popup_text}</p>
+                        <!-- <p class='close-pop-up' click.delegate="closeStartPopup()"><i class='icon-cancel-circled-outline'></i></p> -->
+                    </div>
                 </div>
-              </div>
+                <div class="popupContent">
+                    <input
+                        id="search_city"
+                        type="text"
+                        class="live-search"
+                        placeholder="${locale.search_ph}"
+                        autofocus
+                        value.bind="popupText"
+                        keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
+                    />
+                    <div class="search-icon-wrapper">
+                        <img class="search-icon" src="deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg" alt="" />
+                    </div>
+                    <div class="footer">
+                        <div class="content">
+                            <p class="pop-up-title-text" innerhtml.bind="locale.popup_footer"></p>
+                        </div>
+                    </div>
 
-
-              <!-- <div class="panel p-0 m-0"> -->
-                <div class="row m-0" style="position: relative">
-                  <div id="popupResults" class="searchDropDown" style="position: absolute;display: none; width: 100%; padding: 0; padding-top: 20px; border-radius: 4px; margin-left: 0; max-height: 40vh;">
-                      <ul  class="searchDropDown-list" style="padding-left: 0" >
-                          <li class ="dropUl_header"><b>${locale.search_header}</b></li>
-                          <li class ="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
-                      </ul>
-                  </div>
+                    <!-- <div class="panel p-0 m-0"> -->
+                    <div class="row m-0" style="position: relative">
+                        <div
+                            id="popupResults"
+                            class="searchDropDown"
+                            style="
+                                position: absolute;
+                                display: none;
+                                width: 100%;
+                                padding: 0;
+                                padding-top: 20px;
+                                border-radius: 4px;
+                                margin-left: 0;
+                                max-height: 40vh;
+                            "
+                        >
+                            <ul class="searchDropDown-list" style="padding-left: 0">
+                                <li class="dropUl_header"><b>${locale.search_header}</b></li>
+                                <li class="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+            <div id="socialMediaContainer">
+              <p>${locale.social_media_popup_header}</p>
+                <div class="socialMediaIcons">
+                    <a repeat.for="socialmedia of socialMediaIcons" href="${socialmedia.icon_url}">
+                       <img alt="${socialmedia.icon}" width="60" height="60" src="${socialmedia.icon_img}"/>
+                </a>
+                </div>
           </div>
         </div>
+    </div>
+
 </template>

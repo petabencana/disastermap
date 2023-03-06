@@ -13,13 +13,13 @@
   border-radius: 5px;
   color: #ffffff;
   position: absolute;
-  transform: translate(-50%, 0);
-  top: @bar-heights;
+  transform: translate(-50%,0);
+  top: 120px;
   left: 50%;
   @media screen and (max-device-width: 400px) and (-webkit-min-device-pixel-ratio: 1) {
     width: 300px;
     white-space: normal;
-    top: 140px;
+    top: 180px;
   }
 }
 
@@ -149,3 +149,7 @@
   color: @steel-gray;
   text-shadow: none;
 }
+
+.mapboxgl-popup {
+  min-width: 350px;
+  }

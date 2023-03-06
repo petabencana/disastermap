@@ -107,7 +107,8 @@ export class MapUtility {
     let self = this;
     let cityObj = self.parseCityObj(cityName, true);
     // Remove previous layers
-    // layers.removeFloodExtents(map);
+    layers.removeFloodExtents(map);
+    // layers.removeCluster(map);
     // layers.removeFloodGauges(map);
     // Fly to new city bounds
     // map.flyToBounds([cityObj.bounds.sw, cityObj.bounds.ne])
@@ -134,6 +135,8 @@ export class MapUtility {
     if (cityObj.region !== 'java') {
       layers.addFloodExtents(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
       layers.addFloodGauges(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
+      layers.addEarthquakeLayers(cityName, map, togglePane);
+      layers.addVolcanoEruptionLayers(cityName, map, togglePane);
       return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
     }
 

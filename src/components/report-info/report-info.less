@@ -2,8 +2,6 @@
 
 #photoPreview {
   position: relative;
-  width: 40%;
-  height: 90%;
   float: left;
   background-color: @solid-black;
   & .image {
@@ -43,10 +41,20 @@
   }
 }
 
+.popupWrapper{
+  display: inline-grid;
+  grid-template-columns: 150px auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .popupWrapper {
+  grid-template-columns: 158px auto;
+  height: 170px;
+  }
+}
+
 #textPreview {
   position: relative;
-  width: 45%;
-  height: 90%;
   padding-left: 10px;
   float: left;
   overflow:hidden;

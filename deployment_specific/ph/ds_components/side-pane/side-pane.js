@@ -45,10 +45,10 @@ export class SidePane {
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     }
     this.report_methods = [
-      {
-        platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-        icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
-      },
+      // {
+      //   platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
+      //   icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
+      // },
       {
         platform: 'telegram',
         icon: 'deployment_specific/pb/ds_assets/icons/telegram.png'

@@ -1,5 +1,6 @@
 <template>
   <require from="./report-info.css"></require>
+  <div class="popupWrapper">
   <div  id="photoPreview">
     <div class="image" id="hasPhoto" show.bind="imageurl">
       <img src.bind="imageurl" click.delegate="openLightbox(fullsizeimg)">
@@ -51,15 +52,15 @@
           <td>
             <!-- Downvote -->
             <!-- Use trigger when button needs to be disabled -->
-            <button class="voteButtons" disabled.bind="downvoteDisabled" click.trigger="voteHandler(-1)">
-              <i class.bind="'icon-downvote'" title.bind="voteButtons[1].tooltip"></i>
+            <button id="downVoteButton" class="voteButtons" disabled.bind="downvoteDisabled" click.trigger="voteHandler(-1)">
+            <i class.bind="'icon-downvote'" title.bind="voteButtons[1].tooltip"></i>
             </button>
           </td>
 
           <td>
             <!-- Upvote -->
             <!-- Use trigger when button needs to be disabled -->
-            <button class="voteButtons" disabled.bind="upvoteDisabled" click.trigger="voteHandler(1)">
+            <button id="upVoteButton" class="voteButtons" disabled.bind="upvoteDisabled" click.trigger="voteHandler(1)">
               <i class.bind="'icon-upvote'" title.bind="voteButtons[0].tooltip"></i>
             </button>
           </td>
@@ -87,4 +88,5 @@
     </div>
 
     </div>
+  </div>
   </template>
