@@ -228,14 +228,16 @@ export class DisasterMap {
     });
 
     //If user navigates through history, load city as per stateObj, but do not register new pushState
-    window.onpopstate = (e) => {
-      if (e.state.city !== null) {
-        this.viewReports(e.state.city, false);
-      } else {
-        this.viewReports(null, false);
-      }
-    };
-
-    // dep.map.initial_load.forEach(function(region) {self.viewRegionReports(region, false);});
+    // window.onpopstate = (e) => {
+    //   if (e.state.city !== null) {
+    //     this.viewReports(e.state.city, false);
+    //   } else {
+    //     this.viewReports(null, false);
+    //   }
+    // };
+    //
+    // dep.map.initial_load.forEach(function(region) {
+    //   self.viewRegionReports(region, false);
+    // });
   }
 }
