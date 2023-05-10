@@ -18,7 +18,7 @@ const en = {
   'search_ph': 'Search',
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
-  'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> and <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a>.</p>',
+  'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
   'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
