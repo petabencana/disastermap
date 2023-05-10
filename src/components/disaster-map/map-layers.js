@@ -1893,7 +1893,7 @@ export class MapLayers {
     addNeedLevels(data){
         data.features = data.features.map(function (item) {
             item.properties.clicked = false;
-            item.properties.percent_satisfied = parseInt(item.properties.quantity_satisfied || 3)/parseInt(item.properties.quantity_requested) * 100;
+            item.properties.percent_satisfied = parseInt(item.properties.quantity_satisfied || 0)/parseInt(item.properties.quantity_requested) * 100;
             return item;
         });
         return data;
