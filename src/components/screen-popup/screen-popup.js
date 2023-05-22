@@ -26,7 +26,8 @@ export class ScreenPopup {
     this.configData = Config;
     this.cityPopupDisplayStyle =  { display: 'block !important'};
     // this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
-    this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
+    this.mainLogoStyle = dep.id === 'ph' ? 'ph-logo-header' : 'pb-logo-header';
+    this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidad.png' : 'assets/graphics/Peta_logo.svg';
     this.socialMediaIcons =  [
       {
         'icon': 'messenger',

@@ -44,7 +44,7 @@ export default {
     default_language: 'tl',
     tile_layer: 'https://api.mapbox.com/styles/v1/petabencana/ckq0nc6hp01vw17p9n17yxue2/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
     // data_server: 'http://localhost:8001/',
-    data_server: 'https://data-dev.mapakalamidad.ph/',
+    data_server: 'https://dev-api.mapakalamidad.ph/',
     cards_server: 'http://localhost:4200/',
     app: 'https://dev.petabencana.id/',
     deep_links: [
