@@ -330,7 +330,7 @@ export class MapLayers {
         }
 
         if (!self.selected_need_report) {
-            self.popupContent = {}
+            self.popupContent = {};
             for (let prop in feature.properties) {
                 self.popupContent[prop] = feature.properties[prop];
             }
@@ -341,10 +341,28 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, map);
             }
-            self.selected_need_report = e
-        }
-        else if(e.target === self.selected_report.target){
-             if (self.isMobileDevice()) {
+            self.selected_need_report = e;
+        } else if (e.target !== self.selected_need_report.target) {
+            // Case 3 : clicked new report icon, while previous selection needs to be reset
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            const coordinates = feature.geometry.coordinates.slice();
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_need_report = e;
+            history.pushState(
+                { city: cityName, report_id: feature.properties.pkey },
+                "city",
+                "map/" + cityName + "/" + feature.properties.pkey
+            );
+        } else if (e.target === self.selected_need_report.target) {
+            if (self.isMobileDevice()) {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_need_report = null;
@@ -800,7 +818,7 @@ export class MapLayers {
             self.getData(endPoint)
                 .then(data => {
                     this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
-                    this.addNeedLevels(data)
+                    this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
                 })
                 .catch(err => {
@@ -1890,10 +1908,11 @@ export class MapLayers {
         }
     }
 
-    addNeedLevels(data){
+    addNeedLevels(data) {
         data.features = data.features.map(function (item) {
             item.properties.clicked = false;
-            item.properties.percent_satisfied = parseInt(item.properties.quantity_satisfied || 0)/parseInt(item.properties.quantity_requested) * 100;
+            item.properties.percent_satisfied =
+                (parseInt(item.properties.quantity_satisfied || 0) / parseInt(item.properties.quantity_requested)) * 100;
             return item;
         });
         return data;
