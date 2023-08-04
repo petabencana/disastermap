@@ -772,7 +772,7 @@ export class MapLayers {
             // map.removeLayer(self.reports);
             self.reports = null;
         }
-        let endPoint = "reports/?admin=" + cityRegion;
+        let endPoint = `reports/?admin=${cityRegion}&training=${self.config.environment === 'staging'}`;
         // add layer to map
         // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
         return this.addReportsClustered(endPoint, cityName, map, togglePane);
