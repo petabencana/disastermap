@@ -11,6 +11,7 @@
     "test": "au build --env dev --dep pb --data_server_key $DATA_SERVER_KEY",
     "build": "rm -rf scripts/* && au build --env prod --dep $DEP --data_server_key $DATA_SERVER_KEY",
     "build-stage": "rm -rf scripts/* && au build --env stage --dep $DEP --data_server_key $DATA_SERVER_KEY",
+    "build-training": "rm -rf scripts/* && au build --env training --dep $DEP --data_server_key $DATA_SERVER_KEY",
     "build-dev": "rm -rf scripts/* && au build --env dev --dep $DEP --data_server_key $DATA_SERVER_KEY"
   },
   "license": "GPL-3.0",

@@ -136,6 +136,12 @@ export class Landing {
     this.imageurl = imageurl;
   }
 
+  getBannerText() {
+    const bannerText = this.config.environment === 'training' ? this.webMenu.locale.training_banner_text : this.webMenu.locale.banner_text;
+    console.log('BAnner text', bannerText);
+    return  bannerText;
+  }
+
   initiateReport(type) {
     return new Promise((resolve, reject) => {
       if (type) {

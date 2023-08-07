@@ -16,6 +16,7 @@ const id = {
   'search_ph': 'Cari',
   'social_media_popup_header': 'Lapor bencana melalui :',
   'banner_text': '<p>Terdapat peringatan dini cuaca ekstrem. Laporkan bencana disekitarmu melalui <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link"  href="https://t.me/bencanabot">Telegram</a>.</p>',
+  'training_banner_text': '<p>This is a Training Platform.</p>',
   'popup_text': ' Pilih provinsi untuk melihat laporan bencana :',
   'popup_footer': 'PetaBencana.id adalah peta <i>live</i> menampilkan informasi bencana <i>real-time</i>. Kunjungi <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a> untuk melihat data historis.',
   'search_header': 'Pilih Wilayah',
