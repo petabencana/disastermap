@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { Config } from "../../resources/config";
+import {Locales} from '../../resources/locales/locales';
 import { bindable, customElement } from "aurelia-framework";
 import { inject, observable } from "aurelia-framework";
 import { HttpClient } from "aurelia-http-client";
@@ -21,6 +22,8 @@ export class Landing {
   //end-aurelia-decorators
   @observable query;
   constructor(Config) {
+    this.locale = new Locales();
+    console.log("🚀 ~ file: landing.js:24 ~ Landing ~ constructor ~ Locales:", this.locale)
     this.config = Config.map;
     this.configData = Config;
     this.activeDisaster = "none";
@@ -137,9 +140,7 @@ export class Landing {
   }
 
   getBannerText() {
-    const bannerText = this.config.environment === 'training' ? this.webMenu.locale.training_banner_text : this.webMenu.locale.banner_text;
-    console.log('BAnner text', bannerText);
-    return  bannerText;
+    return  this.config.environment === 'training';
   }
 
   initiateReport(type) {
