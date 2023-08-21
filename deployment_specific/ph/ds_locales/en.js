@@ -158,7 +158,7 @@ const en = {
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
-        'Search for <a href="https://t.me/kalamidadbot>@kalamidadbot</a>',
+        'Search for <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
         'Click on “Get Started” and select the disaster to report',
         '@kalamidadbot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',
@@ -169,7 +169,7 @@ const en = {
     'facebook': {
       'title': 'Report via Facebook',
       'steps': [
-        'Search for <a "href="https://m.me/mapakalamidad">@mapakalamidad</a> on Facebook Messenger',
+        'Search for <a href="https://m.me/mapakalamidad">@mapakalamidad</a> on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
         '@mapakalamidad will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',
