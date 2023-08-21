@@ -18,7 +18,7 @@ const en = {
   'search_ph': 'Search',
   'social_media_popup_header': 'Report a disaster via :',
   'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link" href="https://t.me/bencanabot">Telegram</a>.</p>',
-  'training_banner_text': '<p>Ito ang plataporma nang pagsasanay.</p>',
+  'training_banner_text': '<p>This is a training platform, if you are in a real disaster situation check <a class="social-media-link" href="https://petabencana.id">petabencana.id.</a></p>',
   'popup_text': 'Search for disaster information by province :',
   'popup_footer': 'PetaBencana.id a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
