@@ -915,7 +915,13 @@ export class MapLayers {
             type: "circle",
             source: sourceCode,
             paint: {
-                "circle-radius": ["get", "fireDistance"],
+                "circle-radius":
+                [
+                "interpolate", ["linear"], ["zoom"],
+                10 , ["/" , 50 ,["get", "fireDistance"]], 
+                15 , ["get", "fireDistance"],
+                18, ["get", "fireDistance"],
+                ],
                 "circle-opacity": 0.3,
                 "circle-color": "#B42222"
             },
@@ -944,6 +950,7 @@ export class MapLayers {
     updateFireSingleMarker(feature, map, cityName, togglePane, isPartner) {
         let self = this;
         let currentZoom = map.getZoom();
+        console.log("🚀 ~ file: map-layers.js:951 ~ MapLayers ~ updateFireSingleMarker ~ currentZoom:", currentZoom)
         if (!feature) return;
         let fireMarker = this.fireMarker[feature.properties.pkey];
         let fireCircle = this.fireCircle[feature.properties.pkey];
