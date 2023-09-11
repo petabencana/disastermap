@@ -16,10 +16,10 @@ const en = {
   'add_volcano_report': 'Report Volcano',
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
-  'social_media_popup_header': 'Report a disaster via :',
-  'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link" href="https://t.me/bencanabot">Telegram</a>.</p>',
+  'social_media_popup_header': 'Complete training via:',
+  'banner_text': '<p>THIS IS A TRAINING PLATFORM. <br> IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://bit.ly/BencanaBotWA">PETABENCANA.ID </a> FOR REAL-TIME DISASTER UPDATES.</p>',
   'training_banner_text': '<p>This is a training platform, if you are in a real disaster situation check <a class="social-media-link" href="https://petabencana.id">petabencana.id.</a></p>',
-  'popup_text': 'Search for disaster information by province :',
+  'popup_text': 'Select province to view simulation disaster reports',
   'popup_footer': 'PetaBencana.id a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
@@ -171,63 +171,58 @@ const en = {
       'title': 'Watch Instructional Video'
     },
     'whatsapp': {
-      'title': 'Report via WhatsApp',
+      'title': 'Complete Training Exercise via WhatsApp',
       'steps': [
-        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA</a>',
+        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or https://bit.ly/BencanaBotWA',
         'DisasterBot will send you a one-time link to submit a disaster report.',
-        'Open the link and follow the instructions to input hazard location, upload photo and description.',
-        'DisasterBot will send you a reply with a link to your report.',
-        'Check PetaBencana.id on your browser for up-to-date disaster information.'
+        'Open the link, select “complete training exercise”, and follow the instructions to input hazard location, upload photo and description.',
+        'DisasterBot will send you a reply with a link to your simulation report.'
       ]
     },
     'twitter': {
-      'title': 'Report Via Twitter',
+      'title': 'Complete Training Exercise via X (formerly Twitter)',
       'steps': [
-        'Tweet <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
+        'Tweet @petabencana with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
         '@petabencana will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        '@petabencana will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Open the link, select “complete training exercise”,  and follow the instructions to input hazard location, upload photo and description',
+        '@petabencana will send you a reply with a link to your simulation report',
       ]
     },
     'telegram': {
-      'title': 'Report via Telegram',
+      'title': 'Complete Training  Exercise via Telegram',
       'steps': [
         'Search <a target="_blank" href="https://t.me/bencanabot">@bencanabot</a>',
         'Click “/start” and select the disaster to report',
         '@bencanabot will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        '@bencanabot will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Open the link, select “complete training exercise”,  and follow the instructions to input hazard location, upload photo and description',
+        '@bencanabot will send you a reply with a link to your simulation report',
       ]
     },
     'facebook': {
-      'title': 'Report via Facebook',
+      'title': 'Complete Training Exercise via Facebook',
       'steps': [
         'Search <a href="https://m.me/petabencana.id">PetaBencana.id</a> on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
         'PetaBencana.id will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo and description',
-        'PetaBencana.id will send you a reply with a link to your report',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Open the link, select “complete training”, and follow the instructions to input hazard location, upload photo and description',
+        'PetaBencana.id will send you a reply with a link to your simulation report',
       ]
     },
     'web': {
-      'title': 'Report via Web',
+      'title': 'Complete Training Exercise via Web Browser',
       'steps': [
-        'Open Petabencana.id on your browser',
-        'Click the Report icon on the upper left of the page and select the disaster to report',
-        'Click the Report Disaster button and follow the instructions to input hazard location, upload photo and description',
-        'Check PetaBencana.id on your browser for up-to-date disaster information'
+        'Click the Report icon on the upper left of this page and select the disaster to report',
+        'Click the Report Disaster button, select “complete training exercise”, and follow the instructions to input hazard location, upload photo and description',
+        'Check PetaBencana.id on your browser to view your simulation report'
       ]
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
+    'intro': `Welcome to PetaBencana.id's training platform! ***Please note, if you are in a real disaster situation, check PetaBencana.id for real-time disaster updates.***`,
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
-    'p1': 'Run by <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
+    'p1': 'Run by Yayasan Peta Bencana, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
     'p2': '',
-    'p3': 'PetaBencana.id gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
+    'p3': 'PetaBencana.id harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time. Powered by <a href="https://cognicity.info/" target="_blank"> CogniCity Open Source Software </a>, PetaBencana.id transforms the noise of social media into critical information for residents, communities, and government agencies.The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
     'partners': {
       'funding': 'Funding Partner',
       'implementing': 'Implementing partner',
