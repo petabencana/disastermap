@@ -173,7 +173,7 @@ const en = {
     'whatsapp': {
       'title': 'Complete Training Exercise via WhatsApp',
       'steps': [
-        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or https://bit.ly/BencanaBotWA',
+        'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA</a>',
         'DisasterBot will send you a one-time link to submit a disaster report.',
         'Open the link, select “complete training exercise”, and follow the instructions to input hazard location, upload photo and description.',
         'DisasterBot will send you a reply with a link to your simulation report.'
@@ -182,7 +182,7 @@ const en = {
     'twitter': {
       'title': 'Complete Training Exercise via X (formerly Twitter)',
       'steps': [
-        'Tweet @petabencana with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
+        'Tweet <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> with one of the following hashtags:<ul><li>#flood</li><li>#earthquake</li><li>#forestfire</li><li>#haze</li><li>#volcano</li></ul>',
         '@petabencana will send you a one-time link to submit a disaster report',
         'Open the link, select “complete training exercise”,  and follow the instructions to input hazard location, upload photo and description',
         '@petabencana will send you a reply with a link to your simulation report',
