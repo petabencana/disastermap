@@ -173,7 +173,7 @@ const id = {
     'whatsapp': {
       'title': 'Selesaikan simulasi melalui WhatsApp',
       'steps': [
-        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau https://bit.ly/BencanaBotWA',
+        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA </a>',
         'BencanaBot akan mengirimkan tautan satu kali untuk simulasi bencana',
         'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, unggah foto dan deskripsi',
         'BencanaBot akan mengirimkan tautan yang terhubung ke laporan simulasi-mu',
@@ -182,7 +182,7 @@ const id = {
     'twitter': {
       'title': 'Selesaikan simulasi melalui X (sebelumnya bernama Twitter)',
       'steps': [
-        'Buat cuitan ke @petabencana dengan salah satu tagar berikut:<ul><li>#Banjir</li><li>#Gempabumi</li><li>#Kebakaranhutan</li><li>#Kabutasap</li><li>#Gunungberapi</li></ul>',
+        'Buat cuitan ke <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> dengan salah satu tagar berikut:<ul><li>#Banjir</li><li>#Gempabumi</li><li>#Kebakaranhutan</li><li>#Kabutasap</li><li>#Gunungberapi</li></ul>',
         '@petabencana akan mengirimkan tautan satu kali untuk simulasi bencana',
         'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, unggah foto dan deskripsi',
         '@petabencana akan mengirimkan tautan yang terhubung ke laporan simulasi-mu'
