@@ -43,7 +43,7 @@ export class SidePane {
       tl: 'https://www.youtube.com/embed/RqkTsafIUzc',
       en: 'https://www.youtube.com/embed/EKanMB0wwI8',
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
-    }
+    };
     this.report_methods = [
       // {
       //   platform: 'twitter', //Match string to locale/*/translation.json > report_content.*

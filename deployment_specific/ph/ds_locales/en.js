@@ -159,7 +159,7 @@ const en = {
       'title': 'Report via Telegram',
       'steps': [
         'Search for <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
-        'Click on “Get Started” and select the disaster to report',
+        'Click on “/start” and select the disaster to report',
         '@kalamidadbot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',
         '@kalamidadbot will send you a reply with a link to your report',

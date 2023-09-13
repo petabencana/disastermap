@@ -160,7 +160,7 @@ const id = {
       'title': 'Mag-ulat gamit ang Telegram',
       'steps': [
         'Hanapin ang <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
-        'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
+        'Pindutin ang “/start” at piliin ang kalamidad na gusto mong i-ulat',
         'Ang @kalamidadbot ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
         'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
         'Ang @kalamidadbot ay tutugon sayo kasama ang link para sa iyong ulat.',
