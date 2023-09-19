@@ -17,8 +17,7 @@ const en = {
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'social_media_popup_header': 'Complete training via:',
-  'banner_text': '<p>THIS IS A TRAINING PLATFORM. <br> IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://bit.ly/BencanaBotWA">PETABENCANA.ID </a> FOR REAL-TIME DISASTER UPDATES.</p>',
-  'training_banner_text': '<p>This is a training platform, if you are in a real disaster situation check <a class="social-media-link" href="https://petabencana.id">petabencana.id.</a></p>',
+  'banner_text': '<p>THIS IS A TRAINING PLATFORM. <br> IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID </a> FOR REAL-TIME DISASTER UPDATES.</p>',
   'popup_text': 'Select province to view simulation disaster reports',
   'popup_footer': 'PetaBencana.id a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
@@ -218,7 +217,7 @@ const en = {
     }
   },
   'info_content': {
-    'intro': `Welcome to PetaBencana.id's training platform! ***Please note, if you are in a real disaster situation, check PetaBencana.id for real-time disaster updates.***`,
+    'intro': 'Welcome to PetaBencana.id training platform! ***Please note, if you are in a real disaster situation, check PetaBencana.id for real-time disaster updates.***',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
     'p1': 'Run by Yayasan Peta Bencana, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
     'p2': '',

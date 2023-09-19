@@ -16,7 +16,6 @@ const id = {
   'search_ph': 'Cari',
   'social_media_popup_header': 'Simulasi melalu :',
   'banner_text': '<p> INI ADALAH PLATFORM SIMULASI <br> JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</p>',
-  'training_banner_text': '<p>Ini adalah platform pelatihan, jika Anda berada dalam situasi bencana, cek <a class="social-media-link" href="https://petabencana.id">petabencana.id.</a></p>',
   'popup_text': ' Pilih provinsi untuk melihat laporan simulasi bencana :',
   'popup_footer': 'PetaBencana.id adalah peta <i>live</i> menampilkan informasi bencana <i>real-time</i>. Kunjungi <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a> untuk melihat data historis.',
   'search_header': 'Pilih Wilayah',
