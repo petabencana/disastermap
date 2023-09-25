@@ -17,7 +17,7 @@ const en = {
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'social_media_popup_header': 'Complete training via:',
-  'banner_text': '<p>THIS IS A TRAINING PLATFORM. <br> IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID </a> FOR REAL-TIME DISASTER UPDATES.</p>',
+  'banner_text': '<span><p>THIS IS A TRAINING PLATFORM.</p><span class="banner__second-line">IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID </a> FOR REAL-TIME DISASTER UPDATES.</span></span>',
   'popup_text': 'Select province to view simulation disaster reports',
   'popup_footer': 'PetaBencana.id a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',

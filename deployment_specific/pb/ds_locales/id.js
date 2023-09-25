@@ -15,7 +15,7 @@ const id = {
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Cari',
   'social_media_popup_header': 'Simulasi melalu :',
-  'banner_text': '<p> INI ADALAH PLATFORM SIMULASI <br> JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</p>',
+  'banner_text': '<span> <p>INI ADALAH PLATFORM</p><span class="banner__second-line">SIMULASI JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</span></span>',
   'popup_text': ' Pilih provinsi untuk melihat laporan simulasi bencana :',
   'popup_footer': 'PetaBencana.id adalah peta <i>live</i> menampilkan informasi bencana <i>real-time</i>. Kunjungi <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a> untuk melihat data historis.',
   'search_header': 'Pilih Wilayah',
