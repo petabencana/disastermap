@@ -491,6 +491,7 @@ export class MapLayers {
             .setLngLat(coordinates)
             .setDOMContent(div)
             .addTo(map)
+            .setMaxWidth("400px")
             .setOffset(20);
 
         return popupContainer;

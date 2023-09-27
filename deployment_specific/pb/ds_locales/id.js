@@ -14,8 +14,8 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Cari',
-  'social_media_popup_header': 'Simulasi melalu :',
-  'banner_text': '<span> <p>INI ADALAH PLATFORM</p><span class="banner__second-line">SIMULASI JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</span></span>',
+  'social_media_popup_header': 'Simulasi melalui :',
+  'banner_text': '<span> <p>INI ADALAH PLATFORM SIMULASI</p><span class="banner__second-line">JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</span></span>',
   'popup_text': ' Pilih provinsi untuk melihat laporan simulasi bencana :',
   'popup_footer': 'PetaBencana.id adalah peta <i>live</i> menampilkan informasi bencana <i>real-time</i>. Kunjungi <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a> untuk melihat data historis.',
   'search_header': 'Pilih Wilayah',
@@ -39,7 +39,7 @@ const id = {
   'web_menu': {
     'tab_names': {
       'map': 'peta',
-      'report': 'Laporkan',
+      'report': 'LATIHAN SIMULASI',
       'info': 'Info',
       'legend': 'Legenda',
       'about': 'Tentang'
@@ -170,7 +170,7 @@ const id = {
       'title': 'Lihat Video Cara Melapor'
     },
     'whatsapp': {
-      'title': 'Selesaikan simulasi melalui WhatsApp',
+      'title': 'Simulasi melalui WhatsApp',
       'steps': [
         'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA </a>',
         'BencanaBot akan mengirimkan tautan satu kali untuk simulasi bencana',
@@ -179,7 +179,7 @@ const id = {
       ]
     },
     'twitter': {
-      'title': 'Selesaikan simulasi melalui X (sebelumnya bernama Twitter)',
+      'title': 'Simulasi melalui X (sebelumnya bernama Twitter)',
       'steps': [
         'Buat cuitan ke <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> dengan salah satu tagar berikut:<ul><li>#Banjir</li><li>#Gempabumi</li><li>#Kebakaranhutan</li><li>#Kabutasap</li><li>#Gunungberapi</li></ul>',
         '@petabencana akan mengirimkan tautan satu kali untuk simulasi bencana',
@@ -188,7 +188,7 @@ const id = {
       ]
     },
     'telegram': {
-      'title': 'Selesaikan simulasi melalui Telegram',
+      'title': 'Simulasi melalui Telegram',
       'steps': [
         'Cari <a target="_blank" href="https://t.me/bencanabot">@bencanabot</a>',
         'Klik “/start” dan pilih bencana yang akan dilaporkan',
@@ -198,7 +198,7 @@ const id = {
       ]
     },
     'facebook': {
-      'title': 'Selesaikan simulasi melalui Facebook',
+      'title': 'Simulasi melalui Facebook',
       'steps': [
         'Cari <a href="https://m.me/petabencana.id">PetaBencana.id</a> di Facebook Massenger',
         'Klik “Mulai” dan pilih bencana yang akan dilaporkan',
@@ -208,7 +208,7 @@ const id = {
       ]
     },
     'web': {
-      'title': 'Selesaikan latihan simulasi melalui situs web',
+      'title': 'Simulasi melalui Web',
       'steps': [
         'Klik ikon di pojok kiri atas halaman dan pilih bencana yang akan dilaporkan',
         'Klik tombol Laporkan Bencana, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, mengunggah foto dan deskripsi',
