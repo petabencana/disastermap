@@ -22,7 +22,7 @@
   color: #fff;
   position: fixed;
   top: 70px;
-  width: max-content;
+  text-align: center;
   z-index: 2;
   p{
     margin: auto;
@@ -37,6 +37,14 @@
   top: 70px;
   min-width: 100vw;
   z-index: 2;
+  .banner__second-line{
+    margin: 2% 15%
+  }
+  @media only screen and (max-width: 768px){
+    .banner__second-line{
+      margin: 0
+    }
+  }
   p{
     text-align: center;
     margin: auto;
@@ -699,9 +707,13 @@ tr.row.report {
   height: 85px;
   width: 100px;
   overflow: hidden;
+  position: absolute;
+  top: 40px;
 
-  @media screen and (max-height: 470px){
+  @media only screen and (max-width: 768px){
     width: 155px;
+    position: absolute;
+    top: 85px;
   }
 }
 

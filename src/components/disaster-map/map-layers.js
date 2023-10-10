@@ -324,6 +324,46 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
+
+        if (!self.selected_need_report) {
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                const coordinates = feature.geometry.coordinates.slice();
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_need_report = e;
+        } else if (e.target !== self.selected_need_report.target) {
+            // Case 3 : clicked new report icon, while previous selection needs to be reset
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            const coordinates = feature.geometry.coordinates.slice();
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_need_report = e;
+            history.pushState(
+                { city: cityName, report_id: feature.properties.pkey },
+                "city",
+                "map/" + cityName + "/" + feature.properties.pkey
+            );
+        } else if (e.target === self.selected_need_report.target) {
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "hide", false);
+            }
+            self.selected_need_report = null;
+        }
+
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -768,6 +808,27 @@ export class MapLayers {
                     resolve(self.activeReports[data.features[0].properties.pkey]);
                 })
                 .catch(() => reject(null));
+        });
+    }
+
+    addNeedReports(cityName, map, togglePane) {
+        let endPoint = "needs";
+        return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
+    }
+
+    addNeedReportsClustered(endPoint, cityName, map, togglePane) {
+        let self = this;
+        const image = `assets/icons/accessibility.svg`;
+        return new Promise((resolve, reject) => {
+            self.getData(endPoint)
+                .then(data => {
+                    this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
+                    this.addNeedLevels(data);
+                    this.addNeedCluster(data, cityName, map, togglePane);
+                })
+                .catch(err => {
+                    reject(err);
+                });
         });
     }
 
@@ -1323,6 +1384,118 @@ export class MapLayers {
         }
     }
 
+    addNeedCluster(data, cityName, map, togglePane) {
+        try {
+            let self = this;
+
+            const sourceCode = "need-reports";
+            let filteredReports = Object.assign({}, data);
+            this.queriedReports[sourceCode] = filteredReports;
+
+            if (!map.getSource(sourceCode)) {
+                map.addSource(sourceCode, {
+                    type: "geojson",
+                    data: filteredReports,
+                    cluster: true,
+                    clusterMaxZoom: 14
+                });
+            } else {
+                map.getSource(sourceCode).setData(filteredReports);
+            }
+
+            if (!map.getLayer("unclustered-" + sourceCode)) {
+                map.addLayer({
+                    id: "unclustered-" + sourceCode,
+                    source: sourceCode,
+                    type: "circle",
+                    filter: ["!", ["has", "point_count"]],
+                    paint: {
+                        "circle-radius": 20,
+                        "circle-opacity": 0
+                    }
+                });
+            }
+
+            if (!map.getLayer("unclustered-" + sourceCode)) {
+                map.addLayer({
+                    id: "cluster-" + sourceCode,
+                    source: sourceCode,
+                    type: "circle",
+                    filter: ["has", "point_count"],
+                    paint: {
+                        "circle-radius": 20,
+                        "circle-opacity": 0
+                    }
+                });
+            }
+
+            map.on("click", "cluster-" + sourceCode, function (e) {
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ["cluster-" + sourceCode]
+                });
+                const clusterId = features[0].properties.cluster_id;
+                if (!clusterId) return;
+                map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
+                    if (err) return;
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
+                });
+            });
+
+            map.on("click", "unclustered-" + sourceCode, function (e) {
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ["unclustered-" + sourceCode]
+                });
+
+                self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                    if (feature.properties.id === features[0].properties.id) {
+                        self.queriedReports[sourceCode].features[index].properties.clicked =
+                            !self.queriedReports[sourceCode].features[index].properties.clicked;
+                        map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                    }
+                });
+                const feature = self.queriedReports[sourceCode].features.filter(
+                    feature => feature.properties.id === features[0].properties.id
+                );
+                self.markerClickHandler(e, feature[0], cityName, map, togglePane);
+            });
+
+            // self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
+            //     map.addImage(sourceCode + "-marker", image);
+            // });
+
+            map.addLayer({
+                id: "cluster-count-" + sourceCode,
+                type: "symbol",
+                source: sourceCode,
+                filter: ["has", "point_count"],
+                layout: {
+                    "icon-image": sourceCode + "-marker",
+                    "icon-size": 0.45,
+                    "text-field": "{point_count}",
+                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                    "text-size": 12,
+                    "text-offset": [0.75, 0.8]
+                }
+            });
+
+            map.on("mouseenter", "cluster-" + sourceCode, function () {
+                map.getCanvas().style.cursor = "pointer";
+            });
+            map.on("mouseleave", "cluster-" + sourceCode, function () {
+                map.getCanvas().style.cursor = "";
+            });
+        } catch (err) {
+            console.log("Err", err);
+        }
+    }
+
     iconCreateFunction() {
         map.loadImage("assets/icons/Add_Report_Icon_Flood.png", function (error, image) {
             if (error) throw error;
@@ -1778,6 +1951,16 @@ export class MapLayers {
             map.removeSource("floodGauges");
             self.gaugeLayer = null;
         }
+    }
+
+    addNeedLevels(data) {
+        data.features = data.features.map(function (item) {
+            item.properties.clicked = false;
+            item.properties.percent_satisfied =
+                (parseInt(item.properties.quantity_satisfied || 0) / parseInt(item.properties.quantity_requested)) * 100;
+            return item;
+        });
+        return data;
     }
 
     addDisasterLevelsToData(data) {

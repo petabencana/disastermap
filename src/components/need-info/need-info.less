@@ -1,6 +1,6 @@
 @import "../../resources/style_sheets/theme_guide.less";
 
-#volcano-title {
+#need-title {
   position: relative;
   width: 92%;
   & p {
@@ -8,7 +8,6 @@
     padding: 10px;
     .bodymedium-mixin(14px);
     color: @banjir-blue;
-    text-transform: uppercase;
     text-align: center;
     & b {
       color: @dark-gray;
@@ -16,26 +15,17 @@
   }
 }
 
-#volcano-state {
+.progress-bar-container{
+  border: 1px solid @steel-gray;
+  & div{
+    background-color: @tree-green;
+  }
+}
+
+
+#need-state {
   position: relative;
-  height: 65%;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
   width: 92%;
-   span , a {
-    text-align: center;
-    .bodymedium-mixin(14px);
-    padding: 5px;
-  }
-  & .centered{
-    display: grid;
-    place-content: center;
-  }
-  img {
-    width: 40px;
-    height: 40px;
-  }
   & p {
     margin: 0;
     padding: 5px;
@@ -43,11 +33,7 @@
     color: @dark-gray;
     text-align: center;
   }
-  & #severity {
-    color: @banjir-blue;
-    text-transform: uppercase;
-  }
-  & #updated {
+  & #requestedDate {
     .bodylight-mixin(12px);
   }
 }
