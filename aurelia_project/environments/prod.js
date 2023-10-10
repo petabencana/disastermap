@@ -22,6 +22,7 @@ export default {
     title: 'Petabencana.id',
     report_timeperiod: 3600,
     default_language: 'id',
+    environment: 'production',
     tile_layer: 'https://api.mapbox.com/styles/v1/petabencana/ckq0nc6hp01vw17p9n17yxue2/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
     data_server: 'https://api.petabencana.id/',
     data_server_key: '{data_server_key}',

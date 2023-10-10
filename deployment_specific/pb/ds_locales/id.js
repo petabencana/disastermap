@@ -14,9 +14,9 @@ const id = {
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Cari',
-  'social_media_popup_header': 'Lapor bencana melalui :',
-  'banner_text': '<p>Terdapat peringatan dini cuaca ekstrem. Laporkan bencana disekitarmu melalui <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link"  href="https://t.me/bencanabot">Telegram</a>.</p>',
-  'popup_text': ' Pilih provinsi untuk melihat laporan bencana :',
+  'social_media_popup_header': 'Simulasi melalui :',
+  'banner_text': '<span> <p>INI ADALAH PLATFORM SIMULASI</p><span class="banner__second-line">JIKA KAMU BERADA DI SITUASI BENCANA, CEK <a class="social-media-link" href="https://petabencana.id">PETABENCANA.ID</a> UNTUK UPDATE BENCANA SECARA REAL TIME.</span></span>',
+  'popup_text': ' Pilih provinsi untuk melihat laporan simulasi bencana :',
   'popup_footer': 'PetaBencana.id adalah peta <i>live</i> menampilkan informasi bencana <i>real-time</i>. Kunjungi <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a> untuk melihat data historis.',
   'search_header': 'Pilih Wilayah',
   'flood': 'Banjir',
@@ -39,7 +39,7 @@ const id = {
   'web_menu': {
     'tab_names': {
       'map': 'peta',
-      'report': 'Laporkan',
+      'report': 'LATIHAN SIMULASI',
       'info': 'Info',
       'legend': 'Legenda',
       'about': 'Tentang'
@@ -170,74 +170,69 @@ const id = {
       'title': 'Lihat Video Cara Melapor'
     },
     'whatsapp': {
-      'title': 'Laporkan melalui WhatsApp',
+      'title': 'Simulasi melalui WhatsApp',
       'steps': [
-        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau bit.ly/BencanaBotWA',
-        'BencanaBot akan mengirimkan tautan untuk melaporkan bencana.',
-        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi.',
-        'BencanaBot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda.',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini.'
+        'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) atau <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA </a>',
+        'BencanaBot akan mengirimkan tautan satu kali untuk simulasi bencana',
+        'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, unggah foto dan deskripsi',
+        'BencanaBot akan mengirimkan tautan yang terhubung ke laporan simulasi-mu',
       ]
     },
     'twitter': {
-      'title': 'Laporkan melalui Twitter',
+      'title': 'Simulasi melalui X (sebelumnya bernama Twitter)',
       'steps': [
-        'Twit @petabencana dengan salah satu hashtag berikut:<ul><li>#banjir</li><li>#gempa</li><li>#kebakaranhutan</li><li>#kabutasap</li><li>#gunungapi</li></ul>',
-        '@petabencana akan mengirimkan tautan untuk melaporkan bencana',
-        ' Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        '@petabencana akan mengirim balasan twit dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Buat cuitan ke <a href="https://twitter.com/intent/tweet?text=@petabencana">@petabencana</a> dengan salah satu tagar berikut:<ul><li>#Banjir</li><li>#Gempabumi</li><li>#Kebakaranhutan</li><li>#Kabutasap</li><li>#Gunungberapi</li></ul>',
+        '@petabencana akan mengirimkan tautan satu kali untuk simulasi bencana',
+        'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, unggah foto dan deskripsi',
+        '@petabencana akan mengirimkan tautan yang terhubung ke laporan simulasi-mu'
       ]
     },
     'telegram': {
-      'title': 'Laporkan melalui Telegram',
+      'title': 'Simulasi melalui Telegram',
       'steps': [
-        'Cari @bencanabot',
-        'Klik “/mulai” dan pilih bencana yang ingin Anda laporkan',
-        '@bencanabot akan mengirimkan tautan untuk melaporkan bencana',
-        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        '@bencanabot akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Cari <a target="_blank" href="https://t.me/bencanabot">@bencanabot</a>',
+        'Klik “/start” dan pilih bencana yang akan dilaporkan',
+        '@bencanabot akan mengirimikan tautan satu kali untuk simulasi bencana',
+        'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, unggah foto dan deskripsi',
+        '@bencanabot akan mengirimkan tautan yang terhubung ke laporan simulasi-mu',
       ]
     },
     'facebook': {
-      'title': 'Laporkan melalui Facebook',
+      'title': 'Simulasi melalui Facebook',
       'steps': [
-        'Cari “PetaBencana.id” di Facebook Massenger',
-        'Klik “Get Started” dan pilih bencana yang ingin Anda laporkan',
-        'PetaBencana.id akan mengirimkan tautan untuk melaporkan bencana',
-        'Buka tautan tersebut dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        'PetaBencana.id akan mengirim balasan dengan tautan yang akan mengarahkan ke laporan Anda',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Cari <a href="https://m.me/petabencana.id">PetaBencana.id</a> di Facebook Massenger',
+        'Klik “Mulai” dan pilih bencana yang akan dilaporkan',
+        'PetaBencana.id akan mengirimkan tautan satu kali untuk simulasi bencana',
+        'Buka tautan, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, mengunggah foto dan deskripsi',
+        'PetaBencana.id akan mengirimkan tautan yang terhubung ke laporan simulasi-mu',
       ]
     },
     'web': {
-      'title': 'Laporkan melalui Web',
+      'title': 'Simulasi melalui Web',
       'steps': [
-        'Buka laman Petabencana.id',
-        'Klik ikon Laporkan pada kiri atas halaman dan pilih bencana yang ingin Anda laporkan',
-        'Klik tombol Laporkan Bencana dan ikuti petunjuk untuk melaporkan lokasi, unggah foto dan deskripsi',
-        'Cek laman PetaBencana.id untuk melihat informasi bencana terkini'
+        'Klik ikon di pojok kiri atas halaman dan pilih bencana yang akan dilaporkan',
+        'Klik tombol Laporkan Bencana, pilih “selesaikan latihan simulasi”, dan ikuti instruksi untuk memasukkan lokasi bencana, mengunggah foto dan deskripsi',
+        'Periksa PetaBencana.id di situs web untuk melihat laporan simulasi-mu',
       ]
     }
   },
   'info_content': {
-    'intro': 'PetaBencana.id memanfaatkan penggunaan media sosial dalam situasi darurat untuk mengumpulkan, menyortir, dan menampilkan informasi risiko secara waktu-nyata (real-time).',
+    'intro': 'Selamat datang di platform simulasi PetaBencana.id! ***Harap diperhatikan, jika kamu berada dalam situasi bencana, cek PetaBencana.id untuk update bencana secara real-time.***',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
-    'p1': 'Dijalankan oleh <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, sebagai platform yang gratis dan transparan untuk respon darurat dan manajemen bencana di kota-kota besar di Asia Tenggara dan Asia Selatan. Platform ini dapat terwujud melalui kolaborasi dengan beberapa mitra:',
+    'p1': 'Dijalankan oleh Yayasan Peta Bencana, sebagai platform yang gratis dan transparan untuk tanggap darurat dan manajemen bencana di kota-kota besar di Asia Selatan dan Tenggara, platform ini terwujud melalui kolaborasi dengan beberapa mitra:',
     'p2': '',
-    'p3': 'PetaBencana.id mengumpulkan, menyortir, dan “memvisualisasikan” data menggunakan CogniCity Open Source Software - sebuah platform untuk manajemen kebencanaan - untuk mengubah kicauan di media sosial dan digital menjadi informasi penting bagi warga, komunitas, dan instansi pemerintah. Platform ini menggunakan paradigma “manusia sebagai sensor terbaik”, di mana laporan terkonfirmasi dikumpulkan secara langsung dari pengguna di lapangan, dengan metode yang memungkinkan pengolahan data yang cepat dengan biaya minimum. Kerangka kerja ini menghasilkan data real-time dan akurat, yang langsung tersedia untuk pengguna dan petugas darurat berwenang.',
+    'p3': 'PetaBencana.id memanfaatkan penggunaan media sosial selama kejadian bencana untuk mengumpulkan, menyortir, dan menampilkan informasi bencana yang terkonfirmasi secara real-time. Didukung oleh <a href="https://cognicity.info/" target="_blank"> CogniCity Open Source Software </a>, PetaBencana.id mengubah sebaran informasi di media sosial menjadi informasi penting bagi warga, komunitas, dan lembaga pemerintah. Platform ini mengadopsi paradigma “manusia adalah sensor terbaik”, di mana laporan yang dikonfirmasi dikumpulkan langsung dari pengguna dengan menghilangkan pemrosesan data yang mahal dan memakan waktu. Kerangka kerja ini menciptakan data yang akurat dan real-time yang langsung tersedia bagi pengguna dan responden pertama.',
     'partners': {
       'funding': 'Mitra Donor',
       'implementing': 'Mitra Pelaksana',
       'project': 'Mitra Proyek',
       'data': 'Mitra Penyedia Data'
     },
-    'termsPopup': 'Persetujuan pengguna &amp; Kebijakan privasi',
-    'mapCredits': 'Peta Dasar',
-    'mapImproveLink': 'Meningkatkan peta dasar di',
-    'browserStack': 'Ujicoba didukung oleh <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
-    'USAID': 'Situs web ini dapat terselenggara dengan dukungan dari warga Amerika melalui USAID (U.S. Agency for International Development). Situs ini bukan merupakan situs resmi USAID atau Pemerintah Amerika Serikat. Konten situs ini seluruhnya merupakan tanggung jawab dari para pencipta dan belum tentu merefleksikan pandangan dari USAID dan Pemerintah Amerika Serikat.'
+    'termsPopup': 'Perjanjian pengguna & kebijakan privasi',
+    'mapCredits': 'Basemap',
+    'mapImproveLink': 'Pemutakhiran basemap di',
+    'browserStack': 'Pengujian didukung oleh <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
+    'USAID': 'Situs web ini terwujud berkat dukungan Rakyat Amerika melalui Badan Pembangunan Internasional AS. Situs web ini bukan situs resmi USAID atau Pemerintah AS. Isi situs web ini sepenuhnya merupakan tanggung jawab pembuat dan tidak mencerminkan pandangan USAID Pemerintah AS.'
   },
   'legend': {
     'title': 'Legenda',
