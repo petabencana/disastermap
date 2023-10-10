@@ -7,15 +7,18 @@ const id = {
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'I-ULAT',
-  'add_report': 'I-ULAT AND BAHA',
+  'add_report': 'I-ULAT ANG BAHA',
   'add_eq_report': 'Laporkan gempa',
   'add_haze_report': 'Laporkan Kabut Asap',
   'add_wind_report': 'Laporkan Angin Kencang',
   'add_volcano_report': 'Laporkan Gunung Api',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
-  'popup_text': 'Pilih Provinsi untuk melanjutkan',
-  'search_header': 'Pilih Wilayah',
+  'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
+  'social_media_popup_header': 'Mag-ulat ng kalamidad sa pamamagitan ng',
+  'banner_text': '<p>Matinding lagay ng panahon patuloy na mararamdaman. Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
+  'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
+  'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
   'fire': 'Sunog',
@@ -39,7 +42,7 @@ const id = {
       'report': 'Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'TUNGKOL SA <p class="about_subscript">Kasalukuyang sinusuporta ang Probinsya Ng Pampanga at ang Lungsod ng Quezon</p>'
+      'about': 'TUNGKOL SA'
     }
   },
   'report_info': {
@@ -143,16 +146,16 @@ const id = {
     'youtube': {
       'title': 'Panoorin ang bidyo para sa instruksyon'
     },
-    'twitter': {
-      'title': 'Mag-ulat gamit ang Twitter',
-      'steps': [
-        'I-tweet ang @mapakalamidad gamit ang #baha',
-        'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
-        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
-        'Ang @mapakalamidad ay tutugon sayo kasama ang link para sa iyong ulat.',
-        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
-      ]
-    },
+    // 'twitter': {
+    //   'title': 'Mag-ulat gamit ang Twitter',
+    //   'steps': [
+    //     'I-tweet ang @mapakalamidad gamit ang #baha',
+    //     'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+    //     'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+    //     'Ang @mapakalamidad ay tutugon sayo kasama ang link para sa iyong ulat.',
+    //     'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
+    //   ]
+    // },
     'telegram': {
       'title': 'Mag-ulat gamit ang Telegram',
       'steps': [

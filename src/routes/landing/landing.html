@@ -9,9 +9,8 @@
     <require from="../../components/lightbox/lightbox"></require>
     <require from="../../components/gauge-info/gauge-info"></require>
     <require from="../../components/flood-info/flood-info"></require>
+    <require from="../../components/need-info/need-info"></require>
     <require from="../../components/side-pane/side-pane"></require>
-    <require from="../../components/earthquake-info/earthquake-info"></require>
-    <require from="../../components/volcano-info/volcano-info"></require>
     <div id="pageWrapper">
         <!-- <div id="reportButton" click.delegate="reportTab()">
       <p><i id="buttonText" class="icon-add-report"></i><br>${webMenu.locale.add_report}</p>
@@ -313,25 +312,18 @@
             >
             </flood-info>
 
-            <earthquake-info
-                show.bind="mapModel.layers.popupContent.magnitude"
+            <need-info
+                class="infoWrapper"
+                if.bind="mapModel.layers.popupContent.item_requested"
                 locale.bind="webMenu.locale"
-                feltarea.bind="mapModel.layers.popupContent.feltarea"
-                zone.bind="mapModel.layers.popupContent.zone"
-                magnitude.bind="mapModel.layers.popupContent.magnitude"
-                last_updated.bind="mapModel.layers.popupContent.date"
-            ></earthquake-info>
-
-            <volcano-info
-                show.bind="mapModel.layers.popupContent.volcano_name"
-                locale.bind="webMenu.locale"
-                volcano_name.bind="mapModel.layers.popupContent.volcano_name"
-                activity_level.bind="mapModel.layers.popupContent.activity_level"
-                visual.bind="mapModel.layers.popupContent.visual"
-                photo_.bind="mapModel.layers.popupContent.photo_"
-                share_url.bind="mapModel.layers.popupContent.share_url"
-                last_updated.bind="mapModel.layers.popupContent.local_date"
-            ></volcano-info>
+                id.bind="mapModel.layers.popupContent.id"
+                itemrequested.bind="mapModel.layers.popupContent.item_requested"
+                quantityrequested.bind="mapModel.layers.popupContent.quantity_requested"
+                quantitysatisfied.bind="mapModel.layers.popupContent.quantity_satisfied"
+                percentsatisfied.bind="mapModel.layers.popupContent.percent_satisfied"
+                requestedon.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.created_date)"
+            >
+            </need-info>
 
             <report-info
                 class="infoWrapper"
