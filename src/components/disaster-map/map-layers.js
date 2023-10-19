@@ -495,7 +495,7 @@ export class MapLayers {
             .setOffset(20);
         popupContainer.on("close", () => {
                 // feature.properties.clicked = false;
-                if(feature.properties.disaster_type == "fire") {
+                if(feature.properties.disaster_type === "fire") {
                     if (map.getLayer("fire-selected-icon" + isPartner)) {
                         map.removeLayer("fire-selected-icon" + isPartner);
                     }
