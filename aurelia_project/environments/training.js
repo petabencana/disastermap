@@ -44,11 +44,12 @@ export default {
   mapakalamidad: {
     title: 'Mapakalamidad.ph',
     default_language: 'tl',
+    environment: 'training',
     tile_layer:
         'https://api.mapbox.com/styles/v1/petabencana/ckq0nc6hp01vw17p9n17yxue2/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ',
-    data_server: 'https://data.mapakalamidad.ph/',
+    data_server: 'https://dev-api.mapakalamidad.ph/',
     data_server_key: '{data_server_key}',
-    cards_server: 'https://cards.mapakalamidad.ph/',
+    cards_server: 'https://cards-dev.mapakalamidad.ph/',
     app: 'https://mapakalamidad.ph/',
     deep_links: [
       { name: 'facebook', link: 'https://www.facebook.com/petabencana.id/' },
