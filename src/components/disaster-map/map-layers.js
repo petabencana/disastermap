@@ -335,7 +335,7 @@ export class MapLayers {
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
                 togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, feature , map);
             }
             self.selected_need_report = e;
         } else if (e.target !== self.selected_need_report.target) {
@@ -534,14 +534,6 @@ export class MapLayers {
             .addTo(map)
             .setMaxWidth("400px")
             .setOffset(20);
-        popupContainer.on("close", () => {
-                // feature.properties.clicked = false;
-                if (map.getLayer("fire-selected-icon" + isPartner)) {
-                    map.removeLayer("fire-selected-icon" + isPartner);
-                }
-                self.addFireMarker(feature, map, isPartner);
-        });
-
         return popupContainer;
     }
 
