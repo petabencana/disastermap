@@ -23,7 +23,6 @@ export class Landing {
   @observable query;
   constructor(Config) {
     this.locale = new Locales();
-    console.log("🚀 ~ file: landing.js:24 ~ Landing ~ constructor ~ Locales:", this.locale)
     this.config = Config.map;
     this.configData = Config;
     this.activeDisaster = "none";
@@ -36,11 +35,11 @@ export class Landing {
       "#haze": "/assets/icons/Add_Report_Icon_Haze",
     };
     this.isFloatingMenuActive = false;
-    this.enableEq = false;
-    this.enableHaze = false;
-    this.enableFire = false;
-    this.enableWind = false;
-    this.enableVolcano = false;
+    this.enableEq = true;
+    this.enableHaze = true;
+    this.enableFire = true;
+    this.enableWind = true;
+    this.enableVolcano = true;
   }
 
   domouseout() {
