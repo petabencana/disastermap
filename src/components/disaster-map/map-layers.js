@@ -803,10 +803,10 @@ export class MapLayers {
         });
     }
 
-    addNeedReports(cityName, map, togglePane) {
-        let endPoint = "needs";
-        return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
-    }
+    // addNeedReports(cityName, map, togglePane) {
+    //     let endPoint = "needs";
+    //     return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
+    // }
 
     addNeedReportsClustered(endPoint, cityName, map, togglePane) {
         let self = this;
