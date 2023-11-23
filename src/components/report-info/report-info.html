@@ -9,7 +9,6 @@
       <i show.bind="height" class="icon-flood-img phFlood" ></i>
 
       <img show.bind="(condition || structureFailure || fireDistance || evacuationNumber) && disasterType !== 'flood' && !visibility && !impact" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
-
       
       <img show.bind="visibility >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+visibilityImgPlaceholderSuffix[visibility]+".png"' class="phImage"/>
       <img show.bind="impact >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+impactImgPlaceholderSuffix[impact]+".png"' class="phImage"/>
