@@ -11,7 +11,7 @@ const id = {
   'add_eq_report': 'Laporkan gempa',
   'add_haze_report': 'Laporkan Kabut Asap',
   'add_wind_report': 'Laporkan Angin Kencang',
-  'add_volcano_report': 'Laporkan Gunung Api',
+  'add_volcano_report': 'Pagputok ng bulkan',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
   'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
