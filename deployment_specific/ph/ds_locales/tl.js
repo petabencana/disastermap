@@ -8,7 +8,7 @@ const id = {
   'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
   'report': 'I-ULAT',
   'add_report': 'I-ULAT ANG BAHA',
-  'add_eq_report': 'Laporkan gempa',
+  'add_eq_report': 'Report Earthquake',
   'add_haze_report': 'Laporkan Kabut Asap',
   'add_wind_report': 'Laporkan Angin Kencang',
   'add_volcano_report': 'Pagputok ng bulkan',
