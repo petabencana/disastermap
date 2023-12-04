@@ -38,7 +38,7 @@ export class Landing {
     this.enableEq = true;
     this.enableHaze = false;
     this.enableFire = false;
-    this.enableWind = false;
+    this.enableWind = true;
     this.enableVolcano = true;
   }
 

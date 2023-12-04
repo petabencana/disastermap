@@ -10,7 +10,7 @@ const id = {
   'add_report': 'I-ULAT ANG BAHA',
   'add_eq_report': 'Report Earthquake',
   'add_haze_report': 'Laporkan Kabut Asap',
-  'add_wind_report': 'Laporkan Angin Kencang',
+  'add_wind_report': 'Report Typhoon',
   'add_volcano_report': 'Pagputok ng bulkan',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Hanapin',
