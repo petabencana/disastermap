@@ -31,7 +31,7 @@ export class SidePane {
     this.locale = {};
     this.currentLanguage = '';
 
-    this.menuList = ['report', 'legend', 'about'];
+    this.menuList = ['report', 'legend', 'notification', 'about'];
     // this.seltab = 'about'; //default tab to open
     this.switchTab(this.seltab);
 
@@ -64,6 +64,13 @@ export class SidePane {
       {
         platform: 'web',
         icon: 'deployment_specific/pb/ds_assets/icons/web_report.png'
+      }
+    ];
+
+    this.notify_methods = [
+      {
+        platform: 'whatsapp', //Match string to locale/*/translation.json > report_content.*
+        icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
       }
     ];
 
@@ -350,11 +357,12 @@ export class SidePane {
   showVideo(video) {
     $('.videoWrapper:not(#vid_' + video + ')').slideUp('fast');
     $('#vid_' + video).slideToggle('fast');
-    $('.labelRow:not(#label_' + video + ')').removeClass('active');
-    $('#label_' + video).toggleClass('active');
-    $('#down_' + video + ', #up_' + video).toggle();
-    $('.up:not(#up_' + video + ')').hide();
-    $('.down:not(#down_' + video + ')').show();
+  }
+
+  showNotificationSteps() {
+    if (notificationElement) {
+      this.notificationElement.style.display = (this.notificationElement.style.display === 'none') ? 'block' : 'none';
+    }
   }
 
   // When the user clicks on div, open the popup

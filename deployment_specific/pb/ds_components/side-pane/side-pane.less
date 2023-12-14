@@ -418,6 +418,87 @@
         }
       }
     }
+
+    &#content-notifications {
+      overflow: hidden;
+      & table,
+      tr,
+      td {
+        padding: 0;
+        width: 100%;
+      }
+      & table#reportTable {
+        & tr.vidRows {
+          & table.vidTable {
+            margin: 0;
+            & tr {
+              & td {
+                border-bottom: 1px solid @steel-gray;
+                &.notifylabelRow {
+                  cursor: pointer;
+                  border: none;
+                  height: 40px;
+                  .bodyregular-mixin(14px);
+                  &.active {
+                    color: @banjir-blue;
+                  }
+                  &:hover {
+                    color: @blue-hover;
+                  }
+                  & p {
+                    margin: 0;
+                    padding: 0;
+                    &.labelText {
+                      float: left;
+                      & .labelIcon{
+                        width: 21px;
+                        height: auto;
+                      }
+                    }
+                    &.arrows {
+                      float: right;
+                      display: block;
+                    }
+                    &.up {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+            & tr.wrapRow {
+              & .notificationWrapper {
+                display: block;
+                width: 100%;
+                height: auto;
+                .bodyregular-mixin(14px);
+                & iframe {
+                  width: 100%;
+                  border: none;
+                }
+                & p {
+                  margin: 0;
+                  padding: 0;
+                  & ul {
+                    list-style: none;
+                    .bodylight-mixin(14px);
+                    line-height: 21px;
+                    padding: 0;
+                  }
+                  & a {
+                    .linklight-mixin(14px);
+                    line-height: 21px;
+                    & i {
+                      font-size: 18px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

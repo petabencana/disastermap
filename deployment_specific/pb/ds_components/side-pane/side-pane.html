@@ -157,6 +157,35 @@
             </tr>
           </table>
         </div>
+
+        <div id="content-notifications" if.bind="seltab === 'notification'" class="contentWrapper">
+          <table id="reportTable">
+            <tr repeat.for="method of notify_methods" class="vidRows">
+              <td>
+                <table class="vidTable">
+                  <tr click.delegate="showNotificationSteps()">
+                    <td class="notifylabelRow" id.bind="'notification_signup_' + method.platform">
+                      <p class="labelText">
+                        <img class='labelIcon' src.bind='method.icon' />&nbsp;&nbsp;${locale.notify_content[method.platform].title}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="wrapRow">
+                    <td>
+                      <div class="notificationWrapper" id.bind="'notification_signup_' + method.platform" ref.bind="notificationElement">
+                        <ol>
+                          <li repeat.for="step of locale.notify_content[method.platform].steps" innerhtml.bind="step">
+                          </li>
+                        </ol>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+
         <!-- INFO -->
         <div id="content-info" if.bind="seltab === 'about'" class="contentWrapper">
           <table id="headLogos">
