@@ -1,0 +1,7 @@
+<template>
+    <require from="./date-slider.css"></require>
+    <div id="date-slider__wrapper">
+        <aurelia-flatpickr value.bind="dateRange" config.bind="dateOptions"></aurelia-flatpickr>
+        <button click.delegate="clearDates()">Clear Dates</button>
+    </div>
+</template>

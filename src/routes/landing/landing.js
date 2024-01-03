@@ -4,10 +4,11 @@ import {Locales} from '../../resources/locales/locales';
 import { bindable, customElement } from "aurelia-framework";
 import { inject, observable } from "aurelia-framework";
 import { HttpClient } from "aurelia-http-client";
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 //start-aurelia-decorators
 @customElement("landing")
-@inject(Config, HttpClient)
+@inject(Config, EventAggregator, HttpClient)
 //end-aurelia-decorators
 export class Landing {
   //start-aurelia-decorators
@@ -21,10 +22,12 @@ export class Landing {
   @bindable changeCity;
   //end-aurelia-decorators
   @observable query;
-  constructor(Config) {
+  constructor(Config, eventAggregator) {
     this.locale = new Locales();
+    this.eventAggregator = eventAggregator;
     this.config = Config.map;
     this.configData = Config;
+    console.log(this.configData)
     this.activeDisaster = "none";
     this.assetMap = {
       "#flood": "/assets/icons/Add_Report_Icon_Flood",
@@ -132,7 +135,19 @@ export class Landing {
     if (!/Mobi/.test(navigator.userAgent) && !this.report_id) {
       this.mapModel.togglePane("#sidePane", "show", false);
     }
+    this.subscription = this.eventAggregator.subscribe('dateRangeChanged', dates => {
+      this.mapModel.viewArchiveReports(dates);
+    });
   }
+
+  detached() {
+    this.subscription.dispose();
+  }
+
+  showDateSlider() {
+    return this.configData.showArchive;
+  }
+
 
   toggleLightbox(imageurl) {
     this.imageurl = imageurl;

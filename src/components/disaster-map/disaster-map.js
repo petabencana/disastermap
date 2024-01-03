@@ -196,6 +196,12 @@ export class DisasterMap {
       });
   }
 
+  viewArchiveReports(dates) {
+    let self = this;
+    self.layers.addArchiveReports(dates, self.map, self.togglePane);
+  }
+
+
   attached() {
     let self = this;
     mapboxgl.accessToken = 'pk.eyJ1IjoicGV0YWJlbmNhbmEiLCJhIjoiY2s2MjF1cnZmMDlxdzNscWc5MGVoMTRkeCJ9.PGcoQqU6lBrcLfBmvTrWrQ';

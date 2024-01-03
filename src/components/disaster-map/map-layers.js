@@ -494,13 +494,13 @@ export class MapLayers {
             .addTo(map)
             .setOffset(20);
         popupContainer.on("close", () => {
-                // feature.properties.clicked = false;
-                if(feature.properties.disaster_type === "fire") {
-                    if (map.getLayer("fire-selected-icon" + isPartner)) {
-                        map.removeLayer("fire-selected-icon" + isPartner);
-                    }
-                    self.addFireMarker(feature, map, isPartner);
+            // feature.properties.clicked = false;
+            if (feature.properties.disaster_type === "fire") {
+                if (map.getLayer("fire-selected-icon" + isPartner)) {
+                    map.removeLayer("fire-selected-icon" + isPartner);
                 }
+                self.addFireMarker(feature, map, isPartner);
+            }
         });
 
         return popupContainer;
@@ -786,6 +786,26 @@ export class MapLayers {
         // add layer to map
         // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
         return this.addReportsClustered(endPoint, cityName, map, togglePane);
+    }
+
+    addArchiveReports(dates, map, togglePane) {
+        let self = this;
+        if (self.reports) {
+            // map.removeLayer(self.reports);
+            self.reports = null;
+        }
+        const cityName = "Daerah Khusus Ibukota Jakarta";
+        if (Array.isArray(dates) && dates.length > 0) {
+            const startDate = dates[0].toISOString().split("T")[0];
+            const endDate = dates[1].toISOString().split("T")[0];
+            // https://api.petabencana.id/reports/archive?start=2023-10-30T00%3A00%3A00%2B0700&end=2023-10-30T23%3A00%3A00%2B0700&geoformat=geojson
+            let endPoint = `reports/archive?start=${startDate}T00%3A00%3A00%2B0700&end=${endDate}T23%3A00%3A00%2B0700`;
+            // add layer to map
+            // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
+            return this.addReportsClustered(endPoint, cityName, map, togglePane);
+        }
+            let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
+            return this.addReportsClustered(endPoint, cityName, map, togglePane);
     }
 
     addReportsClustered(endPoint, cityName, map, togglePane) {

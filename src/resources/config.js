@@ -16,7 +16,7 @@ export class Config {
     this.map.tile_layer = env[dep.name].tile_layer;
     this.map.app = env[dep.name].app;
     this.map.report_timeperiod = env[dep.name].report_timeperiod;
-
+    this.showArchive = env[dep.name].showArchive;
     this.title = env[dep.name].title;
     this.supported_languages = dep.supported_languages;
     //Save default language as object
