@@ -342,7 +342,20 @@ div#windLink {
   // background: white;
   // padding: 10px;
 }
-
+div#typhoonLink{
+  position: absolute;
+  width: 260px;
+  height: 130px;
+  top: 0;
+  left: 80px;
+  display: none;
+  position: fixed;
+  border: none;
+  top: 0px;
+  left: 90px;
+  z-index: 1035;
+  border-radius: 5px;
+}
 div#volcanoLink {
   position: absolute;
   width: 210px;
@@ -597,6 +610,7 @@ div.buttons:not(:last-child):nth-last-child(4) {
 .buttonReprt {
   background-color: @banjir-blue;
   color: #fff;
+  width: 216px;
 }
 .reportBtn {
   position: absolute;
@@ -628,8 +642,15 @@ div.buttons:not(:last-child):nth-last-child(4) {
 }
 .volcanoBtn {
   position: absolute;
-  top: 120px;
+  top: 170px;
   right: 0;
+  left: 0;
+  bottom: 0;
+}
+.reportTyphoonBtn{
+  position: absolute;
+  top: 245px;
+  right: 0px;
   left: 0;
   bottom: 0;
 }
@@ -708,7 +729,7 @@ tr.row.report {
   width: 100px;
   overflow: hidden;
   position: absolute;
-  top: 40px;
+  top: 4px;
 
   @media only screen and (max-width: 768px){
     width: 155px;

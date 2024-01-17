@@ -8,6 +8,7 @@ const en = {
   'fire_flow_img': '/assets/icons/fire_flow_en.png',
   'haze_flow_img': '/assets/icons/haze_flow_en.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_en.png',
+  'typhoon_flow_img': '/assets/icons/typhoon_flow_en.png',
   'report': 'Add Report',
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
@@ -15,6 +16,7 @@ const en = {
   'add_wind_report': 'Report Extreme Wind',
   'add_volcano_report': 'Report Volcano',
   'add_fire_report': 'Report Forest Fire',
+  'add_typhoon_report': 'Report Typhoon',
   'search_ph': 'Search',
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
@@ -27,6 +29,7 @@ const en = {
   'haze': 'Haze',
   'wind': 'Wind',
   'volcano': 'Volcano',
+  'typhoon': 'Typhoon',
   'reports_stats': 'Received {reportsplaceholder} active reports in {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
