@@ -33,6 +33,7 @@ export class Landing {
       "#volcano": "/assets/icons/Add_Report_Icon_Volcano",
       "#wind": "/assets/icons/wind",
       "#haze": "/assets/icons/Add_Report_Icon_Haze",
+      "#typhoon": "/assets/icons/Add_Report_Icon_Typhoon",
     };
     this.isFloatingMenuActive = false;
     this.enableEq = true;
@@ -40,6 +41,7 @@ export class Landing {
     this.enableFire = false;
     this.enableWind = true;
     this.enableVolcano = true;
+    this.enableTyphoon = true;
   }
 
   domouseout() {
