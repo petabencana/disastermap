@@ -52,7 +52,7 @@ const id = {
     'share_msg': 'Baha%20sa%20mapaklamidad%2Eph',
     'water_depth': 'Lebel ng Baha:',
     'disturbance_key': 'Rusak:',
-    'access_key': 'Akses Jalan:',
+    'access_key': 'Rusak Bera:',
     'structure_key': 'Kerusakan Bangunan:',
     'source': 'Pinagmulan',
     'flagReport_Title': 'Markahan ito bilang isang hindi wastong ulat',
