@@ -86,7 +86,7 @@
                                     <p show.bind="!enableEq" class="commingSoon p-2 m-0" style="width: 160px">
                                         ${webMenu.locale.comming_soon}
                                     </p>
-                                    <img show.bind="enableEq" style="width: 250px" src="${webMenu.locale.eq_flow_img}" />
+                                    <img show.bind="enableEq" style="width: 250px; height: 230px;" src="${webMenu.locale.eq_flow_img}" />
                                     <div class="reportEarthquakeBtn">
                                         <input
                                             show.bind="!enableEq"
@@ -142,41 +142,6 @@
                         </table>
                     </div>
                 </div>
-                    <div
-                        class="buttons"
-                        title="${webMenu.locale.wind}"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        click.delegate="selectReport('wind')"
-                    >
-                        <img id="wind" id="icon" style="width: 60px" src="/assets/icons/wind.svg" />
-                        <div class="row" id="windLink">
-                            <table class="table table-borderless">
-                                <tr class="row report">
-                                    <p show.bind="!enableWind" class="commingSoon p-2 m-0" style="width: 160px">
-                                        ${webMenu.locale.comming_soon}
-                                    </p>
-                                    <img show.bind="enableWind" style="width: 295px" src="${webMenu.locale.wind_flow_img}" />
-                                    <div class="reportWindBtn">
-                                        <input
-                                            show.bind="!enableWind"
-                                            type="button"
-                                            class="btn btn-grey coming_Soon_btn"
-                                            value="${webMenu.locale.comming_soon}"
-                                        />
-                                        <input
-                                            show.bind="enableWind"
-                                            type="button"
-                                            class="btn buttonReprt"
-                                            value="${webMenu.locale.add_wind_report}"
-                                            click.delegate="reportDisaster('wind')"
-                                            style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"
-                                        />
-                                    </div>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
                     <div
                         class="buttons"
                         title="${webMenu.locale.volcano}"

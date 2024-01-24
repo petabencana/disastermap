@@ -145,7 +145,7 @@ export class ScreenPopup {
     $('#startAlertPopUp').hide();
   }
 
-  trainingbtn(){
+  trainingbtn() {
     window.location.href = 'https://training.mapakalamidad.ph';
   }
 
