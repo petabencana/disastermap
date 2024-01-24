@@ -141,7 +141,6 @@ export class ScreenPopup {
   }
 
   closeStartPopup() {
-    $('#startPopUpContainer').hide();
     $('#startAlertPopUp').hide();
   }
 
