@@ -67,16 +67,16 @@ const en = {
       'Heavy Disturbance'
     ],
     'structure_failures': [
-      'Cracking',
-      'Partially Collapsed',
+      'Observed Shaking',
+      'Minor Damage',
+      'Major Damage',
       'Fully Collapsed'
     ],
     'accessability_failures': [
-      'no access for vehicles',
-      '2 Wheel Vehicle',
-      '4 Wheel Vehicle (Sedan)',
-      '4 Wheel Vehicle (SUV)',
-      'Large Vehicle (Truck)'
+      'No Access for Vehicles',
+      '2 and 3-Wheel Vehicle (Motorcycle and Tricycle)',
+      '4-Wheel Vehicle (Sedan and medium SUVs)',
+      'Large Vehicles (Large SUVs and Trucks)'
     ],
     'visibilityKey': 'Visibility:',
     'visibilityValues': [
@@ -98,10 +98,16 @@ const en = {
       'Medium Disruption',
       'High Disruption'
     ],
+    'smogKey': 'Ashfall Situation:',
+    'smogValues': [
+      'Fine/Dry',
+      'Granulated',
+      'Dense/Wet'
+    ],
     'signsKey': 'Symptoms:',
     'signsValues': [
-      'Significant Temperature Increases',
-      'Drought / Vegetation Death',
+      'Water Sources are drying up/Contaminated',
+      'Declining plant health',
       'Unusual Animal Behaviour',
       'Frequent Earthquake Tremors',
       'Frequent Rumbling Sounds'
