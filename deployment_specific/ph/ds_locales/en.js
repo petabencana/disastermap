@@ -23,7 +23,7 @@ const en = {
   'alert_btn_text': 'Submit a Training Report',
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
-  'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
+  'banner_text': '<p>Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
   'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
@@ -170,8 +170,8 @@ const en = {
     'telegram': {
       'title': 'Report via Telegram',
       'steps': [
-        'Search for @kalamidadbot ',
-        'Click on “Get Started” and select the disaster to report',
+        'Search for <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
+        'Click on “/start” and select the disaster to report',
         '@kalamidadbot will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',
         '@kalamidadbot will send you a reply with a link to your report',
@@ -181,7 +181,7 @@ const en = {
     'facebook': {
       'title': 'Report via Facebook',
       'steps': [
-        'Search for @mapakalamidad on Facebook Messenger',
+        'Search for <a href="https://m.me/mapakalamidad">@mapakalamidad</a> on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
         '@mapakalamidad will send you a one-time link to submit a disaster report',
         'Open the link and follow the instructions to input hazard location, upload photo, and description.',

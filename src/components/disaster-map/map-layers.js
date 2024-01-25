@@ -27,6 +27,7 @@ export class MapLayers {
         this.fireCircle = {};
         this.fireSingleFeature = {};
         this.VolcanoEruptionLevelsMap = ["3", "4"];
+        this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
                 disaster: "flood",
@@ -342,46 +343,6 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
-
-        if (!self.selected_need_report) {
-            self.popupContent = {};
-            for (let prop in feature.properties) {
-                self.popupContent[prop] = feature.properties[prop];
-            }
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "show", true);
-            } else {
-                const coordinates = feature.geometry.coordinates.slice();
-                togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
-            }
-            self.selected_need_report = e;
-        } else if (e.target !== self.selected_need_report.target) {
-            // Case 3 : clicked new report icon, while previous selection needs to be reset
-            self.popupContent = {};
-            for (let prop in feature.properties) {
-                self.popupContent[prop] = feature.properties[prop];
-            }
-            const coordinates = feature.geometry.coordinates.slice();
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "show", true);
-            } else {
-                togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
-            }
-            self.selected_need_report = e;
-            history.pushState(
-                { city: cityName, report_id: feature.properties.pkey },
-                "city",
-                "map/" + cityName + "/" + feature.properties.pkey
-            );
-        } else if (e.target === self.selected_need_report.target) {
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "hide", false);
-            }
-            self.selected_need_report = null;
-        }
-
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (

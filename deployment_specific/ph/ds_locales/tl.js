@@ -21,7 +21,7 @@ const id = {
   'alert_btn_text': 'Submit a Training Report',
   'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
   'social_media_popup_header': 'Mag-ulat ng kalamidad sa pamamagitan ng',
-  'banner_text': '<p>Matinding lagay ng panahon patuloy na mararamdaman. Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
+  'banner_text': '<p>Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
   'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
@@ -171,8 +171,8 @@ const id = {
     'telegram': {
       'title': 'Mag-ulat gamit ang Telegram',
       'steps': [
-        'Hanapin ang @kalamidadbot',
-        'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
+        'Hanapin ang <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
+        'Pindutin ang “/start” at piliin ang kalamidad na gusto mong i-ulat',
         'Ang @kalamidadbot ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
         'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
         'Ang @kalamidadbot ay tutugon sayo kasama ang link para sa iyong ulat.',
@@ -182,7 +182,7 @@ const id = {
     'facebook': {
       'title': 'Mag-ulat gamit ang Facebook',
       'steps': [
-        'Hanapin ang @mapakalamidad sa Facebook Messenger',
+        'Hanapin ang <a "href="https://m.me/mapakalamidad">@mapakalamidad</a> sa Facebook Messenger',
         'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
         'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
         'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
