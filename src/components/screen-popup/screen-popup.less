@@ -174,6 +174,60 @@
     }
   }
 
+  & #startAlertPopUp{
+    width: 100vw;
+    height: 100vh;
+    background-color: #343a40d6;
+    z-index: 10000000;
+    padding: 12px;
+    display: grid;
+    position: absolute;
+    place-content: center;
+  }
+
+  & #alertContainer{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap:36px;
+    max-width: 500px;
+    padding:12px;
+    background-color: white;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  
+    & p {
+      text-align: justify;
+    }
+  
+  }
+
+  & #alertHeader{
+    display: flex;
+    height: 40px;
+    gap: 38px;
+
+    & button {
+      border: none;
+      background: none;
+      appearance: none;
+    }
+  }
+
+  & #alertClose{
+    bottom: 8px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  & #alertPopUpClose{
+    background-color: #29abe2;
+    color: white;
+    width: 220px;
+    height: 45px;
+    border: none;
+  }
+
     & #startPopUpContainer{
       width: 100vw;
       height: 100vh;

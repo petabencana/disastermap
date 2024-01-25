@@ -146,7 +146,11 @@ export class ScreenPopup {
   }
 
   closeStartPopup() {
-    $('#startPopUpContainer').hide();
+    $('#startAlertPopUp').hide();
+  }
+
+  trainingbtn() {
+    window.location.href = 'https://training.mapakalamidad.ph';
   }
 
   openPopup(name) {

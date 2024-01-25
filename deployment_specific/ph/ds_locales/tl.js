@@ -1,19 +1,24 @@
 const id = {
   'flood_flow_img': '/assets/icons/flood_flow_tl.png',
   'close': 'isara',
-  'eq_flow_img': '/assets/icons/eq_flow_bi.png',
+  'eq_flow_img': '/assets/icons/eq_flow_tl.png',
   'wind_flow_img': '/assets/icons/wind_flow_bi.png',
   'fire_flow_img': '/assets/icons/fire_flow_bi.png',
   'haze_flow_img': '/assets/icons/haze_flow_bi.png',
-  'volcano_flow_img': '/assets/icons/volcano_flow_bi.png',
+  'volcano_flow_img': '/assets/icons/volcano_flow_tl.png',
+  'typhoon_flow_img': '/assets/icons/typhoon_flow_tl.png',
   'report': 'I-ULAT',
   'add_report': 'I-ULAT ANG BAHA',
-  'add_eq_report': 'Laporkan gempa',
+  'add_eq_report': 'I-ULAT ANG LINDOL',
   'add_haze_report': 'Laporkan Kabut Asap',
-  'add_wind_report': 'Laporkan Angin Kencang',
-  'add_volcano_report': 'Laporkan Gunung Api',
+  'add_wind_report': 'Report Typhoon',
+  'add_volcano_report': 'Pagputok ng bulkan',
   'add_fire_report': 'Laporkan Kebakaran Hutan',
+  'add_typhoon_report': 'I-ULAT ANG BAGYO',
   'search_ph': 'Hanapin',
+  'alert_header_text': 'If you are in a real disaster and would like to submit a report, press X.',
+  'alert_text': 'The MapaKalamidad.ph Multi-hazard Platform just launched! Join the occasion by sending a training report.',
+  'alert_btn_text': 'Submit a Training Report',
   'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
   'social_media_popup_header': 'Mag-ulat ng kalamidad sa pamamagitan ng',
   'banner_text': '<p>Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
@@ -25,6 +30,7 @@ const id = {
   'haze': 'Usok',
   'wind': 'Hangin',
   'volcano': 'Bulkan',
+  'typhoon': 'Bagyo',
   'comming_soon': 'MALAPIT NA',
   'coming_soon_2020': 'MALAPIT NA!',
   'reports_stats': '{reportsplaceholder} laporan aktif di {provinceplaceholder}',
@@ -48,30 +54,30 @@ const id = {
   'report_info': {
     'share_msg': 'Baha%20sa%20mapaklamidad%2Eph',
     'water_depth': 'Lebel ng Baha:',
-    'disturbance_key': 'Rusak:',
-    'access_key': 'Akses Jalan:',
-    'structure_key': 'Kerusakan Bangunan:',
+    'disturbance_key': 'Kondisyon ng Kalsada:',
+    'access_key': 'Accessibility ng Daan:',
+    'structure_key': 'Pinsala sa Istruktura:',
     'source': 'Pinagmulan',
     'flagReport_Title': 'Markahan ito bilang isang hindi wastong ulat',
     'flagReport_button': 'Ilarawan',
     'flagReport_email': 'mapakalamidad@petabencana.id',
     'share': 'BIbahagi ang ulat na ito',
     'accessability_failures': [
-      'tidak bisa dilewati kendaraan',
-      'Kendaraan roda dua',
-      'Kendaraan roda empat kecil (Sedan)',
-      'Kendaraan roda empat sedang (SUV)',
-      'Kendaraan muatan berat (Truk)'
+      'Hindi Madaanan ng mga Motorista',
+      '2 at 3 Gulong na Sasakyan',
+      '4 na gulong na Sasakyan',
+      'Malalaking Sasakyan'
     ],
     'conditions': [
-      'Rusak ringan',
-      'Rusak sedang',
-      'Rusak berat'
+      'Magaan na Pagkagambala',
+      'Katamtamang Pagkagambala',
+      'Mabigat na Pagkagambala'
     ],
     'structure_failures': [
-      'Retak',
-      'Roboh Sebagian',
-      'Roboh Total'
+      'May naramdamang pagka-alog',
+      'Maliit na pinsala',
+      'Malaking pinsala',
+      'Tuluyang Gumuho'
     ],
     'visibilityKey': 'Jarak Pandang:',
     'visibilityValues': [
@@ -87,23 +93,29 @@ const id = {
       'Parah',
       'Berbahaya'
     ],
-    'impactKey': 'Dampak:',
+    'impactKey': 'Epekto:',
     'impactValues': [
-      'Ringan',
-      'Sedang',
-      'Berat'
+      'Magaan na Pagkagambala',
+      'Katamtamang Pagkagambala',
+      'Mabigat na Pagkagambala'
     ],
-    'signsKey': 'Hasil Pengamatan:',
+    'smogKey': 'Kalagayan ng abo:',
+    'smogValues': [
+      'Pino/Tuyo (mahirap huminga at tumingin)',
+      'Butil-butil (may malakas na amoy ng asupre)',
+      'Masinsin/Basa (hindi kayang daanan ang daan)'
+    ],
+    'signsKey': 'Obserbasyon:',
     'signsValues': [
-      'Kenaikan Suhu Signifikan',
-      'Kekeringan/Kematian Tumbuh-tumbuhan',
-      'Perilaku Hewan yang Tidak Biasa',
-      'Getaran Gempabumi yang Sering',
-      'Suara Gemuruh yang Sering'
+      'Tuyong pinanggalingan ng tubig/Nahawahan',
+      'Pagbaba ng kalusugan ng halaman',
+      'Hindi pangkaraniwang pag-uugali ng Hayop',
+      'Madalas na pagyanig ng lupa',
+      'Madalas na dumadagundong na tunog'
     ],
     'peopleKey': 'Jumlah orang di sekitar:',
-    'evacuateKey': 'Tahu arah Evakuasi:',
-    'evacuateVal': ['ya', 'tidak'],
+    'evacuateKey': 'Nakakaranas ka ba ng pagkawala ng kuryente:',
+    'evacuateVal': ['Oo', 'Hindi'],
     'peopleValues': [
       '',
       '< 5 orang',

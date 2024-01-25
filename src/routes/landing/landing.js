@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { Config } from "../../resources/config";
+import {Locales} from '../../resources/locales/locales';
 import { bindable, customElement } from "aurelia-framework";
 import { inject, observable } from "aurelia-framework";
 import { HttpClient } from "aurelia-http-client";
@@ -21,6 +22,7 @@ export class Landing {
   //end-aurelia-decorators
   @observable query;
   constructor(Config) {
+    this.locale = new Locales();
     this.config = Config.map;
     this.configData = Config;
     this.activeDisaster = "none";
@@ -29,15 +31,15 @@ export class Landing {
       "#earthquake": "/assets/icons/Add_Report_Icon_Earthquake",
       "#fire": "/assets/icons/Add_Report_Icon_Fire",
       "#volcano": "/assets/icons/Add_Report_Icon_Volcano",
-      "#wind": "/assets/icons/wind",
       "#haze": "/assets/icons/Add_Report_Icon_Haze",
+      "#typhoon": "/assets/icons/Add_Report_Icon_Typhoon",
     };
     this.isFloatingMenuActive = false;
-    this.enableEq = false;
+    this.enableEq = true;
     this.enableHaze = false;
     this.enableFire = false;
-    this.enableWind = false;
-    this.enableVolcano = false;
+    this.enableVolcano = true;
+    this.enableTyphoon = true;
   }
 
   domouseout() {
@@ -134,6 +136,10 @@ export class Landing {
 
   toggleLightbox(imageurl) {
     this.imageurl = imageurl;
+  }
+
+  getBannerText() {
+    return  this.config.environment === 'training';
   }
 
   initiateReport(type) {

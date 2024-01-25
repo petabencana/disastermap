@@ -8,6 +8,7 @@ const en = {
   'fire_flow_img': '/assets/icons/fire_flow_en.png',
   'haze_flow_img': '/assets/icons/haze_flow_en.png',
   'volcano_flow_img': '/assets/icons/volcano_flow_en.png',
+  'typhoon_flow_img': '/assets/icons/typhoon_flow_en.png',
   'report': 'Add Report',
   'add_report': 'Report Flood',
   'add_eq_report': 'Report EarthQuake',
@@ -15,7 +16,11 @@ const en = {
   'add_wind_report': 'Report Extreme Wind',
   'add_volcano_report': 'Report Volcano',
   'add_fire_report': 'Report Forest Fire',
+  'add_typhoon_report': 'Report Typhoon',
   'search_ph': 'Search',
+  'alert_header_text': 'If you are in a real disaster and would like to submit a report, press this.',
+  'alert_text': 'The MapaKalamidad.ph Multi-hazard Platform just launched! Join the occasion by sending a training report.',
+  'alert_btn_text': 'Submit a Training Report',
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
   'banner_text': '<p>Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
@@ -27,6 +32,7 @@ const en = {
   'haze': 'Haze',
   'wind': 'Wind',
   'volcano': 'Volcano',
+  'typhoon': 'Typhoon',
   'reports_stats': 'Received {reportsplaceholder} active reports in {provinceplaceholder}',
   'prep_menu': {
     'btn_names': {
@@ -61,16 +67,16 @@ const en = {
       'Heavy Disturbance'
     ],
     'structure_failures': [
-      'Cracking',
-      'Partially Collapsed',
+      'Observed Shaking',
+      'Minor Damage',
+      'Major Damage',
       'Fully Collapsed'
     ],
     'accessability_failures': [
-      'no access for vehicles',
-      '2 Wheel Vehicle',
-      '4 Wheel Vehicle (Sedan)',
-      '4 Wheel Vehicle (SUV)',
-      'Large Vehicle (Truck)'
+      'No Access for Vehicles',
+      '2 and 3-Wheel Vehicle (Motorcycle and Tricycle)',
+      '4-Wheel Vehicle (Sedan and medium SUVs)',
+      'Large Vehicles (Large SUVs and Trucks)'
     ],
     'visibilityKey': 'Visibility:',
     'visibilityValues': [
@@ -92,17 +98,23 @@ const en = {
       'Medium Disruption',
       'High Disruption'
     ],
+    'smogKey': 'Ashfall Situation:',
+    'smogValues': [
+      'Fine/Dry',
+      'Granulated',
+      'Dense/Wet'
+    ],
     'signsKey': 'Symptoms:',
     'signsValues': [
-      'Significant Temperature Increases',
-      'Drought / Vegetation Death',
+      'Water Sources are drying up/Contaminated',
+      'Declining plant health',
       'Unusual Animal Behaviour',
       'Frequent Earthquake Tremors',
       'Frequent Rumbling Sounds'
     ],
     'peopleKey': 'Number of people nearby:',
-    'evacuateKey': 'Know where to evacuate:',
-    'evacuateVal': ['yes', 'no'],
+    'evacuateKey': 'Are you experiencing power outage:',
+    'evacuateVal': ['Yes', 'No'],
     'peopleValues': [
       '',
       '< 5 people',

@@ -212,6 +212,13 @@ export class ReportInfo {
     return null;
   }
 
+  get smogImpact() {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.smogImpact >= 0) {
+      return this.popupcontent.report_data.smogImpact;
+    }
+    return null;
+  }
+
   get noOfPeople() {
     if (this.popupcontent.report_data && this.popupcontent.report_data.evacuationNumber) {
       return this.popupcontent.report_data.evacuationNumber;

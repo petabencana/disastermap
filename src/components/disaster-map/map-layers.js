@@ -27,6 +27,7 @@ export class MapLayers {
         this.fireCircle = {};
         this.fireSingleFeature = {};
         this.VolcanoEruptionLevelsMap = ["3", "4"];
+        this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
                 disaster: "flood",
@@ -41,8 +42,16 @@ export class MapLayers {
                 levels: ["normal", "medium", "high"]
             },
             {
-                disaster: "volcano",
-                levels: ["low"]
+                disaster: "storm",
+                levels: ["low", "medium", "high"]
+            },
+            {
+                disaster: "volcanic",
+                levels: ["low", "medium", "high"]
+            },
+            {
+                disaster: "smog",
+                levels: ["low", "medium", "high"]
             },
             {
                 disaster: "structure",
@@ -145,6 +154,9 @@ export class MapLayers {
             case "haze":
             case "wind":
             case "volcano":
+                return this.mapIcons.disaster_cluster_with_url(subType, level, isPartnerCode);
+            case "typhoon":
+                return this.mapIcons.disaster_cluster_with_url(subType, level, isPartnerCode);
             case "fire":
                 return this.mapIcons.disaster_cluster_with_url(disasterType, level, isPartnerCode);
             case "partner":
@@ -170,6 +182,10 @@ export class MapLayers {
                 let eqSubType = feature.properties.report_data.report_type;
                 level = this.getDisasterSevearity(feature);
                 return this.mapIcons.report_normal_with_url(eqSubType, level, isPartnerCode);
+            case "typhoon":
+                let tySubType = feature.properties.report_data.report_type;
+                level = this.getDisasterSevearity(feature);
+                return this.mapIcons.report_normal_with_url(tySubType, level, isPartnerCode);
             case "haze":
             case "wind":
             case "volcano":
@@ -195,6 +211,9 @@ export class MapLayers {
             case "prep":
                 return this.mapIcons.report_selected_with_url(subType, level, isPartnerCode);
             case "earthquake":
+                level = this.getDisasterSevearity(feature);
+                return this.mapIcons.report_selected_with_url(subType, level, isPartnerCode);
+            case "typhoon":
                 level = this.getDisasterSevearity(feature);
                 return this.mapIcons.report_selected_with_url(subType, level, isPartnerCode);
             case "haze":
@@ -491,6 +510,7 @@ export class MapLayers {
             .setLngLat(coordinates)
             .setDOMContent(div)
             .addTo(map)
+            .setMaxWidth("400px")
             .setOffset(20);
 
         return popupContainer;
@@ -774,7 +794,7 @@ export class MapLayers {
             self.getData(endPoint)
                 .then(data => {
                     this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
-                    this.addNeedLevels(data)
+                    this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
                 })
                 .catch(err => {
@@ -793,7 +813,7 @@ export class MapLayers {
             // map.removeLayer(self.reports);
             self.reports = null;
         }
-        let endPoint = "reports/?admin=" + cityRegion;
+        let endPoint = `reports/?admin=${cityRegion}&training=${self.config.environment === 'training'}`;
         // add layer to map
         // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
         return this.addReportsClustered(endPoint, cityName, map, togglePane);
@@ -821,14 +841,22 @@ export class MapLayers {
                         this.addCluster(data, cityName, map, togglePane, "haze", null, true);
                         this.addCluster(data, cityName, map, togglePane, "flood", null, false);
                         this.addCluster(data, cityName, map, togglePane, "flood", null, true);
-                        this.addCluster(data, cityName, map, togglePane, "volcano", null, false);
-                        this.addCluster(data, cityName, map, togglePane, "volcano", null, true);
-                        this.addCluster(data, cityName, map, togglePane, "wind", null, false);
-                        this.addCluster(data, cityName, map, togglePane, "wind", null, true);
+                        this.addCluster(data, cityName, map, togglePane, "volcano", "volcanic", false);
+                        this.addCluster(data, cityName, map, togglePane, "volcano", "volcanic", true);
+                        this.addCluster(data, cityName, map, togglePane, "volcano", "smog", false);
+                        this.addCluster(data, cityName, map, togglePane, "volcano", "smog", true);
+                        // this.addCluster(data, cityName, map, togglePane, "wind", null, false);
+                        // this.addCluster(data, cityName, map, togglePane, "wind", null, true);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "structure", false);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "structure", true);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", false);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", true);
                         this.addFireEntryCluster(data, cityName, map, togglePane, fireEntries, false);
                         this.addFireEntryCluster(data, cityName, map, togglePane, partnerFireEntries, true);
                         resolve(data);
@@ -1211,6 +1239,7 @@ export class MapLayers {
             });
             const sourceCode = reportType ? reportType + "-" + isPartner : disaster + "-" + isPartner;
             let filteredReports = Object.assign({}, reports);
+            console.log(filteredReports);
             // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
             this.queriedReports[sourceCode] = filteredReports;
 
@@ -1296,7 +1325,7 @@ export class MapLayers {
             });
 
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
-                map.addImage(sourceCode + "-marker", image);
+                    map.addImage(sourceCode + "-marker", image);
             });
 
             map.addLayer({
@@ -1547,8 +1576,10 @@ export class MapLayers {
         if (structureFailure < 1) {
             return "low";
         } else if (structureFailure >= 1 && structureFailure < 2) {
-            return "medium";
+            return "normal";
         } else if (structureFailure >= 2) {
+            return "medium";
+        } else if (structureFailure >= 3) {
             return "high";
         }
     }
@@ -1567,6 +1598,17 @@ export class MapLayers {
                     return this._getStructureFailureSevearity(avgStructureFailure);
                 }
                 break;
+            case "typhoon":
+                if(subType === "wind") {
+                    let avgImpact = this.getAverageWindImpact(reportMarkers);
+                    return this._getWindSevearity(avgImpact);
+                } else if (subType === "flood") {
+                    let avgDepth = this.getAverageFloodDepth(reportMarkers);
+                    return this._getFloodSevearity(avgDepth);
+                } else if (subType === "storm") {
+                    let avgImpact = this.getAverageWindImpact(reportMarkers);
+                    return this._getWindSevearity(avgImpact);
+                }
             case "wind":
                 let avgImpact = this.getAverageWindImpact(reportMarkers);
                 return this._getWindSevearity(avgImpact);
@@ -1600,6 +1642,22 @@ export class MapLayers {
                     reportData = reportData || { structureFailure: 0 };
                     let structureFailure = reportData.structureFailure || 0;
                     level = this._getStructureFailureSevearity(structureFailure);
+                }
+                break;
+            case "typhoon":
+                let tySubType = feature.properties.report_data.report_type;
+                if(tySubType === "wind") {
+                    reportData = reportData || { impact: 0 };
+                    let impact = reportData.impact || 0;
+                    level = this._getWindSevearity(impact);                
+                } else if (tySubType === "flood") {
+                    reportData = reportData || { flood_depth: 0 };
+                    let depth = reportData.flood_depth || 0;
+                    level = this._getFloodSevearity(depth);
+                } else if (tySubType === "storm") {
+                    reportData = reportData || { impact: 0 };
+                    let impact = reportData.impact || 0;
+                    level = this._getWindSevearity(impact); 
                 }
                 break;
             case "haze":
@@ -1894,10 +1952,11 @@ export class MapLayers {
         }
     }
 
-    addNeedLevels(data){
+    addNeedLevels(data) {
         data.features = data.features.map(function (item) {
             item.properties.clicked = false;
-            item.properties.percent_satisfied = parseInt(item.properties.quantity_satisfied || 0)/parseInt(item.properties.quantity_requested) * 100;
+            item.properties.percent_satisfied =
+                (parseInt(item.properties.quantity_satisfied || 0) / parseInt(item.properties.quantity_requested)) * 100;
             return item;
         });
         return data;

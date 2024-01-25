@@ -43,7 +43,8 @@
 
 .popupWrapper{
   display: inline-grid;
-  grid-template-columns: 150px auto;
+  grid-template-columns: repeat(2 , 1fr);
+  height: 250px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -108,6 +109,12 @@
     & #sourceImg {
       height: 50%;
       width: 50%;
+    }
+    & .partnerImg{
+      height: 80%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      width: 80%;
     }
   }
   & #sourcelogo{
