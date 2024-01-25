@@ -113,8 +113,8 @@ const en = {
       'Frequent Rumbling Sounds'
     ],
     'peopleKey': 'Number of people nearby:',
-    'evacuateKey': 'Know where to evacuate:',
-    'evacuateVal': ['yes', 'no'],
+    'evacuateKey': 'Are you experiencing power outage:',
+    'evacuateVal': ['Yes', 'No'],
     'peopleValues': [
       '',
       '< 5 people',

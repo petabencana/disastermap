@@ -29,6 +29,7 @@
       <p show.bind="smogImpact >= 0" class="textTitle"><span class='textKey'>${locale.report_info.smogKey}</span><br> <span css="color: ${impactColors[smogImpact]}">${locale.report_info.smogValues[smogImpact]}</span></p>
       <p show.bind="volcanicSigns" class="textTitle"><span class='textKey'>${locale.report_info.signsKey}</span><br> ${volcanicSigns}</p>
       <p show.bind="noOfPeople" class="textTitle"><span class='textKey'>${locale.report_info.peopleKey}</span><br> ${locale.report_info.peopleValues[noOfPeople]}</p>
+      <p show.bind="evacArea === true || evacArea === false" class="textTitle"><span class='textKey'>${locale.report_info.evacuateKey}</span><br> ${evacArea ? locale.report_info.evacuateVal[0] : locale.report_info.evacuateVal[1]}</p>
       <p show.bind="structureFailure" class="textTitle">${locale.report_info.structure_key} <span class.bind=sevearity> ${structureFailure} <span></p>
       <p show.bind="reportevent" class="textTitle">${locale.prep_menu.btn_names[reportevent]}</p>
       <p if.bind="!isPartnerImage" id="source">${locale.report_info.source}&nbsp;

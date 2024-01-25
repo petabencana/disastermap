@@ -114,8 +114,8 @@ const id = {
       'Madalas na dumadagundong na tunog'
     ],
     'peopleKey': 'Jumlah orang di sekitar:',
-    'evacuateKey': 'Tahu arah Evakuasi:',
-    'evacuateVal': ['ya', 'tidak'],
+    'evacuateKey': 'Nakakaranas ka ba ng pagkawala ng kuryente:',
+    'evacuateVal': ['Oo', 'Hindi'],
     'peopleValues': [
       '',
       '< 5 orang',
