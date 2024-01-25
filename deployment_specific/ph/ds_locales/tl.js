@@ -19,9 +19,9 @@ const id = {
   'alert_header_text': 'If you are in a real disaster and would like to submit a report, press X.',
   'alert_text': 'The MapaKalamidad.ph Multi-hazard Platform just launched! Join the occasion by sending a training report.',
   'alert_btn_text': 'Submit a Training Report',
-  'popup_text': 'Piliin ang rehiyon upang makita ang halimbawa ng isang ulat ng kalamidad',
-  'social_media_popup_header': 'Kumpletuhin ang pagsasanay sa pamamagitan ng:',
-  'banner_text': '<p>  ITO AY ISANG TRAINING PLATFORM. <br> Kung kasalukuyan kang nakararanas ng kalamidad sa inyong lugar, pumunta sa <a class="social-media-link" href="https://mapakalamidad.ph/">Mapakalamidad.ph</a> para sa mga totoong ulat ng kalamidad.</p>',
+  'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
+  'social_media_popup_header': 'Mag-ulat ng kalamidad sa pamamagitan ng',
+  'banner_text': '<p>Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
   'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
@@ -169,51 +169,54 @@ const id = {
     //   ]
     // },
     'telegram': {
-      'title': 'Kumpletuhin ang Pagsasanay sa pamamagitan ng Telegram',
+      'title': 'Mag-ulat gamit ang Telegram',
       'steps': [
         'Hanapin ang <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
         'Pindutin ang “/start” at piliin ang kalamidad na gusto mong i-ulat',
-        'Ang @kalamidadbot ay magpapadala sayo ng isang link para maipasa mo ang iyong pagsasanay na ulat',
-        'Buksan ang link, piliin ang “kumpletuhin ang pagsasanay”, at sundin ang mga instruksyon para makapaglagay ng lokasyon, larawan at deskripsyon.',
-        'Sasagot ulit ang @kalamidadbot ng isang link kung saan mo makikita ang pagsasanay na ulat. '
+        'Ang @kalamidadbot ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Ang @kalamidadbot ay tutugon sayo kasama ang link para sa iyong ulat.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     },
     'facebook': {
-      'title': 'Kumpletuhin ang Pagsasanay sa pamamagitan ng Facebook',
+      'title': 'Mag-ulat gamit ang Facebook',
       'steps': [
         'Hanapin ang <a "href="https://m.me/mapakalamidad">@mapakalamidad</a> sa Facebook Messenger',
         'Pindutin ang “Get Started” at piliin ang kalamidad na gusto mong i-ulat',
-        'Ang MapaKalamidad.ph ay magpapadala sayo ng isang link para maipasa mo ang iyong pagsasanay na ulat.',
-        'Buksan ang link, piliin ang “kumpletuhin ang pagsasanay”, at sundin ang mga instruksyon para makapaglagay ng lokasyon, larawan at deskripsyon.',
-        'Sasagot ulit ang MapaKalamidad.ph ng isang link na makikita ang paghahalimbawa ng iyong ulat.'
+        'Ang @mapakalamidad ay magpapadala sayo ng isang link para maipasa mo ang iyong ulat',
+        'Buksan ang link at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Ang @mapakalamidad ay tutugon sayo kasama ang link para sa iyong ulat.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     },
     'web': {
-      'title': 'Kumpletuhin ang Pagsasanay sa pamamagitan ng Web Browser',
+      'title': 'I-ulat sa Web',
       'steps': [
-        'Pindutin ang icon na i-ulat sa kaliwang taas na bahagi ng pahina at piliin ang kalamidad na i-uulat',
-        'Pindutin ang I-ulat ang [Kalamidad], piliin ang “kumpletuhin ang pagsasanay”, at sundin ang mga instruksyon para makapaglagay ng lokasyon, larawan at deskripsyon.',
-        'Puntahan ang MapaKalamidad.ph sa iyong browser upang makita ang iyong pagsasanay na ulat.',
+        'Buksan ang MapaKalamidad.ph sa iyong browser',
+        'I-click ang icon na i-uulat sa kaliwang itaas ng pahina at piliin ang kalamidad na i-uulat',
+        'I-click ang Report Disaster at sundin ang mga instruksyon para mailagay ang lokasyon, larawan at deskripsyon.',
+        'Puntahan ang MapaKalamidad.ph para sa napapanahong impormasyon tungkol sa kalamidad.'
       ]
     }
   },
   'info_content': {
-    'intro': 'Maligayang pagdating sa Training Platform ng Mapakalamidad.ph! ***Pakitandaan, kung ikaw ay nasa totoong sitwasyon ng sakuna, tignan ang MapaKalamidad.ph para sa real-time na mga updates tungkol sa kalamidad.***',
+    'intro': 'Ang MapaKalamidad.ph ay gumagamit ng social media sa panahon ng sakuna upang magtipon, mag-ayos, at magbigay ng impormasyon tungkol sa mga posibleng panganib.',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
-    'p1': 'Pinapatakbo ng <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, bilang isang libre at transparent na plataporma para sa pagtugon sa emerhensiya at pamamahala sa mga kalamidad sa mga malalaking lungsod sa Timog at Timog Silangang Asya, ang plataporma na ito ay naging posible sa pamamagitan ng pakikipagtulungan sa mga sumusunod:',
+    'p1': 'Ito ay pinapatakbo ng <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, bilang isang libre at transparent na plataporma para sa agarang tugon at pamamahala ng kalamidad sa mga megacities sa Timog at Timog-silangang Asya. Ang plataporma ay ginawa posible sa pamamagitan ng pakikipagtulungan sa ilang mga partners:',
     'p2': '',
-    'p3': 'Gumagamit ang <a href="https://mapakalamidad.ph/" target="_blank"> Mapakalamidad.ph </a> ng social media sa panahon ng kalamidad at mga emergency na kaganapan upang mangalap, mag-ayos, at magpakita ng napapanahong impormasyon tungkol sa kalamidad. Gamit ang <a href="http://cognicity.info" target="_blank"> CogniCity Open Source Software</a>, ang MapaKalamidad.ph ay ginagawang kritikal na impormasyon ang ingay mula sa social media para sa mga residente, komunidad, at mga ahensya ng gobyerno. Gumagamit ang platform ng paradigm na “people are the best sensors,” kung saan direktang kinokolekta ang mga kumpirmadong ulat mula sa mga users na mula sa kanya kanyang komunidad, sa paraang umiiwas sa mahal at matagal na pagpoproseso ng data. Ang framework na ito ay nakakapagbigay ng tumpak at napapanahon na data na agarang magagamit ng mga users at emergency responders.',
+    'p3': 'Ang MapaKalamidad.ph ay nagtitipon, nag-aayos, at nagpapakita ng datos gamit ang CogniCity Open Source Software na isang plataporma para sa agarang tugon at pamamahala ng kalamidad na ginagamit anf ingay ng social at digital na media sa kritikal na impormasyon para sa mga residente, mga komunidad, at mga ahensya ng gobyerno. Ang plataporma ay isinasatupad ang kasabihang &quot;people are the best sensors&quot; kung saan ang pinagtibay na ulat ay kinokolekta direkta mula sa mga gumagamit sa daan upang iwasan ang mga hindi mabisang pamamaraan ng pagkolekta at pag proseso ng datos. Ang framework na ito ay lumilikha ng tumpak at real-time na datos na ginawa para sa mga gumagamit, lalo na sa mga first responders.',
     'partners': {
       'funding': 'MGA KASOSYO SA PAGPOPONDO',
       'implementing': 'MGA KASAMA SA PAGPAPATUPAD',
       'project': ' MGA KASAMA SA PROYEKTO',
       'data': 'MGA KASAMA SA DATOS'
     },
-    'termsPopup': 'Kasunduan ng user at Patakaran sa Pagka-pribado',
+    'termsPopup': 'User Agreement at Patakaran sa Pagkapribado',
     'mapCredits': 'Basemap tile',
-    'mapImproveLink': ' Pagbutihin ang basemap sa',
+    'mapImproveLink': 'Pagbutihin ang basemap sa',
     'browserStack': 'Pagsusuri suportado ng <a href="https://www.browserstack.com" target="_blank">BrowserStack</a>.',
-    'USAID': 'Ang website na ito ay ginawang posible sa tulong ng mga mamamayang Amerikano sa pamamagitan ng ahensya ng Estados Unidos para sa pandaigdigang pag-unlad. Ito ay hindi isang opisyal na USAID o U.S. Government website. Ang mga nilalaman ng website na ito ay tanging responsibilidad ng mga may-akda at hindi sumasalamin sa mga pananaw ng USAID o ng pamahalaan ng Estados Unidos.'
+    'USAID': 'Ang website na ito ay ginawang posible sa tulong ng mga mamamayang Amerikano sa pamamagitan ng ahensya ng Estados Unidos para sa pandaigdigang pag-unlad. Ito ay hindi isang opisyal na USAID o U.S. Government website. Ang mga nilalaman ng website na ito ay tanging responsibilidad ng mga may-akda at hindi sumasalamin sa mga pananaw ng USAID ng pamahalaan ng Estados Unidos.'
   },
   'legend': {
     'title': 'Legenda',
