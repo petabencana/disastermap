@@ -9,7 +9,6 @@
       <i show.bind="height" class="icon-flood-img phFlood" ></i>
 
       <img show.bind="(condition || structureFailure || fireDistance || evacuationNumber) && disasterType !== 'flood' && !visibility && !impact" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+sevearity+".png"' class="phImage"/>
-
       
       <img show.bind="visibility >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+visibilityImgPlaceholderSuffix[visibility]+".png"' class="phImage"/>
       <img show.bind="impact >= 0" src.bind='"assets/icons/disasterPH/"+disasterType+"_"+impactImgPlaceholderSuffix[impact]+".png"' class="phImage"/>
@@ -27,6 +26,7 @@
       <p show.bind="visibility >= 0" class="textTitle"><span class='textKey'>${locale.report_info.visibilityKey}</span><br> ${locale.report_info.visibilityValues[visibility]}</p>
       <p show.bind="fireextent" class="textTitle"><span class='textKey'>${locale.report_info.fireextentKey}</span><br> <span class.bind=sevearity> ${fireextent} </span> </p>
       <p show.bind="impact >= 0" class="textTitle"><span class='textKey'>${locale.report_info.impactKey}</span><br> <span css="color: ${impactColors[impact]}">${locale.report_info.impactValues[impact]}</span></p>
+      <p show.bind="smogImpact >= 0" class="textTitle"><span class='textKey'>${locale.report_info.smogKey}</span><br> <span css="color: ${impactColors[smogImpact]}">${locale.report_info.smogValues[smogImpact]}</span></p>
       <p show.bind="volcanicSigns" class="textTitle"><span class='textKey'>${locale.report_info.signsKey}</span><br> ${volcanicSigns}</p>
       <p show.bind="noOfPeople" class="textTitle"><span class='textKey'>${locale.report_info.peopleKey}</span><br> ${locale.report_info.peopleValues[noOfPeople]}</p>
       <p show.bind="evacArea === true || evacArea === false" class="textTitle"><span class='textKey'>${locale.report_info.evacuateKey}</span><br> ${evacArea ? locale.report_info.evacuateVal[0] : locale.report_info.evacuateVal[1]}</p>

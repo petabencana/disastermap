@@ -40,10 +40,10 @@ export class SidePane {
 
     this.vidWrapperOpened = true;
     this.youtube_video = {
-      tl: 'https://www.youtube.com/embed/RPtBeu1HB2o',
-      en: 'https://www.youtube.com/embed/vGiz7gjmo6c?autoplay=0&origin=https://mapakalamidad.ph&rel=0',
+      tl: 'https://www.youtube.com/embed/RqkTsafIUzc',
+      en: 'https://www.youtube.com/embed/EKanMB0wwI8',
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
-    }
+    };
     this.report_methods = [
       // {
       //   platform: 'twitter', //Match string to locale/*/translation.json > report_content.*

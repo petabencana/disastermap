@@ -38,6 +38,11 @@ export class ScreenPopup {
         'icon': 'telegram',
         'icon_img': 'deployment_specific/ph/ds_assets/icons/telegram.svg',
         'icon_url': 'https://t.me/kalamidadbot'
+      },
+      {
+        'icon': 'viber',
+        'icon_img': 'deployment_specific/ph/ds_assets/icons/viber.png',
+        'icon_url': 'viber://pa?chatURI=mapakalamidadph'
       }
     ];
 
@@ -141,7 +146,11 @@ export class ScreenPopup {
   }
 
   closeStartPopup() {
-    $('#startPopUpContainer').hide();
+    $('#startAlertPopUp').hide();
+  }
+
+  trainingbtn() {
+    window.location.href = 'https://training.mapakalamidad.ph';
   }
 
   openPopup(name) {
