@@ -23,7 +23,7 @@ const en = {
   'alert_btn_text': 'Submit a Training Report',
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
-  'banner_text': '<p>Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
+  'banner_text': '<p>THIS IS A TRAINING PLATFORM <br>  IF YOU ARE IN A DISASTER SITUATION, CHECK <a class="social-media-link" href="https://mapakalamidad.ph/">MAPAKALAMIDAD.PH</a>, FOR REAL-TIME DISASTER UPDATES.</p>',
   'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
@@ -168,43 +168,40 @@ const en = {
     //   ]
     // },
     'telegram': {
-      'title': 'Report via Telegram',
+      'title': 'Complete Training  Exercise via Telegram',
       'steps': [
         'Search for <a href="https://t.me/kalamidadbot">@kalamidadbot</a>',
         'Click on “/start” and select the disaster to report',
         '@kalamidadbot will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
-        '@kalamidadbot will send you a reply with a link to your report',
-        'Check MapaKalamidad.ph for up-to-date disaster information'
+        'Open the link, select “complete training exercise”,  and follow the instructions to input hazard location, upload photo and description.',
+        '@kalamidadbot will send you a reply with a link to your simulation report',
       ]
     },
     'facebook': {
-      'title': 'Report via Facebook',
+      'title': 'Complete Training Exercise via Facebook',
       'steps': [
         'Search for <a href="https://m.me/mapakalamidad">@mapakalamidad</a> on Facebook Messenger',
         'Click on “Get Started” and select the disaster to report',
-        '@mapakalamidad will send you a one-time link to submit a disaster report',
-        'Open the link and follow the instructions to input hazard location, upload photo, and description.',
-        '@mapakalamidad will send you a reply with a link to your report',
-        'Check MapaKalamidad.ph for up-to-date disaster information'
+        'Mapakalamidad.ph will send you a one-time link to submit a disaster report',
+        'Open the link, select “complete training”, and follow the instructions to input hazard location, upload photo and description',
+        'Mapakalamidad.ph will send you a reply with a link to your simulation report',
       ]
     },
     'web': {
-      'title': 'Report via Web',
+      'title': 'Complete Training Exercise via Web Browser',
       'steps': [
-        'Open MapaKalamidad.ph on your browser',
-        'Click the Report icon on the upper left of the page and select the disaster to report',
-        'Click the Report Disaster button and follow the instructions to input hazard location, upload photo and description',
-        'Check MapaKalamidad.ph on your browser for up-to-date disaster information'
+        'Click the Report icon on the upper left of this page and select the disaster to report',
+        'Click the Report Disaster button, select “complete training exercise”, and follow the instructions to input hazard location, upload photo and description',
+        'Check MapaKalamidad.ph on your browser to view your simulation report'
       ]
     }
   },
   'info_content': {
-    'intro': 'Mapakalamidad.ph harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
+    'intro': 'Welcome to Mapakalamidad.ph training platform! ***Please note, if you are in a real disaster situation, check Mapakalamidad.ph for real-time disaster updates.***',
     'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
-    'p1': 'Run by <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
+    'p1': 'Run by Yayasan Peta Bencana, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
     'p2': '',
-    'p3': 'Mapakalamidad.ph gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
+    'p3': 'Mapakalamidad.ph harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time. Powered by <a href="https://cognicity.info/" target="_blank"> CogniCity Open Source Software </a>, Mapakalamidad.ph transforms the noise of social media into critical information for residents, communities, and government agencies.The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
     'partners': {
       'funding': 'Funding Partner',
       'implementing': 'Implementing partner',
