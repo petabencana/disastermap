@@ -226,9 +226,9 @@ export class ReportInfo {
     return null;
   }
 
-  get evacArea() {
-    if (this.popupcontent.report_data && this.popupcontent.report_data.evacuationArea) {
-      return this.popupcontent.report_data.evacuationArea;
+  get powerOutRage() {
+    if (this.popupcontent.report_data && this.popupcontent.report_data.powerOutRage) {
+      return this.popupcontent.report_data.powerOutRage;
     }
     return null;
   }
