@@ -18,7 +18,7 @@ const en = {
   'add_fire_report': 'Report Forest Fire',
   'add_typhoon_report': 'Report Typhoon',
   'search_ph': 'Search',
-  'alert_header_text': 'If you are in a real disaster and would like to submit a report, press this.',
+  'alert_header_text': 'If you are in a real disaster and would like to submit a report, close the popup window.',
   'alert_text': 'The MapaKalamidad.ph Multi-hazard Platform just launched! Join the occasion by sending a training report.',
   'alert_btn_text': 'Submit a Training Report',
   'popup_text': ': Search for disaster information by province',

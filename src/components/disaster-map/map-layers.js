@@ -782,10 +782,10 @@ export class MapLayers {
         });
     }
 
-    // addNeedReports(cityName, map, togglePane) {
-    //     let endPoint = "needs";
-    //     return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
-    // }
+    addNeedReports(cityName, map, togglePane) {
+        let endPoint = "needs";
+        return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
+    }
 
     addNeedReportsClustered(endPoint, cityName, map, togglePane) {
         let self = this;
@@ -851,12 +851,6 @@ export class MapLayers {
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "structure", true);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", false);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", true);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", false);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", true);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", false);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", true);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", false);
-                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", true);
                         this.addFireEntryCluster(data, cityName, map, togglePane, fireEntries, false);
                         this.addFireEntryCluster(data, cityName, map, togglePane, partnerFireEntries, true);
                         resolve(data);
@@ -960,25 +954,15 @@ export class MapLayers {
 
     addFireCircleLayer(map, sourceCode) {
         map.addLayer({
-            id: `circle-${sourceCode}-layer`,
+            id: "circle-layer",
             type: "circle",
             source: sourceCode,
             paint: {
-                "circle-radius": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    10,
-                    ["/", 50, ["get", "fireDistance"]],
-                    15,
-                    ["get", "fireDistance"],
-                    18,
-                    ["get", "fireDistance"]
-                ],
+                "circle-radius": ["get", "fireDistance"],
                 "circle-opacity": 0.3,
                 "circle-color": "#B42222"
             },
-            filter: ["all", ["==", "$type", "Point"], ["==", "disaster_type", "fire"]]
+            filter: ["all", ["==", "$type", "Point"], ["==", "disaster_type", "fire"], ["==", "clicked", false]]
         });
     }
 
@@ -1003,7 +987,6 @@ export class MapLayers {
     updateFireSingleMarker(feature, map, cityName, togglePane, isPartner) {
         let self = this;
         let currentZoom = map.getZoom();
-        console.log("🚀 ~ file: map-layers.js:951 ~ MapLayers ~ updateFireSingleMarker ~ currentZoom:", currentZoom);
         if (!feature) return;
         let fireMarker = this.fireMarker[feature.properties.pkey];
         let fireCircle = this.fireCircle[feature.properties.pkey];
@@ -1023,8 +1006,8 @@ export class MapLayers {
                 fireMarker.remove(this.map);
                 map.removeLayer("unclustered-" + `fire-${isPartner}`);
                 this.fireMarker[feature.properties.pkey] = null;
-                map.on("click", `circle-${sourceCode}-layer`, function (e) {
-                    self.mapClickHandler(e, map, `circle-${sourceCode}-layer`, sourceCode, togglePane, cityName);
+                map.on("click", `circle-layer`, function (e) {
+                    self.mapClickHandler(e, map, "circle-layer", sourceCode, togglePane, cityName);
                 });
             }
         } else {
@@ -1040,7 +1023,7 @@ export class MapLayers {
                     }
                 });
                 self.addFireMarker(feature, map, isPartner);
-                this.map.removeLayer(`circle-${sourceCode}-layer`);
+                this.map.removeLayer("circle-layer");
                 this.fireCircle[feature.properties.pkey] = null;
 
                 // map.on("click", `unclustered-fire-${isPartner}`, function (e) {
@@ -1249,7 +1232,6 @@ export class MapLayers {
             });
             const sourceCode = reportType ? reportType + "-" + isPartner : disaster + "-" + isPartner;
             let filteredReports = Object.assign({}, reports);
-            console.log(filteredReports);
             // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
             this.queriedReports[sourceCode] = filteredReports;
 
@@ -1295,21 +1277,14 @@ export class MapLayers {
                     layers: ["cluster-" + sourceCode]
                 });
                 const clusterId = features[0].properties.cluster_id;
-                //check to see if the marker we are clicking on is clustered or not by looking to see if it has a clusterID
-                // if true use cluster expansion zoom to zoom in on cluster
-                if (clusterId) {
-                    map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
-                        if (err) return;
-                        map.easeTo({
-                            center: features[0].geometry.coordinates,
-                            zoom: zoom
-                        });
+                if (!clusterId) return;
+                map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
+                    if (err) return;
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
                     });
-                }
-                //if not a cluster just ease to the center of the clicked point
-                else {
-                    map.easeTo({ center: features[0].geometry.coordinates, zoom: 20 });
-                }
+                });
             });
 
             map.on("click", "unclustered-" + sourceCode, function (e) {

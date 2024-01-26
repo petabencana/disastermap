@@ -16,7 +16,7 @@ const id = {
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'add_typhoon_report': 'I-ULAT ANG BAGYO',
   'search_ph': 'Hanapin',
-  'alert_header_text': 'If you are in a real disaster and would like to submit a report, press X.',
+  'alert_header_text': 'If you are in a real disaster and would like to submit a report, close the popup window.',
   'alert_text': 'The MapaKalamidad.ph Multi-hazard Platform just launched! Join the occasion by sending a training report.',
   'alert_btn_text': 'Submit a Training Report',
   'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
