@@ -851,6 +851,12 @@ export class MapLayers {
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "structure", true);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", false);
                         this.addCluster(data, cityName, map, togglePane, "earthquake", "road", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "wind", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "flood", true);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", false);
+                        this.addCluster(data, cityName, map, togglePane, "typhoon", "storm", true);
                         this.addFireEntryCluster(data, cityName, map, togglePane, fireEntries, false);
                         this.addFireEntryCluster(data, cityName, map, togglePane, partnerFireEntries, true);
                         resolve(data);
