@@ -159,6 +159,13 @@ const en = {
     'title':"Alert",
     'level':"Level"
   },
+
+  'need_info':{
+    'title':"Need requested:",
+    'time':"Posted at:",
+    'status': "met",
+    'give': "GIVE",
+  },
   
   'map_helper': 'Select city :',
   'report_content': {

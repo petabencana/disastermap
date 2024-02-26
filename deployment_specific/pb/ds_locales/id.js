@@ -158,6 +158,12 @@ const id = {
     'title':"Peringatan",
     'level':"Siaga"
   },
+  'need_info':{
+    'title':"Permintaan kebutuhan:",
+    'time':"Dibuat pada:",
+    'status':"terpenuhi ",
+    'give': "DONASI",
+  },
   
   'map_helper': 'Pilih kota:',
   'report_content': {

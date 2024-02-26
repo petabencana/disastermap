@@ -1,0 +1,23 @@
+<template>
+    <require from="./need-info.css"></require>
+    <div id="needs">
+      <div id="need-title">
+          <p> ${locale.need_info.title}</p>
+          <hr>
+          <div repeat.for="item of itemrequested" class="items">
+            <span id="item">${item.quantity}</span><span id="item">${item.units}</span> <span id="item_name">${item['item-name']}</span>
+          <hr>
+          </div>
+      </div>
+      <div id="need_status">
+        <div class="item_date">${locale.need_info.time} ${requestedon}</div>
+        <div id="need-state"> Status: ${satisfiedPercentage} % ${locale.need_info.status} </div>
+        <div class="progress-bar-container">
+          <div css="height:18px;width:${satisfiedPercentage}%"></div>
+        </div>
+        <div class="giverbtn">
+          <button id="itemgiver" click.delegate="intiateGiver()">${locale.need_info.give}</button>
+        </div>
+      </div>
+    </div>
+  </template>
