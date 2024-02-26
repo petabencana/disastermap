@@ -252,14 +252,16 @@ export class MapLayers {
         let utc = new Date(timestamp).getTime();
         // convert to local time (millisecond) based on browser timezone
         let localTime = utc + -60 * new Date().getTimezoneOffset() * 1000;
-        // Make string
-        let timestring = new Date(localTime).toISOString(); // ISO string
-        // Format string for output
-        timestring = timestring.split("T");
-        let t1 = timestring[1].slice(0, 5); // Extract HH:MM
-        let d1 = timestring[0].split("-"); // Extract DD-MM-YY
-        let d2 = d1[2] + "-" + d1[1] + "-" + d1[0]; // Reformat
-        return t1 + " " + d2;
+        if(localTime) {
+            // Make string
+            let timestring = localTime && new Date(localTime).toISOString(); // ISO string
+            // Format string for output
+            timestring = timestring.split("T");
+            let t1 = timestring[1].slice(0, 5); // Extract HH:MM
+            let d1 = timestring[0].split("-"); // Extract DD-MM-YY
+            let d2 = d1[2] + "-" + d1[1] + "-" + d1[0]; // Reformat
+            return t1 + " " + d2;
+        }
     }
 
     getStats(regionCode) {
@@ -285,6 +287,30 @@ export class MapLayers {
     getData(endPoint) {
         let self = this;
         let url = self.config.data_server + endPoint;
+        let client = new HttpClient();
+        return new Promise((resolve, reject) => {
+            client
+                .get(url)
+                .then(data => {
+                    let topology = JSON.parse(data.response);
+                    if (topology.statusCode === 200) {
+                        let result = topology.result;
+                        if (result && result.objects) {
+                            resolve(topojson.feature(result, result.objects.output));
+                        } else {
+                            resolve(null);
+                        }
+                    } else {
+                        resolve(null);
+                    }
+                })
+                .catch(err => reject(err));
+        });
+    }
+
+    getNeedData(endPoint) {
+        let self = this;
+        let url = "https://dev-api.mapakalamidad.ph/" + endPoint;
         let client = new HttpClient();
         return new Promise((resolve, reject) => {
             client
@@ -343,6 +369,46 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
+
+        if (!self.selected_need_report) {
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                const coordinates = feature.geometry.coordinates.slice();
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_need_report = e;
+        } else if (e.target !== self.selected_need_report.target) {
+            // Case 3 : clicked new report icon, while previous selection needs to be reset
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            const coordinates = feature.geometry.coordinates.slice();
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, map);
+            }
+            self.selected_need_report = e;
+            history.pushState(
+                { city: cityName, report_id: feature.properties.id },
+                "city",
+                "map/" + cityName + "/" + feature.properties.id
+            );
+        } else if (e.target === self.selected_need_report.target) {
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "hide", false);
+            }
+            self.selected_need_report = null;
+        }
+
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -408,7 +474,7 @@ export class MapLayers {
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
                 togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
+                self.popupContainer = self.setPopup(coordinates, map);
             }
             self.selected_report = e;
         } else if (e.target === self.selected_report.target) {
@@ -458,7 +524,7 @@ export class MapLayers {
             if (self.isMobileDevice()) {
                 togglePane("#infoPane", "show", true);
             } else {
-                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
+                self.popupContainer = self.setPopup(coordinates, map);
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_report = e;
@@ -475,7 +541,7 @@ export class MapLayers {
         }
     }
 
-    setPopup(coordinates, feature, map, isPartner) {
+    setPopup(coordinates, map) {
         const div = document.createElement("div");
         let getReportInfoElement;
         let shareButton;
@@ -789,11 +855,11 @@ export class MapLayers {
 
     addNeedReportsClustered(endPoint, cityName, map, togglePane) {
         let self = this;
-        const image = `assets/icons/accessibility.svg`;
+        const image = `assets/icons/need.svg`;
         return new Promise((resolve, reject) => {
-            self.getData(endPoint)
+            self.getNeedData(endPoint)
                 .then(data => {
-                    this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
+                    this.addIconLayer(map, image, "need", "need-reports", ["all"], 0.05);
                     this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
                 })

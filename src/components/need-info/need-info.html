@@ -1,0 +1,21 @@
+
+<template>
+    <require from="./need-info.css"></require>
+    <div id="need-title">
+      <p>
+       NEED
+        <br>
+        <b>Need id : ${id}</b>
+        <br>
+        <b>${quantityrequested} units of ${itemrequested}</b>
+      </p>
+    </div>
+    <div id="need-state">
+      <!-- <p id="requestedDate"> Posted at : ${requestedon}</p> -->
+      <p>Status : </p>
+      <p>${quantitysatisfied || 0}/${quantityrequested} Delivered</p>
+      <div class="${configStatus === 'ACTIVE' ? 'progress-bar-container-succeded' : 'progress-bar-container'}">
+          <div css="height:24px;width:${percentsatisfied}%"></div>
+      </div>
+    </div>
+  </template>

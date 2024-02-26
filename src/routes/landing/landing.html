@@ -6,6 +6,7 @@
     <require from="../../components/disaster-map/disaster-map"></require>
     <require from="../../components/screen-popup/screen-popup"></require>
     <require from="../../components/report-info/report-info"></require>
+    <require from="../../components/need-info/need-info"></require>
     <require from="../../components/lightbox/lightbox"></require>
     <require from="../../components/gauge-info/gauge-info"></require>
     <require from="../../components/flood-info/flood-info"></require>
@@ -85,7 +86,7 @@
                                     <p show.bind="!enableEq" class="commingSoon p-2 m-0" style="width: 160px">
                                         ${webMenu.locale.comming_soon}
                                     </p>
-                                    <img show.bind="enableEq" style="width: 250px; height: 230px;" src="${webMenu.locale.eq_flow_img}" />
+                                    <img show.bind="enableEq" style="width: 250px; height: 230px" src="${webMenu.locale.eq_flow_img}" />
                                     <div class="reportEarthquakeBtn">
                                         <input
                                             show.bind="!enableEq"
@@ -107,40 +108,44 @@
                         </div>
                     </div>
                     <div
-                    class="buttons"
-                    title="${webMenu.locale.typhoon}"
-                    data-toggle="tooltip"
-                    data-placement="left"
-                    click.delegate="selectReport('typhoon')"
-                >
-                    <img id="typhoon" style="width: 60px" src="/assets/icons/Add_Report_Icon_Typhoon.png" />
-                    <div class="row" id="typhoonLink">
-                        <table class="table table-borderless">
-                            <tr class="row report">
-                                <p show.bind="!enableTyphoon" class="commingSoon p-2 m-0" style="width: 160px">
-                                    ${webMenu.locale.comming_soon}
-                                </p>
-                                <img show.bind="enableTyphoon" style="width: 250px; height: 315px" src="${webMenu.locale.typhoon_flow_img}" />
-                                <div class="reportTyphoonBtn">
-                                    <input
-                                        show.bind="!enableTyphoon"
-                                        type="button"
-                                        class="btn btn-grey coming_Soon_btn"
-                                        value="${webMenu.locale.comming_soon}"
-                                    />
-                                    <input
+                        class="buttons"
+                        title="${webMenu.locale.typhoon}"
+                        data-toggle="tooltip"
+                        data-placement="left"
+                        click.delegate="selectReport('typhoon')"
+                    >
+                        <img id="typhoon" style="width: 60px" src="/assets/icons/Add_Report_Icon_Typhoon.png" />
+                        <div class="row" id="typhoonLink">
+                            <table class="table table-borderless">
+                                <tr class="row report">
+                                    <p show.bind="!enableTyphoon" class="commingSoon p-2 m-0" style="width: 160px">
+                                        ${webMenu.locale.comming_soon}
+                                    </p>
+                                    <img
                                         show.bind="enableTyphoon"
-                                        type="button"
-                                        class="btn buttonReprt"
-                                        value="${webMenu.locale.add_typhoon_report}"
-                                        click.delegate="reportDisaster('typhoon')"
-                                        style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"
+                                        style="width: 250px; height: 315px"
+                                        src="${webMenu.locale.typhoon_flow_img}"
                                     />
-                                </div>
-                            </tr>
-                        </table>
+                                    <div class="reportTyphoonBtn">
+                                        <input
+                                            show.bind="!enableTyphoon"
+                                            type="button"
+                                            class="btn btn-grey coming_Soon_btn"
+                                            value="${webMenu.locale.comming_soon}"
+                                        />
+                                        <input
+                                            show.bind="enableTyphoon"
+                                            type="button"
+                                            class="btn buttonReprt"
+                                            value="${webMenu.locale.add_typhoon_report}"
+                                            click.delegate="reportDisaster('typhoon')"
+                                            style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"
+                                        />
+                                    </div>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
                     <div
                         class="buttons"
                         title="${webMenu.locale.volcano}"
@@ -155,7 +160,11 @@
                                     <p show.bind="!enableVolcano" class="commingSoon p-2 m-0" style="width: 160px">
                                         ${webMenu.locale.comming_soon}
                                     </p>
-                                    <img show.bind="enableVolcano" style=" width: 260px; height: 242px;" src="${webMenu.locale.volcano_flow_img}" />
+                                    <img
+                                        show.bind="enableVolcano"
+                                        style="width: 260px; height: 242px"
+                                        src="${webMenu.locale.volcano_flow_img}"
+                                    />
                                     <div class="volcanoBtn">
                                         <input
                                             show.bind="!enableVolcano"
@@ -240,6 +249,18 @@
                 updated.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.last_updated)"
             >
             </flood-info>
+
+            <need-info
+                class="infoWrapper"
+                if.bind="mapModel.layers.popupContent.item_requested"
+                locale.bind="webMenu.locale"
+                id.bind="mapModel.layers.popupContent.id"
+                itemrequested.bind="mapModel.layers.popupContent.item_requested"
+                quantityrequested.bind="mapModel.layers.popupContent.quantity_requested"
+                quantitysatisfied.bind="mapModel.layers.popupContent.quantity_satisfied"
+                percentsatisfied.bind="mapModel.layers.popupContent.percent_satisfied"
+            >
+            </need-info>
 
             <report-info
                 class="infoWrapper"
