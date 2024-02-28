@@ -7,20 +7,21 @@
 #need-title {
   position: relative;
   background-color: white;
-  height: 174px;
   display: grid;
-  max-height: 180px;
+  max-height: 193px;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 10px;
   & p {
-    // padding: 10px 0;
-    .bodymedium-mixin(18px);
+    font-size: 18px;
     color: black;
-    padding: 10px 0;
+    padding: 15px 0;
     margin-bottom: 0;
   }
-  #item{
+  .item {
+    padding: 10px 0;
+  }
+  #item_quantity{
     font-size: 12px;
   }
   #item_name {
@@ -28,30 +29,23 @@
     font-size: 12px;
     position: absolute;
     left: 65px;
-    // float: right;
-    // padding-right: 75px;
   }
   & hr{
     width: 100%;
     height: 0;
     margin: 2px;
     border: 1px solid #e6e6e6;
-    margin-bottom: 8px;
   }
   & .items{
-    height: 40px;
     position: relative;
-    // padding: 5px 0;
 
     & hr{
       width: 100%;
       height: 0;
       margin: 2px;
       border: 1px solid #e6e6e6;
-      margin-top: 10px;
     }
   }
-  
 }
 
 #need_status {
@@ -76,7 +70,6 @@
   & div{
     background-color: #29abe2;
     border-radius: 12px;
-    padding-left: 50px;
   }
 }
 
