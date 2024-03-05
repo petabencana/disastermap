@@ -9,13 +9,15 @@ import { HttpClient } from "aurelia-http-client";
 import * as topojson from "topojson-client";
 import { Promise, reject } from "bluebird";
 import { PointsService } from "../report-info/points-service";
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 //start-aurelia-decorators
 @noView
-@inject(Config, PointsService)
+@inject(Config, PointsService, EventAggregator)
 //end-aurelia-decorators
 export class MapLayers {
-    constructor(Config, PointsService) {
+    constructor(Config, PointsService, eventAggregator) {
+        this.eventAggregator = eventAggregator;
         this.activeReports = {}; // List of available reports (filtered by city, time: last 1 hour)
         this.queriedReports = {};
         this.service = PointsService;
@@ -872,6 +874,30 @@ export class MapLayers {
                     reject(err);
                 });
         });
+    }
+
+    addReportStatus(cityName, map, togglePane) {
+        this.statusData;
+        return new Promise((resolve, reject) => {
+            const today = new Date().toISOString().split('T')[0];
+            console.log(today,'today');
+            const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`
+            const client = new HttpClient();
+            client
+            .get(url)
+            .then((result) => {
+              if(result.statusCode && result.statusCode == 200){
+                this.statusData = JSON.parse(result.response);
+                console.log(result.response);
+                resolve(JSON.parse(result.response).data);
+                this.eventAggregator.publish('addReportStatus', this.statusData.data);
+              } else {
+                console.log(result);
+                reject('failed to get the err msg',result.status)
+              }
+            })
+            .catch((err) => reject(err))
+          });
     }
 
     addReports(cityName, cityRegion, map, togglePane) {
