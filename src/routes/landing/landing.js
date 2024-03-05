@@ -1,7 +1,7 @@
 import $ from "jquery";
 import { Config } from "../../resources/config";
 import {Locales} from '../../resources/locales/locales';
-import { bindable, customElement } from "aurelia-framework";
+import { bindable, customElement, computedFrom } from "aurelia-framework";
 import { inject, observable } from "aurelia-framework";
 import { HttpClient } from "aurelia-http-client";
 import { EventAggregator } from 'aurelia-event-aggregator';
@@ -43,6 +43,71 @@ export class Landing {
     this.enableFire = true;
     this.enableWind = true;
     this.enableVolcano = true;
+    this.city;
+    this.level;
+    this._status;
+    this.warningText = false;
+    this.midLevel;
+    this.highLevel;
+  }
+
+  reportStatus() {
+    this.eventAggregator.subscribe('addReportStatus', data => {
+      let url = window.location.href;
+      let location = url.split('/').pop();
+      this.city =  decodeURIComponent(location)
+      if(data && this.city){
+        let found;
+        const userCity = data.filter(item => {
+          const impactArea = Object.keys(item.impacted)[0]
+          return impactArea === this.city
+
+        });
+          this.midLevel = userCity.filter(item => 
+            item.area.properties.category >= 6 && item.area.properties.category <=9 
+          )
+          this.highLevel = userCity.filter(item => 
+            item.area.properties.category == 10 
+          )
+            this.getStatus();
+            found = true;
+        if (!found) {
+          this.warningText = false;
+          console.log('No city found');
+        }
+      }else {
+        this.warningText = false;
+        console.log('Err there is no data')
+      }
+    })
+  }
+
+  get currentCity() {
+    return this.city;
+  }
+
+  @computedFrom('warningText')
+  get warning(){
+    return this.warningText;
+  }
+
+  getStatus() {
+    if(this.highLevel.length > 0){
+      this.warningText = true;
+      this._status = 'Awas';
+      return;
+    } else if (this.midLevel.length > 0) {
+      this.warningText = true;
+      this._status = 'Siaga';
+      return;
+    } else {
+      this.warningText = false;
+      console.log('Level not found')
+    }
+  }
+
+  get status() {
+    return this._status;
   }
 
   domouseout() {
@@ -138,6 +203,7 @@ export class Landing {
     this.subscription = this.eventAggregator.subscribe('dateRangeChanged', dates => {
       this.mapModel.viewArchiveReports(dates);
     });
+    this.reportStatus();
   }
 
   detached() {
