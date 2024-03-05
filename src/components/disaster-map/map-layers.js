@@ -888,7 +888,6 @@ export class MapLayers {
             .then((result) => {
               if(result.statusCode && result.statusCode == 200){
                 this.statusData = JSON.parse(result.response);
-                console.log(result.response);
                 resolve(JSON.parse(result.response).data);
                 this.eventAggregator.publish('addReportStatus', this.statusData.data);
               } else {
