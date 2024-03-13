@@ -2,10 +2,14 @@
     <require from="./need-info.css"></require>
     <div id="needs">
       <div id="need-title">
-          <p> ${locale.need_info.title}</p>
+          <div class="need-name"> <p> ${locale.need_info.title}</p> </div>
           <hr>
           <div repeat.for="item of itemrequested" class="items">
-            <span id="item">${item.quantity}</span><span id="item">${item.units}</span> <span id="item_name">${item['item-name']}</span>
+            <div class="item"> 
+              <span id="item_quantity">${item.quantity}</span>
+              <span id="item_quantity">${item.units}</span> 
+              <span id="item_name">${item['item-name']}</span>
+            </div>
           <hr>
           </div>
       </div>
