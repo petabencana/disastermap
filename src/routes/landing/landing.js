@@ -64,7 +64,7 @@ export class Landing {
 
         });
           this.midLevel = userCity.filter(item => 
-            item.area.properties.category >= 6 && item.area.properties.category <=9 
+            item.area.properties.category >= 1 && item.area.properties.category <=9 
           )
           this.highLevel = userCity.filter(item => 
             item.area.properties.category == 10 
