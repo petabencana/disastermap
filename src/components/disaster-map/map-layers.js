@@ -393,8 +393,8 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_report = e;
-        } else if (e.target === self.selected_report.target) {
+            self.selected_report = feature;
+        } else if (feature.properties.pkey === self.selected_report.properties.pkey){
             // Case 2 : clicked report icon same as selected report
             // console.log("Coming herre tooo" , map.getLayer("fire-selected-icon" + isPartner))
             // if (
@@ -420,7 +420,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_report = null;
-        } else if (e.target !== self.selected_report.target) {
+        } else if (feature.properties.pkey !== self.selected_report.properties.pkey) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             if (feature.properties.disaster_type == "fire" && !this.fireMarker) {
             }
@@ -444,7 +444,7 @@ export class MapLayers {
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
                 togglePane("#infoPane", "hide", false);
             }
-            self.selected_report = e;
+            self.selected_report = feature;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
@@ -500,15 +500,16 @@ export class MapLayers {
             .addTo(map)
             .setMaxWidth("400px")
             .setOffset(20);
-        popupContainer.on("close", () => {
-            // feature.properties.clicked = false;
-            if (feature.properties.disaster_type === "fire") {
-                if (map.getLayer("fire-selected-icon" + isPartner)) {
-                    map.removeLayer("fire-selected-icon" + isPartner);
-                }
-                self.addFireMarker(feature, map, isPartner);
-            }
-        });
+        // popupContainer.on("close", () => {
+        //     console.log('in close');
+        //     // feature.properties.clicked = false;
+        //     if (feature.properties.disaster_type === "fire") {
+        //         if (map.getLayer("fire-selected-icon" + isPartner)) {
+        //             map.removeLayer("fire-selected-icon" + isPartner);
+        //         }
+        //         self.addFireMarker(feature, map, isPartner);
+        //     }
+        // });
 
         return popupContainer;
     }
