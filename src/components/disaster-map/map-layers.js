@@ -246,7 +246,7 @@ export class MapLayers {
     getStats(regionCode) {
         let self = this;
         let client = new HttpClient();
-        const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`
+        const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`;
         // + '&timeperiod=' + self.config.report_timeperiod;
         return new Promise((resolve, reject) => {
             client
@@ -391,8 +391,8 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_report = e;
-        } else if (e.target === self.selected_report.target) {
+            self.selected_report = feature;
+        } else if (feature.properties.pkey === self.selected_report.properties.pkey) {
             // Case 2 : clicked report icon same as selected report
             // console.log("Coming herre tooo" , map.getLayer("fire-selected-icon" + isPartner))
             // if (
@@ -418,7 +418,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_report = null;
-        } else if (e.target !== self.selected_report.target) {
+        } else if (feature.properties.pkey !== self.selected_report.properties.pkey) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             if (feature.properties.disaster_type == "fire" && !this.fireMarker) {
             }
@@ -442,7 +442,7 @@ export class MapLayers {
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
                 togglePane("#infoPane", "hide", false);
             }
-            self.selected_report = e;
+            self.selected_report = feature;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
@@ -805,8 +805,8 @@ export class MapLayers {
             // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
             return this.addReportsClustered(endPoint, cityName, map, togglePane);
         }
-            let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
-            return this.addReportsClustered(endPoint, cityName, map, togglePane);
+        let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
+        return this.addReportsClustered(endPoint, cityName, map, togglePane);
     }
 
     addReportsClustered(endPoint, cityName, map, togglePane) {
@@ -1301,12 +1301,13 @@ export class MapLayers {
                 const features = map.queryRenderedFeatures(e.point, {
                     layers: ["unclustered-" + sourceCode]
                 });
-
                 self.queriedReports[sourceCode].features.forEach(function (feature, index) {
                     if (feature.properties.url === features[0].properties.url) {
                         self.queriedReports[sourceCode].features[index].properties.clicked =
                             !self.queriedReports[sourceCode].features[index].properties.clicked;
                         map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                    } else {
+                        self.queriedReports[sourceCode].features[index].properties.clicked = false;
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
