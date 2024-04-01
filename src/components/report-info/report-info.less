@@ -1,223 +1,225 @@
 @import "../../resources/style_sheets/theme_guide.less";
 
 #photoPreview {
-  position: relative;
-  float: left;
-  background-color: @solid-black;
-  & .image {
-    position: absolute;
-    top: 50%;
-    &#hasPhoto {
-      width: 100%;
-      height: 100%;
-      & img {
+    position: relative;
+    float: left;
+    background-color: @solid-black;
+    & .image {
         position: absolute;
-        left: 50%;
-        max-width: 100%;
-        max-height: 100%;
-        .translate-mixin(-50%, -50%);
-        cursor: pointer;
-      }
+        top: 50%;
+        &#hasPhoto {
+            width: 100%;
+            height: 100%;
+            & img {
+                position: absolute;
+                left: 50%;
+                max-width: 100%;
+                max-height: 100%;
+                .translate-mixin(-50%, -50%);
+                cursor: pointer;
+            }
+        }
+        &#noPhoto {
+            width: 100%;
+            height: 100%;
+            & .phFlood {
+                left: 40%;
+                font-size: 80px;
+                color: white;
+                position: absolute;
+                .translate-mixin(-50%, -50%);
+            }
+            & .phImage {
+                width: 100%;
+                height: 100%;
+                left: 50%;
+                position: absolute;
+                .translate-mixin(-50%, -50%);
+            }
+        }
+        z-index: 2;
     }
-    &#noPhoto {
-      width: 100%;
-      height: 100%;
-      & .phFlood {
-        left: 40%;
-        font-size: 80px;
-        color: white;
-        position: absolute;
-        .translate-mixin(-50%, -50%);
-      }
-      & .phImage {
-        width: 100%;
-        height: 100%;
-        left:50%;
-        position: absolute;
-        .translate-mixin(-50%, -50%);
-      }
-    }
-    z-index: 2;
-  }
 }
 
-.popupWrapper{
-  display: inline-grid;
-  grid-template-columns: 150px auto;
+.popupWrapper {
+    display: inline-grid;
+    grid-template-columns: 150px auto;
+    min-height: 200px;
 }
 
 @media only screen and (max-width: 768px) {
-  .popupWrapper {
-    grid-template-columns: repeat(2 , 1fr);
-    height: 250px;
-  }
+    .popupWrapper {
+        grid-template-columns: repeat(2, 1fr);
+        height: 250px;
+    }
 }
 
 #textPreview {
-  position: relative;
-  padding-left: 10px;
-  float: left;
-  overflow:hidden;
-  & #bodyWrapper {
-    width: 85%;
-    height: 75%;
-    border-bottom: 1px solid @banjir-blue;
-    overflow-y: scroll;
-    & .textTitle {
-      .bodybold-mixin(14px);
-      padding: 0;
-      margin: 0 6px 6px 0;
-      color: black;
-      & .low {
-        color: @tree-green;
-      }
-      & .normal {
-        color: @cluster-yellow;
-      }
-      & .medium {
-        color: @cluster-orange;
-      }
-      & .high {
-        color: @cluster-red;
-      }
-
-      .textKey{
-        font-size: 12px;
-        color: #808080;
-      }
-    }
-    & #timeStamp, #source {
-      .bodylight-mixin(12px);
-      color: @light-gray;
-      width: 60%;
-      line-height: 18px;
-      margin: 0;
-      padding: 0;
-      & #sourceImg {
-        margin: 0;
-        padding: 0;
-      }
-    }
-    & #textBody {
-      .bodyregular-mixin(14px);
-      word-wrap: break-word;
-      padding: 0;
-      margin-top: 6px;
-    }
-
-    & #sourceImg {
-      height: 50%;
-      width: 50%;
-    }
-    & .partnerImg{
-      height: 80%;
-      aspect-ratio: 1/1;
-      object-fit: contain;
-      width: 80%;
-    }
-  }
-  & #sourcelogo{
     position: relative;
-    color: @light-gray;
-    width: 40%;
-    height: 20%;
-    float: right;
-    overflow: none;
-    border: solid 1px blue;
-    margin: 0 10px 0 0;
-  }
-  & #voteIcons {
-    position: absolute;
-    bottom: 2px;
-    & td {
-      padding: 0px;
-      align-items: center;
+    padding-left: 10px;
+    float: left;
+    overflow: hidden;
+    & #bodyWrapper {
+        width: 85%;
+        height: 75%;
+        border-bottom: 1px solid @banjir-blue;
+        overflow-y: scroll;
+        & .textTitle {
+            .bodybold-mixin(14px);
+            padding: 0;
+            margin: 0 6px 6px 0;
+            color: black;
+            & .low {
+                color: @tree-green;
+            }
+            & .normal {
+                color: @cluster-yellow;
+            }
+            & .medium {
+                color: @cluster-orange;
+            }
+            & .high {
+                color: @cluster-red;
+            }
+
+            .textKey {
+                font-size: 12px;
+                color: #808080;
+            }
+        }
+        & #timeStamp,
+        #source {
+            .bodylight-mixin(12px);
+            color: @light-gray;
+            width: 60%;
+            line-height: 18px;
+            margin: 0;
+            padding: 0;
+            & #sourceImg {
+                margin: 0;
+                padding: 0;
+            }
+        }
+        & #textBody {
+            .bodyregular-mixin(14px);
+            word-wrap: break-word;
+            padding: 0;
+            margin-top: 6px;
+        }
+
+        & #sourceImg {
+            height: 50%;
+            width: 50%;
+        }
+        & .partnerImg {
+            height: 80%;
+            aspect-ratio: 1/1;
+            object-fit: contain;
+            width: 80%;
+        }
     }
-    & i {
-      font-size: 16px;
-      padding: 0px;
-      & .active {
-        color: @banjir-blue;
-      }
+    & #sourcelogo {
+        position: relative;
+        color: @light-gray;
+        width: 40%;
+        height: 20%;
+        float: right;
+        overflow: none;
+        border: solid 1px blue;
+        margin: 0 10px 0 0;
     }
-    & a {
-      position: relative;
-      text-decoration: none;
-      // padding: 0 6px 0 0;
-      cursor: pointer;
+    & #voteIcons {
+        position: absolute;
+        bottom: 2px;
+        & td {
+            padding: 0px;
+            align-items: center;
+        }
+        & i {
+            font-size: 16px;
+            padding: 0px;
+            & .active {
+                color: @banjir-blue;
+            }
+        }
+        & a {
+            position: relative;
+            text-decoration: none;
+            // padding: 0 6px 0 0;
+            cursor: pointer;
+        }
+        & a:active {
+            color: @banjir-blue;
+        }
+        & button {
+            border: none;
+            background-color: @snow-white;
+            cursor: pointer;
+            outline: none;
+            padding: 6px;
+            &:disabled {
+                color: @banjir-blue;
+                cursor: not-allowed;
+            }
+            &:active {
+                color: @banjir-blue;
+            }
+        }
     }
-    & a:active {
-      color: @banjir-blue;
-    }
-    & button {
-      border: none;
-      background-color: @snow-white;
-      cursor: pointer;
-      outline: none;
-      padding: 6px;
-      &:disabled {
-        color: @banjir-blue;
-        cursor: not-allowed;
-      }
-      &:active {
-        color: @banjir-blue;
-      }
-    }
-  }
 }
 
 .shareButtons.highlight {
-  color: @banjir-blue;
+    color: @banjir-blue;
 }
 
 .interactionFlyer {
-  position: absolute;
-  display: none;
-  top: 0px;
-  height: 120px;
-  padding: 8px;
-  z-index: 2500;
-  text-align: center;
-  border: solid 1px @banjir-blue;
-  background-color: @snow-white;
-  & a {
-    padding: 0;
-    border: none;
-    .linklight-mixin(26px);
-    text-decoration: none;
-      cursor: pointer;
-    & .active {
-      color: @banjir-blue;
-      box-shadow: @drop-shadow;
-    }
-    & i {
-      font-size: 16px;
-    }
-  }
-  & p {
-    .bodymedium-mixin(12px);
-    margin: 5px;
+    position: absolute;
+    display: none;
+    top: 0px;
+    height: 120px;
+    padding: 8px;
+    z-index: 2500;
     text-align: center;
-  }
-  & #socialButtons {
-    font-size: 26px;
-    padding: 0px 5px 0px 5px;
-  }
-  & #submitButton {
-    margin: 5px;
-    margin-top: 15px;
-    box-shadow: @drop-shadow;
-    .linkmedium-mixin(12px);
-    color: @banjir-blue;
-    padding: 10px;
-    border-radius: 3px;
-    border: none;
-    & .active{
-      .translate-mixin(2px, 2px);
+    border: solid 1px @banjir-blue;
+    background-color: @snow-white;
+    & a {
+        padding: 0;
+        border: none;
+        .linklight-mixin(26px);
+        text-decoration: none;
+        cursor: pointer;
+        & .active {
+            color: @banjir-blue;
+            box-shadow: @drop-shadow;
+        }
+        & i {
+            font-size: 16px;
+        }
     }
-  }
-  &
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    text-align: center;
-  }
+    & p {
+        .bodymedium-mixin(12px);
+        margin: 5px;
+        text-align: center;
+    }
+    & #socialButtons {
+        font-size: 26px;
+        padding: 0px 5px 0px 5px;
+    }
+    & #submitButton {
+        margin: 5px;
+        margin-top: 15px;
+        box-shadow: @drop-shadow;
+        .linkmedium-mixin(12px);
+        color: @banjir-blue;
+        padding: 10px;
+        border-radius: 3px;
+        border: none;
+        & .active {
+            .translate-mixin(2px, 2px);
+        }
+    }
+    & ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        text-align: center;
+    }
 }
