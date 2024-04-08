@@ -17,7 +17,7 @@ const en = {
   'add_fire_report': 'Report Forest Fire',
   'search_ph': 'Search',
   'social_media_popup_header': 'Report a disaster via :',
-  'warning_banner_text': 'BMKG Flood Avisory Warning for',
+  'warning_banner_text': 'BMKG Flood advisory due to the potential of heavy rainfall that could cause disaster impact in the ',
   'banner_text': '<p> Report disasters near you via <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link" href="https://t.me/bencanabot">Telegram</a>.</p>',
   'training_banner_text': '<p>Ito ang plataporma nang pagsasanay.</p>',
   'popup_text': 'Search for disaster information by province :',
