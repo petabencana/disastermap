@@ -15,7 +15,7 @@ const id = {
   'add_fire_report': 'Laporkan Kebakaran Hutan',
   'search_ph': 'Cari',
   'social_media_popup_header': 'Lapor bencana melalui :',
-  'warning_banner_text': 'Peringatan Banjir BMKG untuk ',
+  'warning_banner_text': 'Peringatan potensi hujan lebat BMKG yang dapat mengakibatkan dampak bencana di',
   'banner_text': '<p> Laporkan bencana disekitarmu melalui <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link"  href="https://t.me/bencanabot">Telegram</a>.</p>',
   'training_banner_text': '<p>This is a Training Platform.</p>',
   'popup_text': ' Pilih provinsi untuk melihat laporan bencana :',
