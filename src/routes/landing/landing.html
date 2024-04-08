@@ -13,7 +13,6 @@
     <require from="../../components/earthquake-info/earthquake-info"></require>
     <require from="../../components/volcano-info/volcano-info"></require>
     <require from="../../components/date-slider/date-slider"></require>
-    <require from="../../components/need-info/need-info"></require>
     <div id="pageWrapper">
         <!-- <div id="reportButton" click.delegate="reportTab()">
       <p><i id="buttonText" class="icon-add-report"></i><br>${webMenu.locale.add_report}</p>
@@ -351,17 +350,6 @@
                 open-lightbox.call="toggleLightbox($event)"
             >
             </report-info>
-
-            <need-info
-                class="infoWrapper"
-                if.bind="mapModel.layers.popupContent.items_requested"
-                locale.bind="webMenu.locale"
-                requestid.bind="mapModel.layers.popupContent.need_request_id"
-                itemrequested.bind="mapModel.layers.popupContent.items_requested"
-                requestedon.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.created_date)"
-                quantitysatisfied.bind="mapModel.layers.popupContent.total_quantity_satisfied"
-            >
-            </need-info>
 
         </div>
 
