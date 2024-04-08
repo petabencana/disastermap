@@ -9,7 +9,7 @@ import { HttpClient } from "aurelia-http-client";
 import * as topojson from "topojson-client";
 import { Promise, reject } from "bluebird";
 import { PointsService } from "../report-info/points-service";
-import { EventAggregator } from 'aurelia-event-aggregator';
+import { EventAggregator } from "aurelia-event-aggregator";
 
 //start-aurelia-decorators
 @noView
@@ -326,44 +326,6 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
-        if (!self.selected_need_report) {
-            self.popupContent = {};
-            for (let prop in feature.properties) {
-                self.popupContent[prop] = feature.properties[prop];
-            }
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "show", true);
-            } else {
-                const coordinates = feature.geometry.coordinates.slice();
-                togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates,feature, map, isPartner);
-            }
-            self.selected_need_report = e;
-        } else if (e.target !== self.selected_need_report.target) {
-            // Case 3 : clicked new report icon, while previous selection needs to be reset
-            self.popupContent = {};
-            for (let prop in feature.properties) {
-                self.popupContent[prop] = feature.properties[prop];
-            }
-            const coordinates = feature.geometry.coordinates.slice();
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "show", true);
-            } else {
-                togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates,feature, map, isPartner);
-            }
-            self.selected_need_report = e;
-            history.pushState(
-                { city: cityName, report_id: feature.properties.pkey },
-                "city",
-                "map/" + cityName + "/" + feature.properties.pkey
-            );
-        } else if (e.target === self.selected_need_report.target) {
-            if (self.isMobileDevice()) {
-                togglePane("#infoPane", "hide", false);
-            }
-            self.selected_need_report = null;
-        }
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -503,7 +465,6 @@ export class MapLayers {
         let flagButton;
         let upvoteButton;
         let downvoteButton;
-        let giverButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
         setTimeout(() => {
@@ -528,7 +489,7 @@ export class MapLayers {
             });
             flagButton.addEventListener("click", function () {
                 self.feedbackInteraction("flag");
-            })
+            });
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
@@ -595,41 +556,40 @@ export class MapLayers {
         self.popupContent.voteChanged = false;
     }
 
-    initiateGiver(){
+    intiateGiver() {
         this.isActive = true;
         let self = this;
-        self
-            .initiateReport()
-            .then((cardId) => {
-                window.location = self.config.cards_server + cardId + "/" + 'giver' + `?requestId=${this.popupContent.need_request_id}`;
+        self.initiateReport()
+            .then(cardId => {
+                window.location = self.config.cards_server + cardId + "/" + "giver" + `?requestId=${this.popupContent.need_request_id}`;
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
             });
     }
 
     initiateReport() {
         return new Promise((resolve, reject) => {
-            const client = new HttpClient().configure((x) => {
+            const client = new HttpClient().configure(x => {
                 x.withHeader("x-api-key", this.config.data_server_key);
             });
             const url = this.config.data_server + "cards/";
             const body = {
                 username: "web_guest",
                 language: this.webMenu ? this.webMenu.currentLanguage : "id",
-                network: "website",
+                network: "website"
             };
 
             client
                 .post(url, body)
-                .then((result) => {
+                .then(result => {
                     if (result.statusCode && result.statusCode === 200) {
                         resolve(JSON.parse(result.response).cardId);
                     } else {
                         reject(result);
                     }
                 })
-                .catch((error) => reject(error));
+                .catch(error => reject(error));
         });
     }
 
@@ -880,22 +840,22 @@ export class MapLayers {
     addReportStatus(cityName, map, togglePane) {
         this.statusData;
         return new Promise((resolve, reject) => {
-            const today = new Date().toISOString().split('T')[0];
-            const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`
+            const today = new Date().toISOString().split("T")[0];
+            const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`;
             const client = new HttpClient();
             client
                 .get(url)
-                .then((result) => {
-                    if(result.statusCode && result.statusCode == 200){
+                .then(result => {
+                    if (result.statusCode && result.statusCode == 200) {
                         this.statusData = JSON.parse(result.response);
                         resolve(JSON.parse(result.response).data);
-                        this.eventAggregator.publish('addReportStatus', this.statusData.data);
+                        this.eventAggregator.publish("addReportStatus", this.statusData.data);
                     } else {
                         console.log(result);
-                        reject('failed to get the err msg',result.status)
+                        reject("failed to get the err msg", result.status);
                     }
                 })
-                .catch((err) => reject(err))
+                .catch(err => reject(err));
         });
     }
 
@@ -1022,34 +982,34 @@ export class MapLayers {
             }));
             if (iconMap.hasOwnProperty(item.disaster)) {
                 let clickedPropertyObject = item.levels.map(level =>
-                // When the icon is clicked
-                ({
-                    icon: self.fetchIcon(item.disaster, level, false, true),
-                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                    isPartner: false,
-                    size: 0.05,
-                    level: `${level}_selected`
-                })
+                    // When the icon is clicked
+                    ({
+                        icon: self.fetchIcon(item.disaster, level, false, true),
+                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                        isPartner: false,
+                        size: 0.05,
+                        level: `${level}_selected`
+                    })
                 );
                 let isPartnerPropertyObject = item.levels.map(level =>
-                // When it is a partner icon
-                ({
-                    icon: self.fetchIcon(item.disaster, level, true),
-                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
-                    size: 0.05,
-                    isPartner: true,
-                    level: `${level}_partner`
-                })
+                    // When it is a partner icon
+                    ({
+                        icon: self.fetchIcon(item.disaster, level, true),
+                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
+                        size: 0.05,
+                        isPartner: true,
+                        level: `${level}_partner`
+                    })
                 );
                 let isPartnerClickedPropertyObject = item.levels.map(level =>
-                // When partner icon is clicked
-                ({
-                    icon: self.fetchIcon(item.disaster, level, true, true),
-                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                    size: 0.05,
-                    isPartner: true,
-                    level: `${level}_partner_selected`
-                })
+                    // When partner icon is clicked
+                    ({
+                        icon: self.fetchIcon(item.disaster, level, true, true),
+                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                        size: 0.05,
+                        isPartner: true,
+                        level: `${level}_partner_selected`
+                    })
                 );
                 iconMap[item.disaster] = [
                     ...iconMap[item.disaster],
@@ -1471,21 +1431,20 @@ export class MapLayers {
         }
     }
 
-    needIconLayer(feature, map){
+    needIconLayer(feature, map) {
         let self = this;
-        const featureId =feature.properties.need_request_id;
-        let clicked =
-        {
+        const featureId = feature.properties.need_request_id;
+        let clicked = {
             id: `need_select_${featureId}`,
             icon: `assets/icons/onselect/need_normal_select.svg`,
-            filter: ["all",["==", "need_request_id", featureId],  ["==", "clicked", true]],
+            filter: ["all", ["==", "need_request_id", featureId], ["==", "clicked", true]],
             isPartner: false,
             source: "need-reports",
             icon_code: "need_normal",
             size: 0.05,
             level: `normal_selected`
-        }
-        self.addIconLayer(map,clicked.icon,clicked.id,clicked.source,clicked.filter,clicked.size);
+        };
+        self.addIconLayer(map, clicked.icon, clicked.id, clicked.source, clicked.filter, clicked.size);
     }
 
     addNeedCluster(data, cityName, map, togglePane) {
