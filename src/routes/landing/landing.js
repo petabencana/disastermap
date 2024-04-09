@@ -200,9 +200,6 @@ export class Landing {
     if (!/Mobi/.test(navigator.userAgent) && !this.report_id) {
       this.mapModel.togglePane("#sidePane", "show", false);
     }
-    this.subscription = this.eventAggregator.subscribe('dateRangeChanged', dates => {
-      this.mapModel.viewArchiveReports(dates);
-    });
     this.reportStatus();
   }
 
