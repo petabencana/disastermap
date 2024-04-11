@@ -9,7 +9,7 @@ import { HttpClient } from "aurelia-http-client";
 import * as topojson from "topojson-client";
 import { Promise, reject } from "bluebird";
 import { PointsService } from "../report-info/points-service";
-import { EventAggregator } from 'aurelia-event-aggregator';
+import { EventAggregator } from "aurelia-event-aggregator";
 
 //start-aurelia-decorators
 @noView
@@ -467,29 +467,29 @@ export class MapLayers {
         let downvoteButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
-            setTimeout(() => {
-                getReportInfoElement = document.getElementsByClassName("infoWrapper");
-                div.innerHTML = getReportInfoElement[1].innerHTML;
-                shareButton = document.getElementById("shareButtonsshare");
-                flagButton = document.getElementById("shareButtonsflag");
-                upvoteButton = document.getElementById("upVoteButton");
-                downvoteButton = document.getElementById("downVoteButton");
-                        upvoteButton.addEventListener("click", function () {
-                            self.voteHandler(1);
-                        });
-                        downvoteButton.addEventListener("click", function () {
-                            self.voteHandler(-1);
-                        });
-                        shareButton.addEventListener("click", function () {
-                            self.feedbackInteraction("share");
-                        });
-                        flagButton.addEventListener("click", function () {
-                            self.feedbackInteraction("flag");
-                        })             
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-            }, 1000);
+        setTimeout(() => {
+            getReportInfoElement = document.getElementsByClassName("infoWrapper");
+            div.innerHTML = getReportInfoElement[1].innerHTML;
+            shareButton = document.getElementById("shareButtonsshare");
+            flagButton = document.getElementById("shareButtonsflag");
+            upvoteButton = document.getElementById("upVoteButton");
+            downvoteButton = document.getElementById("downVoteButton");
+            upvoteButton.addEventListener("click", function () {
+                self.voteHandler(1);
+            });
+            downvoteButton.addEventListener("click", function () {
+                self.voteHandler(-1);
+            });
+            shareButton.addEventListener("click", function () {
+                self.feedbackInteraction("share");
+            });
+            flagButton.addEventListener("click", function () {
+                self.feedbackInteraction("flag");
+            });
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+        }, 1000);
         const popupContainer = new mapboxgl.Popup({ closeButton: false })
             .setLngLat(coordinates)
             .setDOMContent(div)
@@ -553,30 +553,30 @@ export class MapLayers {
         self.popupContent.voteChanged = false;
     }
 
-      initiateReport() {
+    initiateReport() {
         return new Promise((resolve, reject) => {
-            const client = new HttpClient().configure((x) => {
-              x.withHeader("x-api-key", this.config.data_server_key);
+            const client = new HttpClient().configure(x => {
+                x.withHeader("x-api-key", this.config.data_server_key);
             });
             const url = this.config.data_server + "cards/";
             const body = {
-              username: "web_guest",
-              language: this.webMenu ? this.webMenu.currentLanguage : "id",
-              network: "website",
+                username: "web_guest",
+                language: this.webMenu ? this.webMenu.currentLanguage : "id",
+                network: "website"
             };
-    
+
             client
-              .post(url, body)
-              .then((result) => {
-                if (result.statusCode && result.statusCode === 200) {
-                  resolve(JSON.parse(result.response).cardId);
-                } else {
-                  reject(result);
-                }
-              })
-              .catch((error) => reject(error));
+                .post(url, body)
+                .then(result => {
+                    if (result.statusCode && result.statusCode === 200) {
+                        resolve(JSON.parse(result.response).cardId);
+                    } else {
+                        reject(result);
+                    }
+                })
+                .catch(error => reject(error));
         });
-      }
+    }
 
     feedbackInteraction(button) {
         if ($("#shareButtons" + button).hasClass("highlight")) {
@@ -803,24 +803,24 @@ export class MapLayers {
     addReportStatus(cityName, map, togglePane) {
         this.statusData;
         return new Promise((resolve, reject) => {
-            const today = new Date().toISOString().split('T')[0];
-            console.log(today,'today');
-            const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`
+            const today = new Date().toISOString().split("T")[0];
+            console.log(today, "today");
+            const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`;
             const client = new HttpClient();
             client
-            .get(url)
-            .then((result) => {
-              if(result.statusCode && result.statusCode == 200){
-                this.statusData = JSON.parse(result.response);
-                resolve(JSON.parse(result.response).data);
-                this.eventAggregator.publish('addReportStatus', this.statusData.data);
-              } else {
-                console.log(result);
-                reject('failed to get the err msg',result.status)
-              }
-            })
-            .catch((err) => reject(err))
-          });
+                .get(url)
+                .then(result => {
+                    if (result.statusCode && result.statusCode == 200) {
+                        this.statusData = JSON.parse(result.response);
+                        resolve(JSON.parse(result.response).data);
+                        this.eventAggregator.publish("addReportStatus", this.statusData.data);
+                    } else {
+                        console.log(result);
+                        reject("failed to get the err msg", result.status);
+                    }
+                })
+                .catch(err => reject(err));
+        });
     }
 
     addReports(cityName, cityRegion, map, togglePane) {
