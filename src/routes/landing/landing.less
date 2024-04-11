@@ -24,6 +24,7 @@
   top: 70px;
   width: max-content;
   z-index: 2;
+  display: flex;
   p{
     margin: auto;
   }
@@ -51,11 +52,13 @@
 @media (prefers-reduced-motion: no-preference) {
   .moving-text{
       animation: marquee 20s linear infinite;
+      display: flex;
   }
 }
 
 @media screen and (max-width: 768px){
   .moving-text {
+    display: flex;
     p{
       font-size: 12px;
       width: max-content;
