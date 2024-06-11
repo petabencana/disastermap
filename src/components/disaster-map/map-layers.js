@@ -515,7 +515,7 @@ export class MapLayers {
                 downvoteButton = document.getElementById("downVoteButton");
                 giverButton = document.getElementById("itemgiver");
                         giverButton.addEventListener("click", function () {
-                            self.intiateGiver();
+                            self.initiateGiver();
                         });    
                         upvoteButton.addEventListener("click", function () {
                             self.voteHandler(1);
@@ -595,7 +595,7 @@ export class MapLayers {
         self.popupContent.voteChanged = false;
     }
 
-    intiateGiver(){
+    initiateGiver(){
         this.isActive = true;
         let self = this;
         self
