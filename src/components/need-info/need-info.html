@@ -4,11 +4,12 @@
       <div id="need-title">
           <div class="need-name"> <p> ${locale.need_info.title}</p> </div>
           <hr>
-          <div repeat.for="item of itemrequested" class="items">
+          <div repeat.for="item of products" class="items">
             <div class="item"> 
               <span id="item_quantity">${item.quantity}</span>
               <span id="item_quantity">${item.units}</span> 
-              <span id="item_name">${item['item-name']}</span>
+              <span id="item_name">${item.title}</span>
+              <span id="item_des">${item.description}</span>
             </div>
           <hr>
           </div>

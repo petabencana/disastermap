@@ -1,10 +1,11 @@
-import {bindable, customElement, inject} from 'aurelia-framework';
+import {bindable, customElement, inject, BindingEngine} from 'aurelia-framework';
 import { HttpClient } from "aurelia-http-client";
 import { Config } from "resources/config";
+import {Locales} from '../../resources/locales/locales';
 
 //start-aurelia-decorators
 @customElement('need-info')
-@inject(Config)
+@inject(Config, BindingEngine)
 
 //end-aurelia-decorators
 export class NeedInfo {
@@ -14,13 +15,38 @@ export class NeedInfo {
   @bindable itemrequested;
   @bindable requestedon;
   @bindable quantitysatisfied;
-
-  constructor(Config) {
+  @bindable quantityrequested;
+  @bindable allitemids;
+  @bindable products;
+  
+  constructor(Config, BindingEngine) {
+    this.locale = new Locales();
     this.config = Config.map;
     this.requested;
     this.styleString = '';
+    this.items;
+    this.products;
+    this.requesteditems;
+    this.bindingEngine = BindingEngine;
   }
   //end-aurelia-decorators
+
+  attached() {
+    this.loadTranslations();
+  }
+
+  bind() {
+    this.bindingEngine.propertyObserver(this, 'locale').subscribe((newValue, oldValue) => {
+      this.locale = newValue;
+      this.loadTranslations();
+    });
+  }
+
+  itemrequestedChanged(newValue, oldValue) {
+    if (newValue && Array.isArray(newValue) && newValue.length > 0) {
+        this.loadTranslations(); 
+    } 
+}
 
   get satisfiedPercentage(){
     let percentage;
@@ -29,12 +55,25 @@ export class NeedInfo {
       percentage = 0;
     } else {
       let satisfied = parseInt(this.quantitysatisfied);
-      this.requested = this.itemrequested.reduce((total, item) => total + parseInt(item.quantity), 0);
+      let requested = parseInt(this.quantityrequested);
       this.styleString = 'height:24px;width:${parseInt("1")/parseInt(this.requested) * 100}%';
-      percentage = ( satisfied / this.requested ) * 100;
+      percentage = ( satisfied / requested) * 100;
     }
     return parseInt(percentage);
   }
+
+  loadTranslations() {
+    this.items = this.locale.need_info.productsList
+    this.products = this.itemrequested.map((x) => {
+    const prod = this.items.find((p) => p.item_id === x['item-id'])
+    return {
+      title : prod.title,
+      units : prod.units,
+      quantity : x.quantity,
+      description : x.description,
+  }
+  })
+}
 
   initiateGiver() {
     this.isActive = true;
