@@ -166,6 +166,314 @@ const en = {
     'time':"Posted at:",
     'status': "met",
     'give': "GIVE",
+
+    "productsList": [
+      {
+        "title": "Water",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/Water.png",
+        "quantity": 0,
+        "units": "Liters",
+        "item_id": "1"
+      },
+      {
+        "title": "Rice",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/Rice.png",
+        "quantity": 0,
+        "units": "Kgs",
+        "item_id": "2"
+      },
+      {
+        "title": "Ready to Eat Meals",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/ReadyToEatMeals.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. instant porridge, bread, biscuits, nasi bungkus/padang",
+        "hasDescription": true,
+        "units": "Packs",
+        "item_id": "3"
+      },
+      {
+        "title": "Sembako",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/Sembako.png",
+        "quantity": 0,
+        "units": "Packs",
+        "item_id": "4"
+      },
+      {
+        "title": "Fresh Produce",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/FreshProduce.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. (Eggs, Vegetables, Meat, Fruits)",
+        "hasDescription": true,
+        "units": "Kgs",
+        "item_id": "5"
+      },
+      {
+        "title": "Baby Food",
+        "description": "",
+        "category": "FOOD/WATER",
+        "img": "../../../assets/decks/logistics/products/BabyFood.png",
+        "quantity": 0,
+        "units": "Packs",
+        "item_id": "6"
+      },
+      {
+        "title": "Women Clothes",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/WomensClothes.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. Underwear, Bra, Dress",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "7"
+      },
+      {
+        "title": "Men Clothes",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/MensClothes.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description: E.g. Shirts, Pants, Underwear",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "8"
+      },
+      {
+        "title": "Footwear",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/Footwear.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description: E.g. Sandals, Protective Boots",
+        "hasDescription": true,
+        "units": "Pairs",
+        "item_id": "9"
+      },
+      {
+        "title": "Face Masks",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/Mask.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "10"
+      },
+      {
+        "title": "Protective Eye Wear",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/ProtectiveEyeWear.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "11"
+      },
+      {
+        "title": "Raincoats",
+        "description": "",
+        "category": "CLOTHES & SELF PROTECTION KIT",
+        "img": "../../../assets/decks/logistics/products/Raincoat.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "12"
+      },
+      {
+        "title": "Baby Clothing",
+        "description": "",
+        "category": "BABIES AND CHILDREN",
+        "img": "../../../assets/decks/logistics/products/BabyClothes.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g age/size, clothing item",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "13"
+      },
+      {
+        "title": "Bottles",
+        "description": "",
+        "category": "BABIES AND CHILDREN",
+        "img": "../../../assets/decks/logistics/products/Babybottle.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "14"
+      },
+      {
+        "title": "Toys",
+        "description": "",
+        "category": "BABIES AND CHILDREN",
+        "img": "../../../assets/decks/logistics/products/BabyToy.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "15"
+      },
+      {
+        "title": "Pacifier",
+        "description": "",
+        "category": "BABIES AND CHILDREN",
+        "img": "../../../assets/decks/logistics/products/Pacifier.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "16"
+      },
+      {
+        "title": "Utensils",
+        "description": "",
+        "category": "HOUSEHOLD AND EMERGENCY SUPPLIES",
+        "img": "../../../assets/decks/logistics/products/Utensils.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g pan, cutlery",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "17"
+      },
+      {
+        "title": "Blankets",
+        "description": "",
+        "category": "HOUSEHOLD AND EMERGENCY SUPPLIES",
+        "img": "../../../assets/decks/logistics/products/Blanket.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "18"
+      },
+      {
+        "title": "Sleeping Mats",
+        "description": "",
+        "category": "HOUSEHOLD AND EMERGENCY SUPPLIES",
+        "img": "../../../assets/decks/logistics/products/Default.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "19"
+      },
+      {
+        "title": "Cleaning Supplies",
+        "description": "",
+        "category": "HOUSEHOLD AND EMERGENCY SUPPLIES",
+        "img": "../../../assets/decks/logistics/products/CleaningSupplies.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. (E.g. Brooms, Detergent, Floor Wiper)",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "20"
+      },
+      {
+        "title": "Flashlight",
+        "description": "",
+        "category": "HOUSEHOLD AND EMERGENCY SUPPLIES",
+        "img": "../../../assets/decks/logistics/products/Flashlight.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "21"
+      },
+      {
+        "title": "First aid kit",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/Firstaid.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "22"
+      },
+      {
+        "title": "Diarrhea Medication",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/DiarrheaMedication.png",
+        "quantity": 0,
+        "units": "Strips",
+        "item_id": "23"
+      },
+      {
+        "title": "Anti Fungal Cream",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/AntiFungalCream.png",
+        "quantity": 0,
+        "units": "Pcs",
+        "item_id": "24"
+      },
+      {
+        "title": "Vitamins & Supplements",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/Vitamins_Supplements.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. (E.g. Iron Supplement, Multi vitamin, Vitamin C)",
+        "hasDescription": true,
+        "units": "Strips",
+        "item_id": "25"
+      },
+      {
+        "title": "Paracetamol",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/Paracetamol.png",
+        "quantity": 0,
+        "units": "Strips",
+        "item_id": "26"
+      },
+      {
+        "title": "Eucalyptus Oil",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/EucalyptusOil.png",
+        "quantity": 0,
+        "units": "Bottles",
+        "item_id": "27"
+      },
+      {
+        "title": "Personal Health Equipment",
+        "description": "",
+        "category": "PERSONAL HEALTH",
+        "img": "../../../assets/decks/logistics/products/PersonalHealthEquipment.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description E.g. Wheelchair, walking stick, oxygen, blood pressure measurement tool, diabetes measurement tool, inhaler",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "28"
+      },
+      {
+        "title": "Female Hygiene Products",
+        "description": "",
+        "category": "HYGIENE KITS",
+        "img": "../../../assets/decks/logistics/products/FemaleHygieneProducts.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. pads, tampons, menstrual cups",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "29"
+      },
+      {
+        "title": "Oral Care",
+        "description": "",
+        "category": "HYGIENE KITS",
+        "img": "../../../assets/decks/logistics/products/OralCare.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. toothbrush, toothpaste",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "30"
+      },
+      {
+        "title": "Personal Cleansing",
+        "description": "",
+        "category": "HYGIENE KITS",
+        "img": "../../../assets/decks/logistics/products/PersonalCleansing.png",
+        "quantity": 0,
+        "descriptionPlaceholder": "Add description. E.g. soap, shampoo",
+        "hasDescription": true,
+        "units": "Pcs",
+        "item_id": "31"
+      }
+    ],
   },
   
   'map_helper': 'Select city :',
