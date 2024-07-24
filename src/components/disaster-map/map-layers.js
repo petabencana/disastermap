@@ -410,7 +410,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, map);
             }
-            self.selected_report = e;
+            self.selected_report = feature
         } else if (e.target === self.selected_report.target) {
             // Case 2 : clicked report icon same as selected report
             if (
@@ -1314,7 +1314,8 @@ export class MapLayers {
                 self.queriedReports[sourceCode].features.forEach(function (feature, index) {
                     if (feature.properties.url === features[0].properties.url) {
                         self.queriedReports[sourceCode].features[index].properties.clicked =
-                            !self.queriedReports[sourceCode].features[index].properties.clicked;
+                        !self.queriedReports[sourceCode].features[index].properties.clicked;
+                        console.log("Iam here" ,  !self.queriedReports[sourceCode].features[index].properties.clicked)
                         map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
                     }
                 });
