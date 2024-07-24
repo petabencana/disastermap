@@ -410,7 +410,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_report = e;
+            self.selected_report = feature;
         } else if (e.target === self.selected_report.target) {
             // Case 2 : clicked report icon same as selected report
             // console.log("Coming herre tooo" , map.getLayer("fire-selected-icon" + isPartner))
