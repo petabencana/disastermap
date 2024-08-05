@@ -20,7 +20,7 @@
         <div class="progress-bar-container">
           <div css="height:18px;width:${satisfiedPercentage}%"></div>
         </div>
-        <div class="giverbtn">
+        <div class="giverbtn" if.bind="showGiverBtn">
           <button id="itemgiver" click.delegate="initiateGiver()">${locale.need_info.give}</button>
         </div>
       </div>
