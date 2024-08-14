@@ -28,6 +28,7 @@ export class NeedInfo {
     this.products;
     this.requesteditems;
     this.bindingEngine = BindingEngine;
+    this.showGiverBtn = true;
   }
   //end-aurelia-decorators
 
@@ -59,6 +60,7 @@ export class NeedInfo {
       this.styleString = 'height:24px;width:${parseInt("1")/parseInt(this.requested) * 100}%';
       percentage = ( satisfied / requested) * 100;
     }
+    this.showGiverBtn = percentage <= 100;
     return parseInt(percentage);
   }
 
