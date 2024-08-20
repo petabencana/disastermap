@@ -50,7 +50,7 @@ export class NeedInfo {
 }
 
   get satisfiedPercentage(){
-    let percentage;
+    let percentage = 0;
     if(this.quantitysatisfied == 0) {
       this.styleString = 'height:24px;width:0px';
       percentage = 0;
@@ -60,7 +60,7 @@ export class NeedInfo {
       this.styleString = 'height:24px;width:${parseInt("1")/parseInt(this.requested) * 100}%';
       percentage = ( satisfied / requested) * 100;
     }
-    this.showGiverBtn = percentage <= 100;
+    this.showGiverBtn = (percentage !== 100);
     return parseInt(percentage);
   }
 
