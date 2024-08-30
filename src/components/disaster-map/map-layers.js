@@ -869,6 +869,7 @@ export class MapLayers {
                     this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
                     this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
+                    resolve(data);
                 })
                 .catch(err => {
                     reject(err);
@@ -880,7 +881,6 @@ export class MapLayers {
         this.statusData;
         return new Promise((resolve, reject) => {
             const today = new Date().toISOString().split('T')[0];
-            console.log(today,'today');
             const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`
             const client = new HttpClient();
             client
@@ -1471,6 +1471,23 @@ export class MapLayers {
         }
     }
 
+    needIconLayer(feature, map){
+        let self = this;
+        const featureId =feature.properties.need_request_id;
+        let clicked = 
+            {
+                id: `need_select_${featureId}`,
+                icon: `assets/icons/need_select.svg`,
+                filter: ["all",["==", "need_request_id", featureId],  ["==", "clicked", true]],
+                isPartner: false,
+                source: "need-reports",
+                icon_code: "need_normal",
+                size: 0.05,
+                level: `normal_selected`
+            }
+            self.addIconLayer(map,clicked.icon,clicked.id,clicked.source,clicked.filter,clicked.size);
+    }
+
     addNeedCluster(data, cityName, map, togglePane) {
         try {
             let self = this;
@@ -1541,10 +1558,14 @@ export class MapLayers {
                 });
 
                 self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.id === features[0].properties.id) {
+                    if (feature.properties.need_request_id === features[0].properties.need_request_id) {
                         self.queriedReports[sourceCode].features[index].properties.clicked =
                             !self.queriedReports[sourceCode].features[index].properties.clicked;
-                        map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                        map.getSource(sourceCode).setData({
+                            ...self.queriedReports[sourceCode],
+                            features: [...self.queriedReports[sourceCode].features]  
+                        });
+                        self.needIconLayer(self.queriedReports[sourceCode].features[index], map);
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
@@ -2044,7 +2065,7 @@ export class MapLayers {
         data.features = data.features.map(function (item) {
             item.properties.clicked = false;
             item.properties.percent_satisfied =
-                (parseInt(item.properties.quantity_satisfied || 0) / parseInt(item.properties.quantity_requested)) * 100;
+                (parseInt(item.properties.total_quantity_satisfied || 0) / parseInt(item.properties.total_quantity_requested)) * 100;
             return item;
         });
         return data;
