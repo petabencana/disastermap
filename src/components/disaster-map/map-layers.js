@@ -476,7 +476,7 @@ export class MapLayers {
             downvoteButton = document.getElementById("downVoteButton");
             giverButton = document.getElementById("itemgiver");
             giverButton.addEventListener("click", function () {
-                self.initiateGiver();
+                self.intiateGiver();
             });
             upvoteButton.addEventListener("click", function () {
                 self.voteHandler(1);
