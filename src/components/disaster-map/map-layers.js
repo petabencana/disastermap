@@ -506,33 +506,33 @@ export class MapLayers {
         let giverButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
-            setTimeout(() => {
-                getReportInfoElement = document.getElementsByClassName("infoWrapper");
-                div.innerHTML = getReportInfoElement[1].innerHTML;
-                shareButton = document.getElementById("shareButtonsshare");
-                flagButton = document.getElementById("shareButtonsflag");
-                upvoteButton = document.getElementById("upVoteButton");
-                downvoteButton = document.getElementById("downVoteButton");
-                giverButton = document.getElementById("itemgiver");
-                        giverButton.addEventListener("click", function () {
-                            self.initiateGiver();
-                        });    
-                        upvoteButton.addEventListener("click", function () {
-                            self.voteHandler(1);
-                        });
-                        downvoteButton.addEventListener("click", function () {
-                            self.voteHandler(-1);
-                        });
-                        shareButton.addEventListener("click", function () {
-                            self.feedbackInteraction("share");
-                        });
-                        flagButton.addEventListener("click", function () {
-                            self.feedbackInteraction("flag");
-                        })             
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-            }, 1000);
+        setTimeout(() => {
+            getReportInfoElement = document.getElementsByClassName("infoWrapper");
+            div.innerHTML = getReportInfoElement[1].innerHTML;
+            shareButton = document.getElementById("shareButtonsshare");
+            flagButton = document.getElementById("shareButtonsflag");
+            upvoteButton = document.getElementById("upVoteButton");
+            downvoteButton = document.getElementById("downVoteButton");
+            giverButton = document.getElementById("itemgiver");
+            giverButton.addEventListener("click", function () {
+                self.initiateGiver();
+            });
+            upvoteButton.addEventListener("click", function () {
+                self.voteHandler(1);
+            });
+            downvoteButton.addEventListener("click", function () {
+                self.voteHandler(-1);
+            });
+            shareButton.addEventListener("click", function () {
+                self.feedbackInteraction("share");
+            });
+            flagButton.addEventListener("click", function () {
+                self.feedbackInteraction("flag");
+            })
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+        }, 1000);
         const popupContainer = new mapboxgl.Popup({ closeButton: false })
             .setLngLat(coordinates)
             .setDOMContent(div)
@@ -599,39 +599,39 @@ export class MapLayers {
         this.isActive = true;
         let self = this;
         self
-          .initiateReport()
-          .then((cardId) => {
-            window.location = self.config.cards_server + cardId + "/" + 'giver' + `?requestId=${this.popupContent.need_request_id}`;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+            .initiateReport()
+            .then((cardId) => {
+                window.location = self.config.cards_server + cardId + "/" + 'giver' + `?requestId=${this.popupContent.need_request_id}`;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
-      initiateReport() {
+    initiateReport() {
         return new Promise((resolve, reject) => {
             const client = new HttpClient().configure((x) => {
-              x.withHeader("x-api-key", this.config.data_server_key);
+                x.withHeader("x-api-key", this.config.data_server_key);
             });
             const url = this.config.data_server + "cards/";
             const body = {
-              username: "web_guest",
-              language: this.webMenu ? this.webMenu.currentLanguage : "id",
-              network: "website",
+                username: "web_guest",
+                language: this.webMenu ? this.webMenu.currentLanguage : "id",
+                network: "website",
             };
-    
+
             client
-              .post(url, body)
-              .then((result) => {
-                if (result.statusCode && result.statusCode === 200) {
-                  resolve(JSON.parse(result.response).cardId);
-                } else {
-                  reject(result);
-                }
-              })
-              .catch((error) => reject(error));
+                .post(url, body)
+                .then((result) => {
+                    if (result.statusCode && result.statusCode === 200) {
+                        resolve(JSON.parse(result.response).cardId);
+                    } else {
+                        reject(result);
+                    }
+                })
+                .catch((error) => reject(error));
         });
-      }
+    }
 
     feedbackInteraction(button) {
         if ($("#shareButtons" + button).hasClass("highlight")) {
@@ -884,19 +884,19 @@ export class MapLayers {
             const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`
             const client = new HttpClient();
             client
-            .get(url)
-            .then((result) => {
-              if(result.statusCode && result.statusCode == 200){
-                this.statusData = JSON.parse(result.response);
-                resolve(JSON.parse(result.response).data);
-                this.eventAggregator.publish('addReportStatus', this.statusData.data);
-              } else {
-                console.log(result);
-                reject('failed to get the err msg',result.status)
-              }
-            })
-            .catch((err) => reject(err))
-          });
+                .get(url)
+                .then((result) => {
+                    if(result.statusCode && result.statusCode == 200){
+                        this.statusData = JSON.parse(result.response);
+                        resolve(JSON.parse(result.response).data);
+                        this.eventAggregator.publish('addReportStatus', this.statusData.data);
+                    } else {
+                        console.log(result);
+                        reject('failed to get the err msg',result.status)
+                    }
+                })
+                .catch((err) => reject(err))
+        });
     }
 
     addReports(cityName, cityRegion, map, togglePane) {
@@ -931,8 +931,8 @@ export class MapLayers {
             // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
             return this.addReportsClustered(endPoint, cityName, map, togglePane);
         }
-            let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
-            return this.addReportsClustered(endPoint, cityName, map, togglePane);
+        let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
+        return this.addReportsClustered(endPoint, cityName, map, togglePane);
     }
 
     addReportsClustered(endPoint, cityName, map, togglePane) {
@@ -1022,34 +1022,34 @@ export class MapLayers {
             }));
             if (iconMap.hasOwnProperty(item.disaster)) {
                 let clickedPropertyObject = item.levels.map(level =>
-                    // When the icon is clicked
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, false, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                        isPartner: false,
-                        size: 0.05,
-                        level: `${level}_selected`
-                    })
+                // When the icon is clicked
+                ({
+                    icon: self.fetchIcon(item.disaster, level, false, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                    isPartner: false,
+                    size: 0.05,
+                    level: `${level}_selected`
+                })
                 );
                 let isPartnerPropertyObject = item.levels.map(level =>
-                    // When it is a partner icon
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
-                        size: 0.05,
-                        isPartner: true,
-                        level: `${level}_partner`
-                    })
+                // When it is a partner icon
+                ({
+                    icon: self.fetchIcon(item.disaster, level, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
+                    size: 0.05,
+                    isPartner: true,
+                    level: `${level}_partner`
+                })
                 );
                 let isPartnerClickedPropertyObject = item.levels.map(level =>
-                    // When partner icon is clicked
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, true, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                        size: 0.05,
-                        isPartner: true,
-                        level: `${level}_partner_selected`
-                    })
+                // When partner icon is clicked
+                ({
+                    icon: self.fetchIcon(item.disaster, level, true, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                    size: 0.05,
+                    isPartner: true,
+                    level: `${level}_partner_selected`
+                })
                 );
                 iconMap[item.disaster] = [
                     ...iconMap[item.disaster],
@@ -1474,18 +1474,18 @@ export class MapLayers {
     needIconLayer(feature, map){
         let self = this;
         const featureId =feature.properties.need_request_id;
-        let clicked = 
-            {
-                id: `need_select_${featureId}`,
-                icon: `assets/icons/need_select.svg`,
-                filter: ["all",["==", "need_request_id", featureId],  ["==", "clicked", true]],
-                isPartner: false,
-                source: "need-reports",
-                icon_code: "need_normal",
-                size: 0.05,
-                level: `normal_selected`
-            }
-            self.addIconLayer(map,clicked.icon,clicked.id,clicked.source,clicked.filter,clicked.size);
+        let clicked =
+        {
+            id: `need_select_${featureId}`,
+            icon: `assets/icons/onselect/need_normal_select.svg`,
+            filter: ["all",["==", "need_request_id", featureId],  ["==", "clicked", true]],
+            isPartner: false,
+            source: "need-reports",
+            icon_code: "need_normal",
+            size: 0.05,
+            level: `normal_selected`
+        }
+        self.addIconLayer(map,clicked.icon,clicked.id,clicked.source,clicked.filter,clicked.size);
     }
 
     addNeedCluster(data, cityName, map, togglePane) {
@@ -1563,7 +1563,7 @@ export class MapLayers {
                             !self.queriedReports[sourceCode].features[index].properties.clicked;
                         map.getSource(sourceCode).setData({
                             ...self.queriedReports[sourceCode],
-                            features: [...self.queriedReports[sourceCode].features]  
+                            features: [...self.queriedReports[sourceCode].features]
                         });
                         self.needIconLayer(self.queriedReports[sourceCode].features[index], map);
                     }
