@@ -168,306 +168,157 @@ const id = {
     "productsList" : [
       {
         "title": "Air minum",
-        "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/Water.png",
-        "quantity": 0,
         "units": "Liters",
         "item_id": "1"
       },
       {
         "title": "Beras",
-        "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/Rice.png",
-        "quantity": 0,
         "units": "Kgs",
         "item_id": "2"
       },
       {
         "title": "Makanan Siap Saji ",
-        "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/ReadyToEatMeals.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: bubur instan, roti, biskuit, nasi bungkus/padang",
-        "hasDescription": true,
         "units": "Bungkus",
         "item_id": "3"
       },
       {
         "title": "Sembako",
         "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/Sembako.png",
-        "quantity": 0,
         "units": "Bungkus",
         "item_id": "4"
       },
       {
         "title": "Bahan Segar",
-        "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/FreshProduce.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: telur, sayur, daging, buah",
-        "hasDescription": true,
         "units": "Kgs",
         "item_id": "5"
       },
       {
         "title": "Makanan bayi",
-        "description": "",
-        "category": "MAKANAN/AIR MINUM",
-        "img": "../../../assets/decks/logistics/products/BabyFood.png",
-        "quantity": 0,
         "units": "Bungkus",
         "item_id": "6"
       },
       {
         "title": "Pakaian Wanita",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/WomensClothes.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: baju, rok, bra, celana dalam",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "7"
       },
       {
         "title": "Pakaian Laki-laki",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/MensClothes.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: baju, celana, celana dalam",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "8"
       },
       {
         "title": "Alas kaki",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/Footwear.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: sandal jepit, sepatu boot",
-        "hasDescription": true,
         "units": "Pasang",
         "item_id": "9"
       },
       {
         "title": "Masker",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/Mask.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "10"
       },
       {
         "title": "Kacamata pelindung",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/ProtectiveEyeWear.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "11"
       },
       {
         "title": "Jas hujan",
-        "description": "",
-        "category": "PAKAIAN & ALAT PERLINDUNGAN DIRI",
-        "img": "../../../assets/decks/logistics/products/Raincoat.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "12"
       },
       {
         "title": "Pakaian Bayi & Anak ",
-        "description": "",
-        "category": "BAYI DAN ANAK",
-        "img": "../../../assets/decks/logistics/products/BabyClothes.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: usia/ukuran, jenis",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "13"
       },
       {
         "title": "Botol Bayi",
-        "description": "",
-        "category": "BAYI DAN ANAK",
-        "img": "../../../assets/decks/logistics/products/Babybottle.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "14"
       },
       {
         "title": "Mainan Anak",
-        "description": "",
-        "category": "BAYI DAN ANAK",
-        "img": "../../../assets/decks/logistics/products/BabyToy.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "15"
       },
       {
         "title": "Dot",
-        "description": "",
-        "category": "BAYI DAN ANAK",
-        "img": "../../../assets/decks/logistics/products/Pacifier.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "16"
       },
       {
         "title": "Peralatan masak",
-        "description": "",
-        "category": "PERALATAN RUMAH TANGGA DAN KEBUTUHAN DARURAT",
-        "img": "../../../assets/decks/logistics/products/Utensils.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi; contoh panci, alat makan",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "17"
       },
       {
         "title": "Selimut",
-        "description": "",
-        "category": "PERALATAN RUMAH TANGGA DAN KEBUTUHAN DARURAT",
-        "img": "../../../assets/decks/logistics/products/Blanket.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "18"
       },
       {
         "title": "Alas tidur",
-        "description": "",
-        "category": "PERALATAN RUMAH TANGGA DAN KEBUTUHAN DARURAT",
-        "img": "../../../assets/decks/logistics/products/Default.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "19"
       },
       {
         "title": "Peralatan kebersihan",
-        "description": "",
-        "category": "PERALATAN RUMAH TANGGA DAN KEBUTUHAN DARURAT",
-        "img": "../../../assets/decks/logistics/products/CleaningSupplies.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi; contoh sapu, deterjen, serokan air karet",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "20"
       },
       {
         "title": "Senter",
-        "description": "",
-        "category": "PERALATAN RUMAH TANGGA DAN KEBUTUHAN DARURAT",
-        "img": "../../../assets/decks/logistics/products/Flashlight.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "21"
       },
       {
         "title": "P3K",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/Firstaid.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "22"
       },
       {
         "title": "Obat Diare",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/DiarrheaMedication.png",
-        "quantity": 0,
         "units": "Strips",
         "item_id": "23"
       },
       {
         "title": "Obat anti jamur",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/AntiFungalCream.png",
-        "quantity": 0,
         "units": "Pcs",
         "item_id": "24"
       },
       {
         "title": "Vitamin & Suplemen",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/Vitamins_Supplements.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: obat penambah darah, multi vitamin, vitamin C",
-        "hasDescription": true,
         "units": "Strips",
         "item_id": "25"
       },
       {
         "title": "Parasetamol",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/Paracetamol.png",
-        "quantity": 0,
         "units": "Strips",
         "item_id": "26"
       },
       {
         "title": "Minyak kayu putih",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/EucalyptusOil.png",
-        "quantity": 0,
         "units": "Botol",
         "item_id": "27"
       },
       {
         "title": "Alat kesehatan",
-        "description": "",
-        "category": "KESEHATAN",
-        "img": "../../../assets/decks/logistics/products/PersonalHealthEquipment.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: kursi roda, tongkat jalan, oksigen, alat tes kesehatan, inhaler",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "28"
       },
       {
         "title": "Kebersihan Wanita",
-        "description": "",
-        "category": "PERALATAN KEBERSIHAN ",
-        "img": "../../../assets/decks/logistics/products/FemaleHygieneProducts.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: pembalut",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "29"
       },
       {
         "title": "Kebersihan Mulut",
-        "description": "",
-        "category": "PERALATAN KEBERSIHAN ",
-        "img": "../../../assets/decks/logistics/products/OralCare.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: sikat gigi, pasta gigi",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "30"
       },
       {
         "title": "Peralatan Mandi",
-        "description": "",
-        "category": "PERALATAN KEBERSIHAN ",
-        "img": "../../../assets/decks/logistics/products/PersonalCleansing.png",
-        "quantity": 0,
-        "descriptionPlaceholder": "Tambahkan deskripsi. Contoh: sabun, sampo",
-        "hasDescription": true,
         "units": "Pcs",
         "item_id": "31"
       }
