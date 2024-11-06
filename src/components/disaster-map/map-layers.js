@@ -474,6 +474,10 @@ export class MapLayers {
             flagButton = document.getElementById("shareButtonsflag");
             upvoteButton = document.getElementById("upVoteButton");
             downvoteButton = document.getElementById("downVoteButton");
+            giverButton = document.getElementById("itemgiver");
+            giverButton.addEventListener("click", function () {
+                self.intiateGiver();
+            });
             upvoteButton.addEventListener("click", function () {
                 self.voteHandler(1);
             });
@@ -551,6 +555,18 @@ export class MapLayers {
 
         // Set voteChanged back to false to enable trigger on next button click
         self.popupContent.voteChanged = false;
+    }
+
+    intiateGiver() {
+        this.isActive = true;
+        let self = this;
+        self.initiateReport()
+            .then(cardId => {
+                window.location = self.config.cards_server + cardId + "/" + "giver" + `?requestId=${this.popupContent.need_request_id}`;
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     initiateReport() {
@@ -800,11 +816,32 @@ export class MapLayers {
         });
     }
 
+    addNeedReports(cityName, map, togglePane) {
+        let endPoint = "needs";
+        return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
+    }
+
+    addNeedReportsClustered(endPoint, cityName, map, togglePane) {
+        let self = this;
+        const image = `assets/icons/need.svg`;
+        return new Promise((resolve, reject) => {
+            self.getData(endPoint)
+                .then(data => {
+                    this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
+                    this.addNeedLevels(data);
+                    this.addNeedCluster(data, cityName, map, togglePane);
+                    resolve(data);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
     addReportStatus(cityName, map, togglePane) {
         this.statusData;
         return new Promise((resolve, reject) => {
             const today = new Date().toISOString().split("T")[0];
-            console.log(today, "today");
             const url = `https://signature.bmkg.go.id/api/signature/impact/public/list/${today}T00:00:00.000Z`;
             const client = new HttpClient();
             client
@@ -836,6 +873,26 @@ export class MapLayers {
         let endPoint = `reports/?admin=${cityRegion}&training=${self.config.environment === "training"}`;
         // add layer to map
         // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
+        return this.addReportsClustered(endPoint, cityName, map, togglePane);
+    }
+
+    addArchiveReports(dates, map, togglePane) {
+        let self = this;
+        if (self.reports) {
+            // map.removeLayer(self.reports);
+            self.reports = null;
+        }
+        const cityName = "Daerah Khusus Ibukota Jakarta";
+        if (Array.isArray(dates) && dates.length > 0) {
+            const startDate = dates[0].toISOString().split("T")[0];
+            const endDate = dates[1].toISOString().split("T")[0];
+            // https://api.petabencana.id/reports/archive?start=2023-10-30T00%3A00%3A00%2B0700&end=2023-10-30T23%3A00%3A00%2B0700&geoformat=geojson
+            let endPoint = `reports/archive?start=${startDate}T00%3A00%3A00%2B0700&end=${endDate}T23%3A00%3A00%2B0700&training=false`;
+            // add layer to map
+            // return self.appendData('reports/?admin=' + cityRegion + '&timeperiod=' + self.config.report_timeperiod, self.reports, map);
+            return this.addReportsClustered(endPoint, cityName, map, togglePane);
+        }
+        let endPoint = `reports/?admin=ID-JK&training=${self.config.environment === "training"}`;
         return this.addReportsClustered(endPoint, cityName, map, togglePane);
     }
 
@@ -1376,6 +1433,138 @@ export class MapLayers {
         }
     }
 
+    needIconLayer(feature, map) {
+        let self = this;
+        const featureId = feature.properties.need_request_id;
+        let clicked = {
+            id: `need_select_${featureId}`,
+            icon: `assets/icons/onselect/need_normal_select.svg`,
+            filter: ["all", ["==", "need_request_id", featureId], ["==", "clicked", true]],
+            isPartner: false,
+            source: "need-reports",
+            icon_code: "need_normal",
+            size: 0.05,
+            level: `normal_selected`
+        };
+        self.addIconLayer(map, clicked.icon, clicked.id, clicked.source, clicked.filter, clicked.size);
+    }
+
+    addNeedCluster(data, cityName, map, togglePane) {
+        try {
+            let self = this;
+
+            const sourceCode = "need-reports";
+            let filteredReports = Object.assign({}, data);
+            this.queriedReports[sourceCode] = filteredReports;
+
+            if (!map.getSource(sourceCode)) {
+                map.addSource(sourceCode, {
+                    type: "geojson",
+                    data: filteredReports,
+                    cluster: true,
+                    clusterMaxZoom: 14
+                });
+            } else {
+                map.getSource(sourceCode).setData(filteredReports);
+            }
+
+            if (!map.getLayer("unclustered-" + sourceCode)) {
+                map.addLayer({
+                    id: "unclustered-" + sourceCode,
+                    source: sourceCode,
+                    type: "circle",
+                    filter: ["!", ["has", "point_count"]],
+                    paint: {
+                        "circle-radius": 20,
+                        "circle-opacity": 0
+                    }
+                });
+            }
+
+            if (!map.getLayer("unclustered-" + sourceCode)) {
+                map.addLayer({
+                    id: "cluster-" + sourceCode,
+                    source: sourceCode,
+                    type: "circle",
+                    filter: ["has", "point_count"],
+                    paint: {
+                        "circle-radius": 20,
+                        "circle-opacity": 0
+                    }
+                });
+            }
+
+            map.on("click", "cluster-" + sourceCode, function (e) {
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ["cluster-" + sourceCode]
+                });
+                const clusterId = features[0].properties.cluster_id;
+                if (!clusterId) return;
+                map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
+                    if (err) return;
+                    map.easeTo({
+                        center: features[0].geometry.coordinates,
+                        zoom: zoom
+                    });
+                });
+            });
+
+            map.on("click", "unclustered-" + sourceCode, function (e) {
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+
+                const features = map.queryRenderedFeatures(e.point, {
+                    layers: ["unclustered-" + sourceCode]
+                });
+
+                self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                    if (feature.properties.need_request_id === features[0].properties.need_request_id) {
+                        self.queriedReports[sourceCode].features[index].properties.clicked =
+                            !self.queriedReports[sourceCode].features[index].properties.clicked;
+                        map.getSource(sourceCode).setData({
+                            ...self.queriedReports[sourceCode],
+                            features: [...self.queriedReports[sourceCode].features]
+                        });
+                        self.needIconLayer(self.queriedReports[sourceCode].features[index], map);
+                    }
+                });
+                const feature = self.queriedReports[sourceCode].features.filter(
+                    feature => feature.properties.need_request_id === features[0].properties.need_request_id
+                );
+                self.markerClickHandler(e, feature[0], cityName, map, togglePane);
+            });
+
+            // self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
+            //     map.addImage(sourceCode + "-marker", image);
+            // });
+
+            map.addLayer({
+                id: "cluster-count-" + sourceCode,
+                type: "symbol",
+                source: sourceCode,
+                filter: ["has", "point_count"],
+                layout: {
+                    "icon-image": sourceCode + "-marker",
+                    "icon-size": 0.45,
+                    "text-field": "{point_count}",
+                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                    "text-size": 12,
+                    "text-offset": [0.75, 0.8]
+                }
+            });
+
+            map.on("mouseenter", "cluster-" + sourceCode, function () {
+                map.getCanvas().style.cursor = "pointer";
+            });
+            map.on("mouseleave", "cluster-" + sourceCode, function () {
+                map.getCanvas().style.cursor = "";
+            });
+        } catch (err) {
+            console.log("Err", err);
+        }
+    }
+
     iconCreateFunction() {
         map.loadImage("assets/icons/Add_Report_Icon_Flood.png", function (error, image) {
             if (error) throw error;
@@ -1831,6 +2020,16 @@ export class MapLayers {
             map.removeSource("floodGauges");
             self.gaugeLayer = null;
         }
+    }
+
+    addNeedLevels(data) {
+        data.features = data.features.map(function (item) {
+            item.properties.clicked = false;
+            item.properties.percent_satisfied =
+                (parseInt(item.properties.total_quantity_satisfied || 0) / parseInt(item.properties.total_quantity_requested)) * 100;
+            return item;
+        });
+        return data;
     }
 
     addDisasterLevelsToData(data) {
