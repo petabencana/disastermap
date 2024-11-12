@@ -326,6 +326,46 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
+        //
+        if (!self.selected_need_report) {
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                const coordinates = feature.geometry.coordinates.slice();
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
+            }
+            self.selected_need_report = e;
+        } else if (e.target !== self.selected_need_report.target) {
+            // Case 3 : clicked new report icon, while previous selection needs to be reset
+            self.popupContent = {};
+            for (let prop in feature.properties) {
+                self.popupContent[prop] = feature.properties[prop];
+            }
+            const coordinates = feature.geometry.coordinates.slice();
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "show", true);
+            } else {
+                togglePane("#infoPane", "hide", false);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
+            }
+            self.selected_need_report = e;
+            history.pushState(
+                { city: cityName, report_id: feature.properties.pkey },
+                "city",
+                "map/" + cityName + "/" + feature.properties.pkey
+            );
+        } else if (e.target === self.selected_need_report.target) {
+            if (self.isMobileDevice()) {
+                togglePane("#infoPane", "hide", false);
+            }
+            self.selected_need_report = null;
+        }
+        //
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -465,6 +505,7 @@ export class MapLayers {
         let flagButton;
         let upvoteButton;
         let downvoteButton;
+        let giverButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
         setTimeout(() => {
@@ -983,34 +1024,34 @@ export class MapLayers {
             }));
             if (iconMap.hasOwnProperty(item.disaster)) {
                 let clickedPropertyObject = item.levels.map(level =>
-                    // When the icon is clicked
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, false, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                        isPartner: false,
-                        size: 0.05,
-                        level: `${level}_selected`
-                    })
+                // When the icon is clicked
+                ({
+                    icon: self.fetchIcon(item.disaster, level, false, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                    isPartner: false,
+                    size: 0.05,
+                    level: `${level}_selected`
+                })
                 );
                 let isPartnerPropertyObject = item.levels.map(level =>
-                    // When it is a partner icon
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
-                        size: 0.05,
-                        isPartner: true,
-                        level: `${level}_partner`
-                    })
+                // When it is a partner icon
+                ({
+                    icon: self.fetchIcon(item.disaster, level, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
+                    size: 0.05,
+                    isPartner: true,
+                    level: `${level}_partner`
+                })
                 );
                 let isPartnerClickedPropertyObject = item.levels.map(level =>
-                    // When partner icon is clicked
-                    ({
-                        icon: self.fetchIcon(item.disaster, level, true, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
-                        size: 0.05,
-                        isPartner: true,
-                        level: `${level}_partner_selected`
-                    })
+                // When partner icon is clicked
+                ({
+                    icon: self.fetchIcon(item.disaster, level, true, true),
+                    filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                    size: 0.05,
+                    isPartner: true,
+                    level: `${level}_partner_selected`
+                })
                 );
                 iconMap[item.disaster] = [
                     ...iconMap[item.disaster],
