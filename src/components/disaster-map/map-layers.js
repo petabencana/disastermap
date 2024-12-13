@@ -60,7 +60,22 @@ export class MapLayers {
             {
                 disaster: "road",
                 levels: ["low", "normal", "medium", "high"]
-            }
+            },
+            {
+                disaster: "typhoonflood",
+                type: "flood",
+                levels: ["normal", "medium", "high"]
+            },
+            {
+                disaster: "typhoonwind",
+                type: "wind",
+                levels: ["normal", "medium", "high"]
+            },
+            {
+                disaster: "typhoonstorm",
+                type: "storm",
+                levels: ["normal", "medium", "high"]
+            },
         ];
         this.mapIcons = {
             report_normal: (type, level, isPartnerCode) =>
@@ -476,8 +491,8 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, map);
             }
-            self.selected_report = e;
-        } else if (e.target === self.selected_report.target) {
+            self.selected_report = feature;
+        } else if (feature.properties.pkey === self.selected_report.properties.pkey) {
             // Case 2 : clicked report icon same as selected report
             // console.log("Coming herre tooo" , map.getLayer("fire-selected-icon" + isPartner))
             // if (
@@ -503,7 +518,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_report = null;
-        } else if (e.target !== self.selected_report.target) {
+        } else if (feature.properties.pkey !== self.selected_report.properties.pkey) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             if (feature.properties.disaster_type == "fire" && !this.fireMarker) {
             }
@@ -971,9 +986,10 @@ export class MapLayers {
         let iconMap = {};
         let self = this;
         this.disasterMap.map(item => {
+            let disasterType = (item.disaster.startsWith('typhoon')) ? 'typhoon' : item.disaster;
             iconMap[item.disaster] = item.levels.map(level => ({
                 icon: self.fetchIcon(item.hasOwnProperty("type") ? item.type : item.disaster, level, false),
-                filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false]],
+                filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", false], ["==", "disaster_type", disasterType]],
                 isPartner: false,
                 size: 0.05,
                 level: level
@@ -982,8 +998,8 @@ export class MapLayers {
                 let clickedPropertyObject = item.levels.map(level =>
                     // When the icon is clicked
                     ({
-                        icon: self.fetchIcon(item.disaster, level, false, true),
-                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true]],
+                        icon: self.fetchIcon(item.type ? item.type : item.disaster, level, false, true),
+                        filter: ["all", ["==", "disasterLevel", level], ["==", "clicked", true], ["==", "disaster_type", disasterType]],
                         isPartner: false,
                         size: 0.05,
                         level: `${level}_selected`
@@ -1294,7 +1310,7 @@ export class MapLayers {
                     };
                     return (
                         (isPartner ? feature.properties.partner_code != null : feature.properties.partner_code == null) &&
-                        reportData.report_type === reportType
+                        reportData.report_type === reportType && feature.properties.disaster_type === disaster
                     );
                 }
                 return (
@@ -1302,7 +1318,8 @@ export class MapLayers {
                     feature.properties.disaster_type === disaster
                 );
             });
-            const sourceCode = reportType ? reportType + "-" + isPartner : disaster + "-" + isPartner;
+            // const sourceCode = reportType ? reportType + "-" + isPartner : disaster + "-" + isPartner;
+            const sourceCode = disaster ? (disaster === 'typhoon' ? disaster + reportType + "-" + isPartner : disaster + "-" + isPartner) : reportType + "-" + isPartner;
             let filteredReports = Object.assign({}, reports);
             // this.queriedReports[disaster] = this.queriedReports[disaster] ? this.queriedReports[disaster]['features'].append(reports['features']) : {...reports};
             this.queriedReports[sourceCode] = filteredReports;
@@ -1369,14 +1386,14 @@ export class MapLayers {
                 });
 
                 self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.url === features[0].properties.url) {
+                    if (feature.properties.pkey === features[0].properties.pkey) {
                         self.queriedReports[sourceCode].features[index].properties.clicked =
                             !self.queriedReports[sourceCode].features[index].properties.clicked;
                         map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
-                    feature => feature.properties.url === features[0].properties.url
+                    feature => feature.properties.pkey === features[0].properties.pkey
                 );
                 self.markerClickHandler(e, feature[0], cityName, map, togglePane);
             });
