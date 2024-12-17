@@ -4,7 +4,7 @@ export default {
   height_units: 'cm',
   supported_languages: [
     { key: 'en', name: 'English', code: 'EN' },
-    { key: 'tl', name: 'Tagalog', code: 'TL' }
+    { key: 'tl', name: 'Tagalog', code: 'FIL' }
   ],
   map: {
     'instance_regions': {
