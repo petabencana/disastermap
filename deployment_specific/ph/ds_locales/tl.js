@@ -22,7 +22,7 @@ const id = {
   'popup_text': 'Pumili ng probinsya para tumingin ng ulat tungkol sa kalamidad',
   'social_media_popup_header': 'Mag-ulat ng kalamidad sa pamamagitan ng',
   'banner_text': '<p>Mag-ulat ng kalamidad malapit sa inyo gamit ang <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a>, <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> o <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
-  'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
+  'popup_footer': 'Ang Mapakalamidad ay isang platapormang naglalarawan ng kasulukuyang impormasyon tungkol sa mga kalamidad. Para sa karagdagang impormasyon, tumungo sa <a href="https://info.mapakalamidad.ph/" target="_blank">info.mapakalamidad.ph</a>.',
   'search_header': 'Pumili ng Lugar',
   'flood': 'Baha',
   'eq': 'Lindol',
@@ -45,10 +45,10 @@ const id = {
   'web_menu': {
     'tab_names': {
       'map': 'mapa',
-      'report': 'Ulat',
+      'report': 'Paano Gumawa ng Ulat',
       'info': 'Info',
       'legend': 'Palatandaan',
-      'about': 'TUNGKOL SA'
+      'about': 'Tungkol sa <a href="https://mapakalamidad.ph/" target="_blank"> MapaKalamidad.ph </a>'
     }
   },
   'report_info': {

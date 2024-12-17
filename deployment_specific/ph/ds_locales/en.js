@@ -24,7 +24,7 @@ const en = {
   'popup_text': ': Search for disaster information by province',
   'social_media_popup_header': 'Report a disaster via :',
   'banner_text': '<p>Report disasters near you via <a class="social-media-link" href="https://m.me/mapakalamidad">Facebook Messenger</a> , <a class="social-media-link" href="https://t.me/kalamidadbot">Telegram</a> and <a class="social-media-link" href="viber://pa?chatURI=mapakalamidadph">Viber</a>.</p>',
-  'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
+  'popup_footer': 'MapaKalamidad.ph a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.mapakalamidad.ph/" target="_blank">info.mapakalamidad.ph</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
   'eq': 'Earthquake',
@@ -45,7 +45,7 @@ const en = {
   'web_menu': {
     'tab_names': {
       'map': 'map',
-      'report': 'Report',
+      'report': 'How to Make a Report',
       'legend': 'Legend',
       'about': 'About'
     }
