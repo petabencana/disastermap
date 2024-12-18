@@ -25,6 +25,7 @@ $.notify.addStyle("mapInfo", {
 @inject(Config, LocationService)
 //end-aurelia-decorators
 export class MapUtility {
+    statsReports = {}
     constructor(Config, LocationService) {
         this.config = Config.map;
         this.locService = LocationService;
@@ -124,6 +125,7 @@ export class MapUtility {
         // L.rectangle([cityObj.bounds.sw, cityObj.bounds.ne], {color: '#ff7800', weight: 1}).addTo(map);
         // Add new layers
         layers.getStats(cityObj.region).then(stats => {
+        this.statsReports = stats;
             let msg = reportsStatsMessage.replace("{reportsplaceholder}", stats.reports).replace("{provinceplaceholder}", cityName);
             self.statsNotification(msg);
         });
@@ -149,7 +151,8 @@ export class MapUtility {
     }
 
     noReportNotification(cityName, reportId) {
-        if (reportId && cityName) {
+        console.log(this.statsReports);
+        if (reportId && cityName && !this.statsReports.reports) {
             $.notify("Report id: " + reportId + " not found in " + cityName, {
                 style: "mapInfo",
                 className: "info",
