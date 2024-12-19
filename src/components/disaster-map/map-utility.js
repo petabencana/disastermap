@@ -151,7 +151,6 @@ export class MapUtility {
     }
 
     noReportNotification(cityName, reportId) {
-        console.log(this.statsReports);
         if (reportId && cityName && !this.statsReports.reports) {
             $.notify("Report id: " + reportId + " not found in " + cityName, {
                 style: "mapInfo",

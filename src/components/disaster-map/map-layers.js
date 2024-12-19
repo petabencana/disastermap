@@ -851,7 +851,6 @@ export class MapLayers {
             self.getData("reports/" + reportId)
                 .then(data => {
                     self.reports.addData(data);
-                    console.log(data,'datareport');
                     resolve(self.activeReports[data.features[0].properties.pkey]);
                 })
                 .catch(() => reject(null));
