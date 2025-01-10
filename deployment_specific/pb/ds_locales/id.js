@@ -158,6 +158,172 @@ const id = {
     'title':"Peringatan",
     'level':"Siaga"
   },
+
+  need_info: {
+    title: "Permintaan kebutuhan:",
+    time: "Dibuat pada:",
+    status: "terpenuhi ",
+    give: "DONASI",
+
+    productsList: [
+        {
+            title: "Air minum",
+            units: "Liters",
+            item_id: "1"
+        },
+        {
+            title: "Beras",
+            units: "Kgs",
+            item_id: "2"
+        },
+        {
+            title: "Makanan Siap Saji ",
+            units: "Bungkus",
+            item_id: "3"
+        },
+        {
+            title: "Sembako",
+            description: "",
+            units: "Bungkus",
+            item_id: "4"
+        },
+        {
+            title: "Bahan Segar",
+            units: "Kgs",
+            item_id: "5"
+        },
+        {
+            title: "Makanan bayi",
+            units: "Bungkus",
+            item_id: "6"
+        },
+        {
+            title: "Pakaian Wanita",
+            units: "Pcs",
+            item_id: "7"
+        },
+        {
+            title: "Pakaian Laki-laki",
+            units: "Pcs",
+            item_id: "8"
+        },
+        {
+            title: "Alas kaki",
+            units: "Pasang",
+            item_id: "9"
+        },
+        {
+            title: "Masker",
+            units: "Pcs",
+            item_id: "10"
+        },
+        {
+            title: "Kacamata pelindung",
+            units: "Pcs",
+            item_id: "11"
+        },
+        {
+            title: "Jas hujan",
+            units: "Pcs",
+            item_id: "12"
+        },
+        {
+            title: "Pakaian Bayi & Anak ",
+            units: "Pcs",
+            item_id: "13"
+        },
+        {
+            title: "Botol Bayi",
+            units: "Pcs",
+            item_id: "14"
+        },
+        {
+            title: "Mainan Anak",
+            units: "Pcs",
+            item_id: "15"
+        },
+        {
+            title: "Dot",
+            units: "Pcs",
+            item_id: "16"
+        },
+        {
+            title: "Peralatan masak",
+            units: "Pcs",
+            item_id: "17"
+        },
+        {
+            title: "Selimut",
+            units: "Pcs",
+            item_id: "18"
+        },
+        {
+            title: "Alas tidur",
+            units: "Pcs",
+            item_id: "19"
+        },
+        {
+            title: "Peralatan kebersihan",
+            units: "Pcs",
+            item_id: "20"
+        },
+        {
+            title: "Senter",
+            units: "Pcs",
+            item_id: "21"
+        },
+        {
+            title: "P3K",
+            units: "Pcs",
+            item_id: "22"
+        },
+        {
+            title: "Obat Diare",
+            units: "Strips",
+            item_id: "23"
+        },
+        {
+            title: "Obat anti jamur",
+            units: "Pcs",
+            item_id: "24"
+        },
+        {
+            title: "Vitamin & Suplemen",
+            units: "Strips",
+            item_id: "25"
+        },
+        {
+            title: "Parasetamol",
+            units: "Strips",
+            item_id: "26"
+        },
+        {
+            title: "Minyak kayu putih",
+            units: "Botol",
+            item_id: "27"
+        },
+        {
+            title: "Alat kesehatan",
+            units: "Pcs",
+            item_id: "28"
+        },
+        {
+            title: "Kebersihan Wanita",
+            units: "Pcs",
+            item_id: "29"
+        },
+        {
+            title: "Kebersihan Mulut",
+            units: "Pcs",
+            item_id: "30"
+        },
+        {
+            title: "Peralatan Mandi",
+            units: "Pcs",
+            item_id: "31"
+        }
+    ]
+},
   
   'map_helper': 'Pilih kota:',
   'report_content': {

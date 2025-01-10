@@ -314,14 +314,14 @@
 
             <need-info
                 class="infoWrapper"
-                if.bind="mapModel.layers.popupContent.item_requested"
+                if.bind="mapModel.layers.popupContent.items_requested"
                 locale.bind="webMenu.locale"
-                id.bind="mapModel.layers.popupContent.id"
-                itemrequested.bind="mapModel.layers.popupContent.item_requested"
-                quantityrequested.bind="mapModel.layers.popupContent.quantity_requested"
-                quantitysatisfied.bind="mapModel.layers.popupContent.quantity_satisfied"
-                percentsatisfied.bind="mapModel.layers.popupContent.percent_satisfied"
+                requestid.bind="mapModel.layers.popupContent.need_request_id"
+                itemrequested.bind="mapModel.layers.popupContent.items_requested"
                 requestedon.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.created_date)"
+                quantitysatisfied.bind="mapModel.layers.popupContent.total_quantity_satisfied"
+                quantityrequested.bind="mapModel.layers.popupContent.total_quantity_requested"
+                allitemids.bind="mapModel.layers.popupContent.all_item_ids"
             >
             </need-info>
 

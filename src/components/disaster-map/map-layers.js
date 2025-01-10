@@ -335,7 +335,7 @@ export class MapLayers {
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
                 togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
             self.selected_need_report = e;
         } else if (e.target !== self.selected_need_report.target) {
@@ -349,7 +349,7 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
             self.selected_need_report = e;
             history.pushState(
@@ -495,13 +495,14 @@ export class MapLayers {
         }
     }
 
-    setPopup(coordinates, map) {
+    setPopup(coordinates, feature, map, isPartner) {
         const div = document.createElement("div");
         let getReportInfoElement;
         let shareButton;
         let flagButton;
         let upvoteButton;
         let downvoteButton;
+        let giverButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
         setTimeout(() => {
@@ -511,6 +512,10 @@ export class MapLayers {
             flagButton = document.getElementById("shareButtonsflag");
             upvoteButton = document.getElementById("upVoteButton");
             downvoteButton = document.getElementById("downVoteButton");
+            giverButton = document.getElementById("itemgiver");
+            giverButton.addEventListener("click", function () {
+                self.intiateGiver();
+            });
             upvoteButton.addEventListener("click", function () {
                 self.voteHandler(1);
             });
@@ -804,7 +809,8 @@ export class MapLayers {
     }
 
     addNeedReports(cityName, map, togglePane) {
-        let endPoint = "needs";
+        let endPoint = `needs/?training=${self.config.environment === "training"}`
+        // let endPoint = "needs";
         return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
     }
 
@@ -817,6 +823,7 @@ export class MapLayers {
                     this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
                     this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
+                    resolve(data);
                 })
                 .catch(err => {
                     reject(err);
@@ -1366,6 +1373,22 @@ export class MapLayers {
         }
     }
 
+    needIconLayer(feature, map) {
+        let self = this;
+        const featureId = feature.properties.need_request_id;
+        let clicked = {
+            id: `need_select_${featureId}`,
+            icon: `assets/icons/onselect/need_normal_select.svg`,
+            filter: ["all", ["==", "need_request_id", featureId], ["==", "clicked", true]],
+            isPartner: false,
+            source: "need-reports",
+            icon_code: "need_normal",
+            size: 0.05,
+            level: `normal_selected`
+        };
+        self.addIconLayer(map, clicked.icon, clicked.id, clicked.source, clicked.filter, clicked.size);
+    }
+
     addNeedCluster(data, cityName, map, togglePane) {
         try {
             let self = this;
@@ -1436,14 +1459,18 @@ export class MapLayers {
                 });
 
                 self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.id === features[0].properties.id) {
+                    if (feature.properties.need_request_id === features[0].properties.need_request_id) {
                         self.queriedReports[sourceCode].features[index].properties.clicked =
                             !self.queriedReports[sourceCode].features[index].properties.clicked;
-                        map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                            map.getSource(sourceCode).setData({
+                                ...self.queriedReports[sourceCode],
+                                features: [...self.queriedReports[sourceCode].features]
+                            });
+                            self.needIconLayer(self.queriedReports[sourceCode].features[index], map);
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
-                    feature => feature.properties.id === features[0].properties.id
+                    feature => feature.properties.need_request_id === features[0].properties.need_request_id
                 );
                 self.markerClickHandler(e, feature[0], cityName, map, togglePane);
             });

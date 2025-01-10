@@ -158,6 +158,171 @@ const en = {
     'title':"Alert",
     'level':"Level"
   },
+
+  need_info: {
+    title: "Need requested:",
+    time: "Posted at:",
+    status: "met",
+    give: "GIVE",
+
+    productsList: [
+        {
+            title: "Water",
+            units: "Liters",
+            item_id: "1"
+        },
+        {
+            title: "Rice",
+            units: "Kgs",
+            item_id: "2"
+        },
+        {
+            title: "Ready to Eat Meals",
+            units: "Packs",
+            item_id: "3"
+        },
+        {
+            title: "Sembako",
+            units: "Packs",
+            item_id: "4"
+        },
+        {
+            title: "Fresh Produce",
+            units: "Kgs",
+            item_id: "5"
+        },
+        {
+            title: "Baby Food",
+            units: "Packs",
+            item_id: "6"
+        },
+        {
+            title: "Women Clothes",
+            units: "Pcs",
+            item_id: "7"
+        },
+        {
+            title: "Men Clothes",
+            units: "Pcs",
+            item_id: "8"
+        },
+        {
+            title: "Footwear",
+            units: "Pairs",
+            item_id: "9"
+        },
+        {
+            title: "Face Masks",
+            units: "Pcs",
+            item_id: "10"
+        },
+        {
+            title: "Protective Eye Wear",
+            units: "Pcs",
+            item_id: "11"
+        },
+        {
+            title: "Raincoats",
+            units: "Pcs",
+            item_id: "12"
+        },
+        {
+            title: "Baby Clothing",
+            units: "Pcs",
+            item_id: "13"
+        },
+        {
+            title: "Bottles",
+            units: "Pcs",
+            item_id: "14"
+        },
+        {
+            title: "Toys",
+            units: "Pcs",
+            item_id: "15"
+        },
+        {
+            title: "Pacifier",
+            units: "Pcs",
+            item_id: "16"
+        },
+        {
+            title: "Utensils",
+            units: "Pcs",
+            item_id: "17"
+        },
+        {
+            title: "Blankets",
+            units: "Pcs",
+            item_id: "18"
+        },
+        {
+            title: "Sleeping Mats",
+            units: "Pcs",
+            item_id: "19"
+        },
+        {
+            title: "Cleaning Supplies",
+            units: "Pcs",
+            item_id: "20"
+        },
+        {
+            title: "Flashlight",
+            units: "Pcs",
+            item_id: "21"
+        },
+        {
+            title: "First aid kit",
+            units: "Pcs",
+            item_id: "22"
+        },
+        {
+            title: "Diarrhea Medication",
+            units: "Strips",
+            item_id: "23"
+        },
+        {
+            title: "Anti Fungal Cream",
+            units: "Pcs",
+            item_id: "24"
+        },
+        {
+            title: "Vitamins & Supplements",
+            units: "Strips",
+            item_id: "25"
+        },
+        {
+            title: "Paracetamol",
+            units: "Strips",
+            item_id: "26"
+        },
+        {
+            title: "Eucalyptus Oil",
+            units: "Bottles",
+            item_id: "27"
+        },
+        {
+            title: "Personal Health Equipment",
+            units: "Pcs",
+            item_id: "28"
+        },
+        {
+            title: "Female Hygiene Products",
+            units: "Pcs",
+            item_id: "29"
+        },
+        {
+            title: "Oral Care",
+            units: "Pcs",
+            item_id: "30"
+        },
+        {
+            title: "Personal Cleansing",
+            units: "Pcs",
+            item_id: "31"
+        }
+    ]
+},
   
   'map_helper': 'Select city :',
   'report_content': {
