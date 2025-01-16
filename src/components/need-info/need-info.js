@@ -79,17 +79,17 @@ export class NeedInfo {
     });
   }
 
-  initiateGiver() {
-    this.isActive = true;
-    let self = this;
-    self.initiateReport()
-        .then(cardId => {
-            window.location = self.config.cards_server + cardId + "/" + "giver" + `?requestId=${this.requestid}`;
-        })
-        .catch(err => {
-            console.log(err);
-        });
-  }
+  // initiateGiver() {
+  //   this.isActive = true;
+  //   let self = this;
+  //   self.initiateReport()
+  //       .then(cardId => {
+  //           window.location = self.config.cards_server + cardId + "/" + "giver" + `?requestId=${this.requestid}`;
+  //       })
+  //       .catch(err => {
+  //           console.log(err);
+  //       });
+  // }
 
   initiateReport() {
     return new Promise((resolve, reject) => {
