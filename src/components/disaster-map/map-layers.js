@@ -858,7 +858,8 @@ export class MapLayers {
     }
 
     addNeedReports(cityName, map, togglePane) {
-        let endPoint = "needs";
+        let self = this;
+        let endPoint = `needs/?training=${self.config.environment === "training"}`
         return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
     }
 
