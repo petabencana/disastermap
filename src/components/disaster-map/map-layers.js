@@ -514,7 +514,7 @@ export class MapLayers {
             downvoteButton = document.getElementById("downVoteButton");
             giverButton = document.getElementById("itemgiver");
             giverButton.addEventListener("click", function () {
-                self.intiateGiver();
+                self.initiateGiver();
             });
             upvoteButton.addEventListener("click", function () {
                 self.voteHandler(1);
@@ -809,7 +809,8 @@ export class MapLayers {
     }
 
     addNeedReports(cityName, map, togglePane) {
-        let endPoint = `needs/?training=${self.config.environment === "training"}`
+        let self = this;
+        let endPoint = `needs/?training=${self.config.environment === 'training'}`
         // let endPoint = "needs";
         return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
     }
