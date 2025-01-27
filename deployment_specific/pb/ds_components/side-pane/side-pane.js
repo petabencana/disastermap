@@ -2,10 +2,11 @@ import { bindable, customElement, inject } from 'aurelia-framework';
 import $ from 'jquery';
 import { Config } from 'resources/config';
 import { Locales } from 'resources/locales/locales';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 //start-aurelia-decorators
 @customElement('side-pane')
-@inject(Locales, Config)
+@inject(Locales, Config, EventAggregator)
 //end-aurelia-decorators
 export class SidePane {
   //@bindable attributes do not work with camelCase...
@@ -17,10 +18,11 @@ export class SidePane {
   @bindable reportId;
   @bindable querylanguage;
   //end-aurelia-decorators
-
-  constructor(Locales, Config) {
+  constructor(Locales, Config, EventAggregator) {
     this.config = Config;
     this.languages = this.config.supported_languages;
+    this.eventAggregator = EventAggregator;
+    this.selectedCheckbox = true;
 
     this.lang_obj = {};
     for (let lang of this.languages) {
@@ -289,6 +291,13 @@ export class SidePane {
         //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
         //     }
         //   }]
+      },
+      //Need
+      {
+        legend_name: 'need',
+        legend_title: { en: 'Mutual Aid Map', id: 'Peta Gotong Royong' },
+        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/need.svg',
+        isSelected: this.selectedCheckbox
       }
     ];
     //end legends data array
@@ -320,6 +329,16 @@ export class SidePane {
       }
     }
     return selLang;
+  }
+
+  //add checkbox
+  onCheckClicked(legend) {
+    this.selectedCheckbox = !this.selectedCheckbox;
+    legend.isSelected = !legend.isSelected;
+    this.eventAggregator.publish("onCheckClicked", legend.isSelected);
+    // Reassign the array to trigger reactivity
+    this.all_legends_data = [...this.all_legends_data];
+    this.legends = this.legends.slice();
   }
 
   attached() {

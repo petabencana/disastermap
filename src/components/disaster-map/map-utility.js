@@ -7,6 +7,8 @@ import { Config } from "resources/config";
 import dep from "../../deployment.js";
 import { LocationService } from "./location-service";
 import { notify } from "notifyjs-browser"; //Jquery plugin
+import {SidePane} from "../side-pane/side-pane.js";
+import { EventAggregator } from 'aurelia-event-aggregator';
 
 $.notify.addStyle("mapInfo", {
     html: "<div id=notification><span data-notify-text/></div>",
@@ -22,13 +24,15 @@ $.notify.addStyle("mapInfo", {
 
 //start-aurelia-decorators
 @noView
-@inject(Config, LocationService)
+@inject(Config, LocationService, SidePane, EventAggregator)
 //end-aurelia-decorators
 export class MapUtility {
     statsReports = {}
-    constructor(Config, LocationService) {
+    constructor(Config, LocationService, SidePane, EventAggregator) {
         this.config = Config.map;
         this.locService = LocationService;
+        this.sidePane = SidePane;
+        this.eventAggregator = EventAggregator;
     }
 
     // return boolean only
@@ -102,10 +106,26 @@ export class MapUtility {
         self.changeCity(city, true);
     }
 
+    callNeedApi(layers,cityName, map, togglePane) {
+        let self = this;
+        if(this.sidePane.selectedCheckbox){
+            layers.addNeedReports(cityName, map, togglePane);
+        }
+        self.eventAggregator.subscribe('onCheckClicked', isSelected => {
+            console.log('in utility fn', isSelected);
+            if (isSelected) {
+                layers.addNeedReports(cityName, map, togglePane);
+            } else {
+                layers.removeNeedLayers(map);
+            }
+        });
+    }
+
     // Change city from within map without reloading window
     changeCity(cityName, reportId, map, layers, reportsStatsMessage, togglePane) {
         let self = this;
         let cityObj = self.parseCityObj(cityName, true);
+        self.callNeedApi(layers,cityName, map, togglePane);
         // Remove previous layers
         layers.removeFloodExtents(map);
         // layers.removeCluster(map);
@@ -136,7 +156,7 @@ export class MapUtility {
             layers.addEarthquakeLayers(cityName, map, togglePane);
             layers.addVolcanoEruptionLayers(cityName, map, togglePane);
             layers.addReportStatus(cityName, map, togglePane);
-            layers.addNeedReports(cityName, map, togglePane);
+            // layers.addNeedReports(cityName, map, togglePane);
             return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
         }
 

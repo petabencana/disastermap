@@ -75,6 +75,9 @@
                   <p class='pb-legend-title__last-report-received-on'>${last_report_received_on[$index][currentLanguage]}</p>
                 </div>
                 <img if.bind="all_lgd_data.legend_data" src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
+                <div show.bind="all_lgd_data.legend_name === 'need'">
+                    <input type="checkbox" id="legendCheckBox" checked.bind="all_lgd_data.isSelected & twoWay" click.delegate="onCheckClicked(all_lgd_data)"/>
+                </div>
               </div>
               <div class='pb-legend'>
                 <div class="pb-legend__row pb-legend__header" if.bind="all_lgd_data.col_2_title">
