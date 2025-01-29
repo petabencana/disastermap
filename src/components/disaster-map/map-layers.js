@@ -326,7 +326,8 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
-        //
+        // need reports
+        if(feature.properties.need_request_id) {
         if (!self.selected_need_report) {
             self.popupContent = {};
             for (let prop in feature.properties) {
@@ -339,8 +340,8 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_need_report = e;
-        } else if (feature.properties.need_request_id !== self.selected_need_report.features[0].properties.need_request_id) {
+            self.selected_need_report = e.features;
+        } else if (feature.properties.need_request_id !== self.selected_need_report[0].properties.need_request_id) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             self.popupContent = {};
             for (let prop in feature.properties) {
@@ -352,14 +353,14 @@ export class MapLayers {
             } else {
                 togglePane("#infoPane", "hide", false);
     
-                self.selected_need_report.features.forEach(function (features) {
+                self.selected_need_report.forEach(function (features) {
                     features.properties.clicked = false;
                     map.getSource("need-reports").setData({
                         ...queriedReports["need-reports"],
                         features: [...queriedReports["need-reports"].features]
                     });
                 });
-                const featureId = self.selected_need_report.features[0].properties.need_request_id
+                const featureId = self.selected_need_report[0].properties.need_request_id
 
                 if (map.getLayer(`need_select_${featureId}`)) {
                     map.removeLayer(`need_select_${featureId}`);
@@ -370,19 +371,21 @@ export class MapLayers {
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
 
             }
-            self.selected_need_report = e;
+            self.selected_need_report = e.features;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
                 "map/" + cityName + "/" + feature.properties.pkey
             );
-        } else if (feature.properties.need_request_id === self.selected_need_report.features[0].properties.need_request_id) {
+        } else if (feature.properties.need_request_id === self.selected_need_report[0].properties.need_request_id) {
             if (self.isMobileDevice()) {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_need_report = null;
         }
-        //
+    }
+        // disaster reports
+        if(feature.properties.pkey) {
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -508,6 +511,7 @@ export class MapLayers {
                 "map/" + cityName + "/" + feature.properties.pkey
             );
         }
+    }
         //Set selReportType value from feature properties
         self.selReportType = "flood";
         if (feature.properties.report_data) {
@@ -1125,7 +1129,7 @@ export class MapLayers {
         const feature = self.queriedReports[sourceCode].features.filter(feature => {
             return feature.properties.url === features[0].properties.url;
         });
-        self.markerClickHandler(e, feature[0], cityName, map, togglePane, queriedReports);
+        self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
     }
 
     updateFireSingleMarker(feature, map, cityName, togglePane, isPartner) {
@@ -1459,7 +1463,7 @@ export class MapLayers {
                 const feature = self.queriedReports[sourceCode].features.filter(
                     feature => feature.properties.url === features[0].properties.url
                 );
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane, queriedReports);
+                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
             });
 
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
@@ -1668,7 +1672,7 @@ export class MapLayers {
                     map.getSource(disaster).setData(self.queriedReports[disaster]);
                 }
             });
-            self.markerClickHandler(e, features[0], cityName, map, togglePane, queriedReports);
+            self.markerClickHandler(e, features[0], cityName, map, togglePane, self.queriedReports);
         };
     }
 
