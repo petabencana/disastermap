@@ -249,18 +249,28 @@ export class MapLayers {
         let self = this;
         let client = new HttpClient();
         const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`;
+        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}`;
         // + '&timeperiod=' + self.config.report_timeperiod;
         return new Promise((resolve, reject) => {
-            client
-                .get(url)
-                .then(summary => {
-                    let reports = JSON.parse(summary.response)["total number of reports"];
-                    resolve({
-                        reports: reports,
-                        timeperiod: self.config.report_timeperiod
-                    });
+            Promise.all([
+                client.get(url),
+                client.get(needurl)
+            ])
+            .then(([reportResponse, needResponse]) => { 
+                // let reports = JSON.parse(summary.response)["total number of reports"];
+                let reports = JSON.parse(reportResponse.response)["total number of reports"];
+                let needs = JSON.parse(needResponse.response);
+                let need_count = needs.result.objects.output.geometries.length
+                let total_count = reports + need_count;
+                console.log('reports:',reports,'needs:',need_count, 'total:',total_count);
+                resolve({
+                    reports: total_count,
+                    timeperiod: self.config.report_timeperiod
                 })
-                .catch(err => reject(err));
+            })
+            .catch( err => {
+                reject(err);
+            })
         });
     }
 
@@ -887,10 +897,11 @@ export class MapLayers {
     addNeedReportsClustered(endPoint, cityName, map, togglePane) {
         let self = this;
         const image = `assets/icons/need.svg`;
+        const filter = ["==", "clicked", false];
         return new Promise((resolve, reject) => {
             self.getData(endPoint)
                 .then(data => {
-                    this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
+                    this.addIconLayer(map, image, "need_request_id", "need-reports", filter, 0.05);
                     this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
                     resolve(data);
@@ -1552,7 +1563,7 @@ export class MapLayers {
                 });
             }
 
-            if (!map.getLayer("clustered-" + sourceCode)) {
+            if (!map.getLayer("cluster-" + sourceCode)) {
                 map.addLayer({
                     id: "cluster-" + sourceCode,
                     source: sourceCode,
@@ -1570,14 +1581,19 @@ export class MapLayers {
                     layers: ["cluster-" + sourceCode]
                 });
                 const clusterId = features[0].properties.cluster_id;
-                if (!clusterId) return;
+                if (clusterId) {
                     map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
                         if (err) return;
-                            map.easeTo({
+                        map.easeTo({
                             center: features[0].geometry.coordinates,
                             zoom: zoom
                         });
                     });
+                }
+                //if not a cluster just ease to the center of the clicked point
+                else {
+                    map.easeTo({ center: features[0].geometry.coordinates, zoom: 20 });
+                }
             });
 
             map.on("click", "unclustered-" + sourceCode, function (e) {
@@ -1597,6 +1613,8 @@ export class MapLayers {
                             ...self.queriedReports[sourceCode],
                             features: [...self.queriedReports[sourceCode].features]
                         });
+                    } else {
+                        self.queriedReports[sourceCode].features[index].properties.clicked = false;
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
@@ -1606,23 +1624,23 @@ export class MapLayers {
                 self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
             });
 
-            // self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
-            //     map.addImage(sourceCode + "-marker", image);
-            // });
+            self.svgPathToImage(`assets/icons/need_cluster.svg`, 100).then(image => {
+                map.addImage(sourceCode + "-marker", image);
 
-            map.addLayer({
-                id: "cluster-count-" + sourceCode,
-                type: "symbol",
-                source: sourceCode,
-                filter: ["has", "point_count"],
-                layout: {
-                    "icon-image": sourceCode + "-marker",
-                    "icon-size": 0.45,
-                    "text-field": "{point_count}",
-                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12,
-                    "text-offset": [0.75, 0.8]
-                }
+                map.addLayer({
+                    id: "cluster-count-" + sourceCode,
+                    type: "symbol",
+                    source: sourceCode,
+                    filter: ["has", "point_count"],
+                    layout: {
+                        "icon-image": sourceCode + "-marker",
+                        "icon-size": 0.45,
+                        "text-field": "{point_count}",
+                        "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                        "text-size": 12,
+                        "text-offset": [0.75, 0.8]
+                    }
+                });
             });
 
             map.on("mouseenter", "cluster-" + sourceCode, function () {
