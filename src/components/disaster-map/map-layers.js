@@ -247,18 +247,28 @@ export class MapLayers {
         let self = this;
         let client = new HttpClient();
         const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`
+        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}`;
         // + '&timeperiod=' + self.config.report_timeperiod;
         return new Promise((resolve, reject) => {
-            client
-                .get(url)
-                .then(summary => {
-                    let reports = JSON.parse(summary.response)["total number of reports"];
-                    resolve({
-                        reports: reports,
-                        timeperiod: self.config.report_timeperiod
-                    });
+            Promise.all([
+                client.get(url),
+                client.get(needurl)
+            ])
+            .then(([reportResponse, needResponse]) => { 
+                // let reports = JSON.parse(summary.response)["total number of reports"];
+                let reports = JSON.parse(reportResponse.response)["total number of reports"];
+                let needs = JSON.parse(needResponse.response);
+                let need_count = needs.result.objects.output.geometries.length
+                let total_count = reports + need_count;
+                resolve({
+                    reports: total_count,
+                    timeperiod: self.config.report_timeperiod
                 })
                 .catch(err => reject(err));
+            })
+            .catch( err => {
+                reject(err);
+            })
         });
     }
 
@@ -302,7 +312,7 @@ export class MapLayers {
         return window.matchMedia("only screen and (max-width: 768px)").matches;
     }
 
-    markerClickHandler(e, feature, cityName, map, togglePane) {
+    markerClickHandler(e, feature, cityName, map, togglePane, queriedReports) {
         var self = this;
         map.panTo(e.latlng, 5);
         const isPartner = !!feature.properties.partner_code;
@@ -324,7 +334,8 @@ export class MapLayers {
             );
             self.selected_gauge = null;
         }
-
+        //need reports
+        if(feature.properties.need_request_id){
         if (!self.selected_need_report) {
             self.popupContent = {};
             for (let prop in feature.properties) {
@@ -337,8 +348,8 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_need_report = e;
-        } else if (e.target !== self.selected_need_report.target) {
+            self.selected_need_report = e.features;
+        } else if (feature.properties.need_request_id !== self.selected_need_report[0].properties.need_request_id) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             self.popupContent = {};
             for (let prop in feature.properties) {
@@ -349,21 +360,40 @@ export class MapLayers {
                 togglePane("#infoPane", "show", true);
             } else {
                 togglePane("#infoPane", "hide", false);
+                self.selected_need_report.forEach(function (features) {
+                    features.properties.clicked = false;
+                    map.getSource("need-reports").setData({
+                        ...queriedReports["need-reports"],
+                        features: [...queriedReports["need-reports"].features]
+                    });
+                });
+                const featureId = self.selected_need_report[0].properties.need_request_id
+                // if (map.getLayer(`need_select_${featureId}`)) {
+                //     map.removeLayer(`need_select_${featureId}`);
+                // }
+                if (map.hasImage('need_normal_select')) {
+                    map.removeImage('need_normal_select');
+                }
+                const img = `assets/icons/need.svg`;
+                const filter = ["==", "clicked", false];
+                self.addIconLayer(map, img, featureId, "need-reports", filter, 0.05);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_need_report = e;
+            self.selected_need_report = e.features;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
                 "map/" + cityName + "/" + feature.properties.pkey
             );
-        } else if (e.target === self.selected_need_report.target) {
+        } else if (feature.properties.need_request_id === self.selected_need_report[0].properties.need_request_id) {
             if (self.isMobileDevice()) {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_need_report = null;
         }
-
+    }
+        // disaster reports
+        if(feature.properties.pkey) {
         if (!self.selected_report) {
             // Case 1 : no previous selection, click on report icon
             if (
@@ -488,6 +518,7 @@ export class MapLayers {
                 "map/" + cityName + "/" + feature.properties.pkey
             );
         }
+    }
         //Set selReportType value from feature properties
         self.selReportType = "flood";
         if (feature.properties.report_data) {
@@ -611,7 +642,7 @@ export class MapLayers {
         self.activeReports[feature.properties.pkey] = layer;
         layer.on({
             click: e => {
-                this.markerClickHandler(e, feature, cityName, map, togglePane);
+                this.markerClickHandler(e, feature, cityName, map, togglePane, queriedReports);
             }
         });
     }
@@ -818,10 +849,11 @@ export class MapLayers {
     addNeedReportsClustered(endPoint, cityName, map, togglePane) {
         let self = this;
         const image = `assets/icons/accessibility.svg`;
+        const filter = ["==", "clicked", false];
         return new Promise((resolve, reject) => {
             self.getData(endPoint)
                 .then(data => {
-                    this.addIconLayer(map, image, "accessibility-image", "need-reports", ["all"], 0.05);
+                    this.addIconLayer(map, image, "need_request_id", "need-reports", filter, 0.05);
                     this.addNeedLevels(data);
                     this.addNeedCluster(data, cityName, map, togglePane);
                     resolve(data);
@@ -1008,7 +1040,7 @@ export class MapLayers {
         const feature = self.queriedReports[sourceCode].features.filter(feature => {
             return feature.properties.url === features[0].properties.url;
         });
-        self.markerClickHandler(e, feature[0], cityName, map, togglePane);
+        self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
     }
 
     updateFireSingleMarker(feature, map, cityName, togglePane, isPartner) {
@@ -1341,7 +1373,7 @@ export class MapLayers {
                 const feature = self.queriedReports[sourceCode].features.filter(
                     feature => feature.properties.url === features[0].properties.url
                 );
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane);
+                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
             });
 
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
@@ -1377,17 +1409,25 @@ export class MapLayers {
     needIconLayer(feature, map) {
         let self = this;
         const featureId = feature.properties.need_request_id;
-        let clicked = {
-            id: `need_select_${featureId}`,
-            icon: `assets/icons/onselect/need_normal_select.svg`,
-            filter: ["all", ["==", "need_request_id", featureId], ["==", "clicked", true]],
-            isPartner: false,
-            source: "need-reports",
-            icon_code: "need_normal",
-            size: 0.05,
-            level: `normal_selected`
-        };
-        self.addIconLayer(map, clicked.icon, clicked.id, clicked.source, clicked.filter, clicked.size);
+        const icon = `assets/icons/onselect/need_normal_select.svg`;
+        let image_code = icon.split("/").slice(-1)[0].split(".")[0];
+        self.svgPathToImage(icon).then(image => {
+            map.addImage(image_code, image);
+            map.addLayer({
+                id: `need_select_${featureId}`,
+                type: "symbol",
+                source: "need-reports",
+                filter:  ["all", ["==", "need_request_id", featureId], ["==", "clicked", true]],
+                layout: {
+                    "icon-image": image_code,
+                    "icon-size": 0.05,
+                    "text-allow-overlap": true,
+                    "text-ignore-placement": true,
+                    "icon-allow-overlap": true,
+                    "icon-ignore-placement": true
+                }
+            });
+        });
     }
 
     addNeedCluster(data, cityName, map, togglePane) {
@@ -1422,7 +1462,7 @@ export class MapLayers {
                 });
             }
 
-            if (!map.getLayer("unclustered-" + sourceCode)) {
+            if (!map.getLayer("cluster-" + sourceCode)) {
                 map.addLayer({
                     id: "cluster-" + sourceCode,
                     source: sourceCode,
@@ -1440,14 +1480,19 @@ export class MapLayers {
                     layers: ["cluster-" + sourceCode]
                 });
                 const clusterId = features[0].properties.cluster_id;
-                if (!clusterId) return;
-                map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
-                    if (err) return;
-                    map.easeTo({
-                        center: features[0].geometry.coordinates,
-                        zoom: zoom
+                if (clusterId) {
+                    map.getSource(sourceCode).getClusterExpansionZoom(clusterId, function (err, zoom) {
+                        if (err) return;
+                        map.easeTo({
+                            center: features[0].geometry.coordinates,
+                            zoom: zoom
+                        });
                     });
-                });
+                }
+                //if not a cluster just ease to the center of the clicked point
+                else {
+                    map.easeTo({ center: features[0].geometry.coordinates, zoom: 20 });
+                }
             });
 
             map.on("click", "unclustered-" + sourceCode, function (e) {
@@ -1467,32 +1512,32 @@ export class MapLayers {
                                 ...self.queriedReports[sourceCode],
                                 features: [...self.queriedReports[sourceCode].features]
                             });
-                            self.needIconLayer(self.queriedReports[sourceCode].features[index], map);
                     }
                 });
                 const feature = self.queriedReports[sourceCode].features.filter(
                     feature => feature.properties.need_request_id === features[0].properties.need_request_id
                 );
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane);
+                self.needIconLayer(feature[0], map);
+                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
             });
 
-            // self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
-            //     map.addImage(sourceCode + "-marker", image);
-            // });
+            self.svgPathToImage(`assets/icons/need_cluster.svg`, 100).then(image => {
+                map.addImage(sourceCode + "-marker", image);
 
-            map.addLayer({
-                id: "cluster-count-" + sourceCode,
-                type: "symbol",
-                source: sourceCode,
-                filter: ["has", "point_count"],
-                layout: {
-                    "icon-image": sourceCode + "-marker",
-                    "icon-size": 0.45,
-                    "text-field": "{point_count}",
-                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12,
-                    "text-offset": [0.75, 0.8]
-                }
+                map.addLayer({
+                    id: "cluster-count-" + sourceCode,
+                    type: "symbol",
+                    source: sourceCode,
+                    filter: ["has", "point_count"],
+                    layout: {
+                        "icon-image": sourceCode + "-marker",
+                        "icon-size": 0.45,
+                        "text-field": "{point_count}",
+                        "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                        "text-size": 12,
+                        "text-offset": [0.75, 0.8]
+                    }
+                });
             });
 
             map.on("mouseenter", "cluster-" + sourceCode, function () {
@@ -1542,7 +1587,7 @@ export class MapLayers {
                     map.getSource(disaster).setData(self.queriedReports[disaster]);
                 }
             });
-            self.markerClickHandler(e, features[0], cityName, map, togglePane);
+            self.markerClickHandler(e, features[0], cityName, map, togglePane, self.queriedReports);
         };
     }
 
