@@ -109,12 +109,11 @@ export class MapUtility {
     callNeedApi(layers,cityName, map, togglePane) {
         let self = this;
         if(this.sidePane.selectedCheckbox){
-            layers.addNeedReports(cityName, map, togglePane);
+            layers.addNeedReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
         }
         self.eventAggregator.subscribe('onCheckClicked', isSelected => {
-            console.log('in utility fn', isSelected);
             if (isSelected) {
-                layers.addNeedReports(cityName, map, togglePane);
+                layers.addNeedReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
             } else {
                 layers.removeNeedLayers(map);
             }
@@ -156,7 +155,7 @@ export class MapUtility {
             layers.addEarthquakeLayers(cityName, map, togglePane);
             layers.addVolcanoEruptionLayers(cityName, map, togglePane);
             layers.addReportStatus(cityName, map, togglePane);
-            // layers.addNeedReports(cityName, map, togglePane);
+            // layers.addNeedReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
             return layers.addReports(cityName, self.parseCityObj(cityName, false).region, map, togglePane);
         }
 

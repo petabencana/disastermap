@@ -249,7 +249,7 @@ export class MapLayers {
         let self = this;
         let client = new HttpClient();
         const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`;
-        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}`;
+        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}&admin=${regionCode}`;
         // + '&timeperiod=' + self.config.report_timeperiod;
         return new Promise((resolve, reject) => {
             Promise.all([
@@ -888,9 +888,9 @@ export class MapLayers {
         });
     }
 
-    addNeedReports(cityName, map, togglePane) {
+    addNeedReports(cityName, cityRegion, map, togglePane) {
         let self = this;
-        let endPoint = `needs/?training=${self.config.environment === "training"}`
+        let endPoint = `needs/?training=${self.config.environment === "training"}&admin=${cityRegion}`
         return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
     }
 
@@ -1638,7 +1638,8 @@ export class MapLayers {
                         "text-field": "{point_count}",
                         "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
                         "text-size": 12,
-                        "text-offset": [0.75, 0.8]
+                        "text-offset": [0.90, 0.98],
+                        "text-anchor": "center"
                     }
                 });
             });
@@ -2072,13 +2073,10 @@ export class MapLayers {
 
     removeNeedLayers(map) {
         let self = this;
-        console.log('in removeNeedLayers',map.getStyle().layers);
-        if(map.getLayer("accessibility-image")) {
-            console.log('in removeNeedLayers');
+        if(map.getLayer("need_request_id")) {
             map.removeLayer("unclustered-need-reports");
             map.removeLayer("cluster-need-reports");
             map.removeLayer("cluster-count-need-reports");
-            map.removeLayer("accessibility-image");
             map.removeSource("need-reports");
         }
     }
