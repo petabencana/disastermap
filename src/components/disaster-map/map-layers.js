@@ -247,7 +247,7 @@ export class MapLayers {
         let self = this;
         let client = new HttpClient();
         const url = `${self.config.data_server}stats/reportsSummary?city=${regionCode}&training=${self.config.environment === "training"}`
-        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}`;
+        const needurl = `${self.config.data_server}needs/?training=${self.config.environment === "training"}&admin=${regionCode}`;
         // + '&timeperiod=' + self.config.report_timeperiod;
         return new Promise((resolve, reject) => {
             Promise.all([
@@ -459,10 +459,10 @@ export class MapLayers {
             } else {
                 const coordinates = feature.geometry.coordinates.slice();
                 togglePane("#infoPane", "hide", false);
-                self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
             }
-            self.selected_report = e;
-        } else if (e.target === self.selected_report.target) {
+            self.selected_report = feature;
+        } else if (feature.properties.pkey === self.selected_report.properties.pkey) {
             // Case 2 : clicked report icon same as selected report
             if (
                 feature.properties.disaster_type == "fire" &&
@@ -487,7 +487,7 @@ export class MapLayers {
                 togglePane("#infoPane", "hide", false);
             }
             self.selected_report = null;
-        } else if (e.target !== self.selected_report.target) {
+        } else if (feature.properties.pkey !== self.selected_report.properties.pkey) {
             // Case 3 : clicked new report icon, while previous selection needs to be reset
             if (feature.properties.disaster_type == "fire" && !this.fireMarker) {
             }
@@ -508,10 +508,10 @@ export class MapLayers {
             if (self.isMobileDevice()) {
                 togglePane("#infoPane", "show", true);
             } else {
-                self.popupContainer = self.setPopup(coordinates, map);
+                self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
                 togglePane("#infoPane", "hide", false);
             }
-            self.selected_report = e;
+            self.selected_report = feature;
             history.pushState(
                 { city: cityName, report_id: feature.properties.pkey },
                 "city",
@@ -839,9 +839,9 @@ export class MapLayers {
         });
     }
 
-    addNeedReports(cityName, map, togglePane) {
+    addNeedReports(cityName, cityRegion, map, togglePane) {
         let self = this;
-        let endPoint = `needs/?training=${self.config.environment === 'training'}`
+        let endPoint = `needs/?training=${self.config.environment === 'training'}&admin=${cityRegion}`
         // let endPoint = "needs";
         return this.addNeedReportsClustered(endPoint, cityName, map, togglePane);
     }
