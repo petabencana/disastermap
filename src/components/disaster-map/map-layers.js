@@ -28,6 +28,7 @@ export class MapLayers {
         this.fireMarker = {};
         this.fireCircle = {};
         this.fireSingleFeature = {};
+        this.notListening = true;
         this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
@@ -1596,33 +1597,36 @@ export class MapLayers {
                 }
             });
 
-            map.on("click", "unclustered-" + sourceCode, function (e) {
-                // Ensure that if the map is zoomed out such that multiple
-                // copies of the feature are visible, the popup appears
-                // over the copy being pointed to.
-
-                const features = map.queryRenderedFeatures(e.point, {
-                    layers: ["unclustered-" + sourceCode]
+            if(self.notListening) {
+                self.notListening = false;
+                map.on("click", "unclustered-" + sourceCode, function (e) {
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+    
+                    const features = map.queryRenderedFeatures(e.point, {
+                        layers: ["unclustered-" + sourceCode]
+                    });
+    
+                    self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                        if (feature.properties.need_request_id === features[0].properties.need_request_id) {
+                            self.queriedReports[sourceCode].features[index].properties.clicked =
+                                !self.queriedReports[sourceCode].features[index].properties.clicked;
+                            map.getSource(sourceCode).setData({
+                                ...self.queriedReports[sourceCode],
+                                features: [...self.queriedReports[sourceCode].features]
+                            });
+                        } else {
+                            self.queriedReports[sourceCode].features[index].properties.clicked = false;
+                        }
+                    });
+                    const feature = self.queriedReports[sourceCode].features.filter(
+                        feature => feature.properties.need_request_id === features[0].properties.need_request_id
+                    );
+                    self.needIconLayer(feature[0], map);
+                    self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
                 });
-
-                self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.need_request_id === features[0].properties.need_request_id) {
-                        self.queriedReports[sourceCode].features[index].properties.clicked =
-                            !self.queriedReports[sourceCode].features[index].properties.clicked;
-                        map.getSource(sourceCode).setData({
-                            ...self.queriedReports[sourceCode],
-                            features: [...self.queriedReports[sourceCode].features]
-                        });
-                    } else {
-                        self.queriedReports[sourceCode].features[index].properties.clicked = false;
-                    }
-                });
-                const feature = self.queriedReports[sourceCode].features.filter(
-                    feature => feature.properties.need_request_id === features[0].properties.need_request_id
-                );
-                self.needIconLayer(feature[0], map);
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
-            });
+            }
 
             self.svgPathToImage(`assets/icons/need_cluster.svg`, 100).then(image => {
                 map.addImage(sourceCode + "-marker", image);
