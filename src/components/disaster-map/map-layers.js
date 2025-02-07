@@ -26,6 +26,8 @@ export class MapLayers {
         this.fireMarker = {};
         this.fireCircle = {};
         this.fireSingleFeature = {};
+        this.listeningNeed = true;
+        this.listeningReport = true;
         this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
@@ -368,12 +370,6 @@ export class MapLayers {
                     });
                 });
                 const featureId = self.selected_need_report[0].properties.need_request_id
-                // if (map.getLayer(`need_select_${featureId}`)) {
-                //     map.removeLayer(`need_select_${featureId}`);
-                // }
-                if (map.hasImage('need_normal_select')) {
-                    map.removeImage('need_normal_select');
-                }
                 const img = `assets/icons/need.svg`;
                 const filter = ["==", "clicked", false];
                 self.addIconLayer(map, img, featureId, "need-reports", filter, 0.05);
@@ -1354,28 +1350,31 @@ export class MapLayers {
                 }
             });
 
-            map.on("click", "unclustered-" + sourceCode, function (e) {
-                // Ensure that if the map is zoomed out such that multiple
-                // copies of the feature are visible, the popup appears
-                // over the copy being pointed to.
-
-                const features = map.queryRenderedFeatures(e.point, {
-                    layers: ["unclustered-" + sourceCode]
+            if(self.listeningReport){
+                self.listeningReport = false;
+                map.on("click", "unclustered-" + sourceCode, function (e) {
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+    
+                    const features = map.queryRenderedFeatures(e.point, {
+                        layers: ["unclustered-" + sourceCode]
+                    });
+    
+                    self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                        if (feature.properties.url === features[0].properties.url) {
+                            self.queriedReports[sourceCode].features[index].properties.clicked =
+                                !self.queriedReports[sourceCode].features[index].properties.clicked;
+                            map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                        }
+                    });
+                    const feature = self.queriedReports[sourceCode].features.filter(
+                        feature => feature.properties.url === features[0].properties.url
+                    );
+                    self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
                 });
-
-                self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.url === features[0].properties.url) {
-                        self.queriedReports[sourceCode].features[index].properties.clicked =
-                            !self.queriedReports[sourceCode].features[index].properties.clicked;
-                        map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
-                    }
-                });
-                const feature = self.queriedReports[sourceCode].features.filter(
-                    feature => feature.properties.url === features[0].properties.url
-                );
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
-            });
-
+    
+            }
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
                 map.addImage(sourceCode + "-marker", image);
             });
@@ -1495,31 +1494,32 @@ export class MapLayers {
                 }
             });
 
-            map.on("click", "unclustered-" + sourceCode, function (e) {
-                // Ensure that if the map is zoomed out such that multiple
-                // copies of the feature are visible, the popup appears
-                // over the copy being pointed to.
-
-                const features = map.queryRenderedFeatures(e.point, {
-                    layers: ["unclustered-" + sourceCode]
-                });
-
-                self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                    if (feature.properties.need_request_id === features[0].properties.need_request_id) {
-                        self.queriedReports[sourceCode].features[index].properties.clicked =
-                            !self.queriedReports[sourceCode].features[index].properties.clicked;
-                            map.getSource(sourceCode).setData({
-                                ...self.queriedReports[sourceCode],
-                                features: [...self.queriedReports[sourceCode].features]
-                            });
-                    }
-                });
-                const feature = self.queriedReports[sourceCode].features.filter(
-                    feature => feature.properties.need_request_id === features[0].properties.need_request_id
-                );
-                self.needIconLayer(feature[0], map);
-                self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
+            if(self.listeningNeed) {
+                self.listeningNeed = false;
+                map.on("click", "unclustered-" + sourceCode, function (e) {
+                    // Ensure that if the map is zoomed out such that multiple
+                    // copies of the feature are visible, the popup appears
+                    // over the copy being pointed to.
+                    const features = map.queryRenderedFeatures(e.point, {
+                        layers: ["unclustered-" + sourceCode]
+                    });
+                    self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                        if (feature.properties.need_request_id === features[0].properties.need_request_id) {
+                            self.queriedReports[sourceCode].features[index].properties.clicked =
+                                !self.queriedReports[sourceCode].features[index].properties.clicked;
+                                map.getSource(sourceCode).setData({
+                                    ...self.queriedReports[sourceCode],
+                                    features: [...self.queriedReports[sourceCode].features]
+                                });
+                        }
+                    });
+                    const feature = self.queriedReports[sourceCode].features.filter(
+                        feature => feature.properties.need_request_id === features[0].properties.need_request_id
+                    );
+                    self.needIconLayer(feature[0], map);
+                    self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
             });
+            }              
 
             self.svgPathToImage(`assets/icons/need_cluster.svg`, 100).then(image => {
                 map.addImage(sourceCode + "-marker", image);
@@ -1535,7 +1535,8 @@ export class MapLayers {
                         "text-field": "{point_count}",
                         "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
                         "text-size": 12,
-                        "text-offset": [0.75, 0.8]
+                        "text-offset": [0.90, 0.98],
+                        "text-anchor": "center"
                     }
                 });
             });
