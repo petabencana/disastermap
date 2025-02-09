@@ -27,7 +27,7 @@ export class MapLayers {
         this.fireCircle = {};
         this.fireSingleFeature = {};
         this.listeningNeed = true;
-        this.listeningReport = true;
+        this.listeningReport = {};
         this.VolcanoEruptionLevelsMap = ["3", "4"];
         this.disasterMap = [
             {
@@ -1267,6 +1267,26 @@ export class MapLayers {
         this.fireMarker[feature.properties.pkey] = marker;
     }
 
+
+    unclusterClick(e,cityName, map, togglePane, queriedReports, sourceCode) {
+        let self = this;
+                    const features = map.queryRenderedFeatures(e.point, {
+                        layers: ["unclustered-" + sourceCode]
+                    });
+
+                    queriedReports[sourceCode].features.forEach(function (feature, index) {
+                        if (feature.properties.url === features[0].properties.url) {
+                            queriedReports[sourceCode].features[index].properties.clicked =
+                                !queriedReports[sourceCode].features[index].properties.clicked;
+                            map.getSource(sourceCode).setData(queriedReports[sourceCode]);
+                        }
+                    });
+                    const feature = queriedReports[sourceCode].features.filter(
+                        feature => feature.properties.url === features[0].properties.url
+                    );
+                    self.markerClickHandler(e, feature[0], cityName, map, togglePane, queriedReports);
+    };
+
     addCluster(data, cityName, map, togglePane, disaster, reportType, isPartner) {
         try {
             let self = this;
@@ -1350,30 +1370,31 @@ export class MapLayers {
                 }
             });
 
-            if(self.listeningReport){
-                self.listeningReport = false;
-                map.on("click", "unclustered-" + sourceCode, function (e) {
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
+            if (!this.listeningReport[sourceCode]) {
+                console.log(`Adding event listeners for: ${sourceCode}`);
+                map.on("click", "unclustered-" + sourceCode, (e) => self.unclusterClick(e,cityName, map, togglePane, self.queriedReports, sourceCode))
+                // map.on("click", "unclustered-" + sourceCode, function (e) {
+                //     // Ensure that if the map is zoomed out such that multiple
+                //     // copies of the feature are visible, the popup appears
+                //     // over the copy being pointed to.
     
-                    const features = map.queryRenderedFeatures(e.point, {
-                        layers: ["unclustered-" + sourceCode]
-                    });
+                //     const features = map.queryRenderedFeatures(e.point, {
+                //         layers: ["unclustered-" + sourceCode]
+                //     });
     
-                    self.queriedReports[sourceCode].features.forEach(function (feature, index) {
-                        if (feature.properties.url === features[0].properties.url) {
-                            self.queriedReports[sourceCode].features[index].properties.clicked =
-                                !self.queriedReports[sourceCode].features[index].properties.clicked;
-                            map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
-                        }
-                    });
-                    const feature = self.queriedReports[sourceCode].features.filter(
-                        feature => feature.properties.url === features[0].properties.url
-                    );
-                    self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
-                });
-    
+                //     self.queriedReports[sourceCode].features.forEach(function (feature, index) {
+                //         if (feature.properties.url === features[0].properties.url) {
+                //             self.queriedReports[sourceCode].features[index].properties.clicked =
+                //                 !self.queriedReports[sourceCode].features[index].properties.clicked;
+                //             map.getSource(sourceCode).setData(self.queriedReports[sourceCode]);
+                //         }
+                //     });
+                //     const feature = self.queriedReports[sourceCode].features.filter(
+                //         feature => feature.properties.url === features[0].properties.url
+                //     );
+                //     self.markerClickHandler(e, feature[0], cityName, map, togglePane, self.queriedReports);
+                // });
+                this.listeningReport[sourceCode] = true; 
             }
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
                 map.addImage(sourceCode + "-marker", image);
