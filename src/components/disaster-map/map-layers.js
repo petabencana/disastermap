@@ -514,6 +514,16 @@ export class MapLayers {
             if (self.isMobileDevice()) {
                 togglePane("#infoPane", "show", true);
             } else {
+                self.selected_report.properties.clicked = false;
+                const disaster = self.selected_report.properties.disaster_type
+                const level = self.selected_report.properties.disasterLevel
+                map.getSource(`${disaster}-false`).setData({
+                    ...queriedReports[`${disaster}-false`],
+                    features: [...queriedReports[`${disaster}-false`].features]
+                })
+                const icon = self.fetchIcon(disaster, level, false, false);
+                const filter = ["all", ["==", "disasterLevel", level], ["==", "clicked", false]];
+                self.addIconLayer(map, icon, disaster + "_" + level, `${disaster}-${false}`, filter, 0.05);
                 self.popupContainer = self.setPopup(coordinates, feature, map, isPartner);
                 togglePane("#infoPane", "hide", false);
             }
@@ -1505,21 +1515,21 @@ export class MapLayers {
 
             self.svgPathToImage(self.fetchClusterIcon(reportType ? reportType : disaster), 100).then(image => {
                 map.addImage(sourceCode + "-marker", image);
-            });
 
-            map.addLayer({
-                id: "cluster-count-" + sourceCode,
-                type: "symbol",
-                source: sourceCode,
-                filter: ["has", "point_count"],
-                layout: {
-                    "icon-image": sourceCode + "-marker",
-                    "icon-size": 0.45,
-                    "text-field": "{point_count}",
-                    "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
-                    "text-size": 12,
-                    "text-offset": [0.75, 0.8]
-                }
+                map.addLayer({
+                    id: "cluster-count-" + sourceCode,
+                    type: "symbol",
+                    source: sourceCode,
+                    filter: ["has", "point_count"],
+                    layout: {
+                        "icon-image": sourceCode + "-marker",
+                        "icon-size": 0.45,
+                        "text-field": "{point_count}",
+                        "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+                        "text-size": 12,
+                        "text-offset": [0.75, 0.8]
+                    }
+                });
             });
 
             map.on("mouseenter", "cluster-" + sourceCode, function () {
