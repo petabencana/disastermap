@@ -10,7 +10,7 @@ ____
 ### Supported deployments
 * mapakalamidad.ph
 * petabencana.id
-* tabahinaqsha.pk
+* aafatinfo.pk
 
 ### Prerequiste
 * Install NodeJS = 14.x
