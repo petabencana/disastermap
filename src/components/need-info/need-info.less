@@ -63,6 +63,7 @@
   flex-direction: column;
   gap: 5px;
   padding: 10px 0;
+  height: 170px;
   & .item_date {
       font-size: 10px;
   }
@@ -110,4 +111,101 @@
   & #requestedDate {
       .bodylight-mixin(12px);
   }
+}
+
+.interactionFlyer {
+    position: absolute;
+    display: none;
+    top: 0px;
+    height: 120px;
+    padding: 8px;
+    z-index: 2500;
+    text-align: center;
+    border: solid 1px @banjir-blue;
+    background-color: @snow-white;
+    text-indent: 0;
+    & a {
+        padding: 0;
+        border: none;
+        .linklight-mixin(26px);
+        text-decoration: none;
+        cursor: pointer;
+        position: relative;
+        top: 15px;
+        & .active {
+            color: @banjir-blue;
+            box-shadow: @drop-shadow;
+        }
+        & i {
+            font-size: 16px;
+        }
+    }
+    & p {
+        .bodymedium-mixin(12px);
+        margin: 5px;
+        text-align: center;
+    }
+    & #socialButtons {
+        font-size: 26px;
+        padding: 0px 5px 0px 5px;
+    }
+    & #submitButton {
+        margin: 5px;
+        margin-top: 15px;
+        box-shadow: @drop-shadow;
+        .linkmedium-mixin(12px);
+        color: @banjir-blue;
+        padding: 10px;
+        border-radius: 3px;
+        border: none;
+        & .active {
+            .translate-mixin(2px, 2px);
+        }
+    }
+    & ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        text-align: center;
+    }
+}
+.shareButtons.highlight {
+    color: @banjir-blue;
+}
+#voteIcons {
+    position: absolute;
+    bottom: 2px;
+    left: 105px;
+    & td {
+        padding: 0px;
+        align-items: center;
+    }
+    & i {
+        font-size: 16px;
+        padding: 0px;
+        & .active {
+            color: @banjir-blue;
+        }
+    }
+    & a {
+        position: relative;
+        text-decoration: none;
+        // padding: 0 6px 0 0;
+        cursor: pointer;
+    }
+    & a:active {
+        color: @banjir-blue;
+    }
+    & button {
+        border: none;
+        background-color: @snow-white;
+        cursor: pointer;
+        outline: none;
+        padding: 6px;
+        &:disabled {
+            color: @banjir-blue;
+            cursor: not-allowed;
+        }
+        &:active {
+            color: @banjir-blue;
+        }
+    }
 }

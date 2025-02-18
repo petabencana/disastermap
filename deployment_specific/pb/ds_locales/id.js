@@ -47,6 +47,7 @@ const id = {
   },
   'report_info': {
     // 'share_msg': 'Saya%20baru%20saja%20ikutan%20%23SelfieDermawan%20%21%20Yuk%20ramein%20%40petabencana%20dengan%20selfie%20mu',
+    'need_share_msg': 'Ada permintaan bantuan baru dari warga terdampak bencana di PetaBencana.id! Klik link berikut untuk berdonasi langsung sesuai kebutuhan mereka. Setiap kebaikan sangat berarti! #PetaGotongRoyong #BersamaKurangiRisiko',
     'share_msg': 'Laporan%20banjir%20pada%20petabencana%2Eid',
     'water_depth': 'Tinggi Banjir:',
     'disturbance_key': 'Rusak:',
