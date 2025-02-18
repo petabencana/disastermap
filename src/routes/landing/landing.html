@@ -362,6 +362,8 @@
                 quantitysatisfied.bind="mapModel.layers.popupContent.total_quantity_satisfied"
                 quantityrequested.bind="mapModel.layers.popupContent.total_quantity_requested"
                 allitemids.bind="mapModel.layers.popupContent.all_item_ids"
+                popupcontent.bind="mapModel.layers.popupContent"
+                city.bind="mapModel.utility.parseCityName(mapModel.layers.popupContent.tags.instance_region_code, mapModel.cities)"
             >
             </need-info>
         </div>

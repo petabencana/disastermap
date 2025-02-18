@@ -1,11 +1,12 @@
-import { bindable, customElement, inject, BindingEngine } from "aurelia-framework";
+import { bindable, customElement, inject, BindingEngine, computedFrom} from "aurelia-framework";
 import { HttpClient } from "aurelia-http-client";
 import { Config } from "resources/config";
 import { Locales } from "../../resources/locales/locales";
+import { PointsService } from "../report-info/points-service"
 
 //start-aurelia-decorators
 @customElement("need-info")
-@inject(Config, BindingEngine)
+@inject(Config, BindingEngine, PointsService)
 
 //end-aurelia-decorators
 export class NeedInfo {
@@ -18,10 +19,14 @@ export class NeedInfo {
     @bindable quantityrequested;
     @bindable allitemids;
     @bindable products;
+    @bindable popupcontent;
+    @bindable city;
 
-    constructor(Config, BindingEngine) {
+    constructor(Config, BindingEngine, PointsService) {
         this.locale = new Locales();
         this.config = Config.map;
+        this.app = Config.map.app;
+        this.service = PointsService;
         this.requested;
         this.styleString = "";
         this.items;
@@ -29,11 +34,81 @@ export class NeedInfo {
         this.requesteditems;
         this.bindingEngine = BindingEngine;
         this.showGiverBtn = true;
+        this.requestid;
+        this.shareButtons = [
+            {
+              name: 'share',
+              tooltip: 'Share this report'
+            },
+            {
+              name: 'flag',
+              tooltip: 'Flag this report as inappropriate'
+            }
+          ];
+      
+          this.voteButtons = [
+            {
+              name: 'upvote',
+              tooltip: 'Upvote this report',
+              enabled: true
+            },
+            {
+              name: 'downvote',
+              tooltip: 'Downvote this report',
+              enabled: true
+            }
+          ];
     }
     //end-aurelia-decorators
 
+    get msgText() {
+        return this.locale.report_info.need_share_msg;
+    }
+    get reportUrl() {
+        return encodeURI(this.app + 'map/' + this.city); 
+      }
+
     attached() {
         this.loadTranslations();
+        let self = this;
+        self.socialButtons = [
+            // Name string should match fontello icons name
+            {
+              name: 'twitter',
+              intent:
+                'https://twitter.com/intent/tweet?text=' +
+                self.msgText +
+                '%20' +
+                self.reportUrl
+            },
+            {
+              name: 'telegram',
+              intent:
+                'https://telegram.me/share/url?url=' +
+                self.reportUrl +
+                ' &text= ' +
+                self.msgText
+            },
+            {
+              name: 'whatsapp',
+              intent:
+                'https://api.whatsapp.com/send?text=' +
+                self.msgText +
+                '%20' +
+                self.reportUrl
+            },
+            {
+              name: 'facebook',
+              intent: 'http://www.facebook.com/sharer/sharer.php?u=' + self.reportUrl
+            }
+        ];
+        console.log('msg:',self.msgText, self.reportUrl)
+        self.popupcontent.voteChanged = true;
+    }
+
+    requestidChanged(newValue, oldValue) {
+        console.log('Request ID Changed:', newValue);
+        this.requestid = newValue;
     }
 
     bind() {
@@ -42,6 +117,72 @@ export class NeedInfo {
             this.loadTranslations();
         });
     }
+
+          //start-aurelia-decorators
+  @computedFrom('popupcontent.voteChanged')
+  //end-aurelia-decorators
+  get upvoteDisabled() {
+    if (localStorage.getItem('id_' + this.requestid)) {
+      if (localStorage.getItem('id_' + this.requestid) === 'up') {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+  //start-aurelia-decorators
+  @computedFrom('popupcontent.voteChanged')
+  //end-aurelia-decorators
+  get downvoteDisabled() {
+    if (localStorage.getItem('id_' + this.requestid)) {
+      if (localStorage.getItem('id_' + this.requestid) === 'down') {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  }
+
+  voteHandler(vote) {
+    const self = this;
+    // Trigger getter to update disabled status
+    self.popupcontent.voteChanged = true;
+    self.service.updatePoints(self.requestid, vote).then(points => {
+      if (vote > 0) {
+        // Upvote
+        if (localStorage.getItem('id_' + self.requestid)) {
+          if (localStorage.getItem('id_' + this.requestid) === 'down') {
+            // Case 1: already downvoted
+            localStorage.setItem('id_' + self.requestid, 'none');
+          } else {
+            // Case 2: not downvoted
+            localStorage.setItem('id_' + self.requestid, 'up');
+          }
+        } else {
+          // Case 3: never voted for this report id
+          localStorage.setItem('id_' + self.requestid, 'up');
+        }
+        // Trigger getter to update disabled status
+        self.popupcontent.voteChanged = true;
+      } else {
+        // Downvote
+        if (localStorage.getItem('id_' + self.requestid)) {
+          if (localStorage.getItem('id_' + this.requestid) === 'up') {
+            // Case 1: already upvoted
+            localStorage.setItem('id_' + self.requestid, 'none');
+          } else {
+            // Case 2: not upvoted
+            localStorage.setItem('id_' + self.requestid, 'down');
+          }
+        } else {
+          // Case 3: never voted for this report id
+          localStorage.setItem('id_' + self.requestid, 'down');
+        }
+      }
+    });
+    // Set voteChanged back to false to enable trigger on next button click
+    self.popupcontent.voteChanged = false;
+  }
 
     itemrequestedChanged(newValue, oldValue) {
         if (newValue && Array.isArray(newValue) && newValue.length > 0) {
