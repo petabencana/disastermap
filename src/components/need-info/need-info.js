@@ -93,9 +93,7 @@ export class NeedInfo {
               name: 'whatsapp',
               intent:
                 'https://api.whatsapp.com/send?text=' +
-                self.msgText +
-                '%20' +
-                self.reportUrl
+                encodeURIComponent(self.msgText + ' ' + self.reportUrl)
             },
             {
               name: 'facebook',
@@ -182,6 +180,26 @@ export class NeedInfo {
     });
     // Set voteChanged back to false to enable trigger on next button click
     self.popupcontent.voteChanged = false;
+  }
+
+  feedbackInteraction(button) {
+    if ($('#shareButtons' + button.name).hasClass('highlight')) {
+      // if clicked button active
+      // remove highlight class from all .shareButtons
+      $('.shareButtons').removeClass('highlight');
+      // hide all .interactionFlyer
+      $('.interactionFlyer').hide();
+    } else {
+      // if selected button inactive
+      // remove highlight class from all .shareButtons
+      $('.shareButtons').removeClass('highlight');
+      // add highlight class to clicked button
+      $('#shareButtons' + button.name).addClass('highlight');
+      // hide all .interactionFlyer
+      $('.interactionFlyer').hide();
+      // show selected interactionFlyer
+      $('#' + button.name + 'Flyer').show();
+    }
   }
 
     itemrequestedChanged(newValue, oldValue) {
