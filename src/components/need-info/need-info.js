@@ -77,17 +77,13 @@ export class NeedInfo {
               name: 'twitter',
               intent:
                 'https://twitter.com/intent/tweet?text=' +
-                self.msgText +
-                '%20' +
-                self.reportUrl
+                encodeURIComponent(self.msgText + ' ' + self.reportUrl)
             },
             {
               name: 'telegram',
               intent:
-                'https://telegram.me/share/url?url=' +
-                self.reportUrl +
-                ' &text= ' +
-                self.msgText
+                'https://telegram.me/share/url?text=' +
+                encodeURIComponent(self.msgText + ' ' + self.reportUrl)
             },
             {
               name: 'whatsapp',
