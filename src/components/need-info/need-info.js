@@ -78,17 +78,13 @@ get reportUrl() {
               name: 'twitter',
               intent:
                 'https://twitter.com/intent/tweet?text=' +
-                self.msgText +
-                '%20' +
-                self.reportUrl
+                encodeURIComponent(self.msgText + ' ' + self.reportUrl)
             },
             {
               name: 'telegram',
               intent:
                 'https://telegram.me/share/url?url=' +
-                self.reportUrl +
-                ' &text= ' +
-                self.msgText
+                encodeURIComponent(self.msgText + ' ' + self.reportUrl)
             },
             {
               name: 'whatsapp',
@@ -103,12 +99,10 @@ get reportUrl() {
               intent: 'http://www.facebook.com/sharer/sharer.php?u=' + self.reportUrl
             }
         ];
-        console.log('msg:',self.msgText, self.reportUrl)
         self.popupcontent.voteChanged = true;
     }
 
     requestidChanged(newValue, oldValue) {
-        console.log('Request ID Changed:', newValue);
         this.requestid = newValue;
 
   }
