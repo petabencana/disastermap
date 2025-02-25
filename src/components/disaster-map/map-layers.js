@@ -1381,7 +1381,6 @@ export class MapLayers {
             });
 
             if (!this.listeningReport[sourceCode]) {
-                console.log(`Adding event listeners for: ${sourceCode}`);
                 map.on("click", "unclustered-" + sourceCode, (e) => self.unclusterClick(e,cityName, map, togglePane, self.queriedReports, sourceCode))
                 // map.on("click", "unclustered-" + sourceCode, function (e) {
                 //     // Ensure that if the map is zoomed out such that multiple
