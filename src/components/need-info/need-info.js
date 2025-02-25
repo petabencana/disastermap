@@ -96,12 +96,10 @@ export class NeedInfo {
               intent: 'http://www.facebook.com/sharer/sharer.php?u=' + self.reportUrl
             }
         ];
-        console.log('msg:',self.msgText, self.reportUrl)
         self.popupcontent.voteChanged = true;
     }
 
     requestidChanged(newValue, oldValue) {
-        console.log('Request ID Changed:', newValue);
         this.requestid = newValue;
     }
 
