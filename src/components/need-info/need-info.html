@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div id="voteIcons">
+    <div id="needVoteIcons">
       <table>
         <tr>
           <td>
@@ -34,7 +34,7 @@
             <button id="downVoteButton" class="voteButtons" disabled.bind="downvoteDisabled" click.trigger="voteHandler(-1)">
             <i class.bind="'icon-downvote'" title.bind="voteButtons[1].tooltip"></i>
             </button>
-          </td>
+          </td> 
 
           <td>
             <!-- Upvote -->
@@ -45,7 +45,7 @@
           </td>
 
           <td repeat.for="button of shareButtons">
-            <button class="shareButtons" id.bind="'shareButtons' + button.name" click.delegate="feedbackInteraction(button)">
+            <button class="needShareButtons" id.bind="'needShareButtons' + button.name" click.delegate="needFeedbackInteraction(button)">
               <i class.bind="'icon-' + button.name" title.bind="button.tooltip"></i>
             </button>
           </td>
@@ -54,14 +54,14 @@
     </div>
 
 
-    <div id="shareFlyer" class="interactionFlyer">
+    <div id="shareFlyer" class="needInteractionFlyer">
       <p>${locale.report_info.share}</p>
       <a repeat.for="button of socialButtons" href.bind="button.intent" >
         <i  id="socialButtons" class.bind="'icon-' + button.name" ></i>
       </a>
     </div>
 
-    <div id="flagFlyer" class="interactionFlyer">
+    <div id="flagFlyer" class="needInteractionFlyer">
       <p>${locale.report_info.flagReport_Title}</p>
       <a href.bind="'mailto:' + locale.report_info.flagReport_email + '?subject=Please%20review%20this%20report%20&#40;Report%20id%20&#58;%20' + id + '&#41;'"><button id="submitButton">${locale.report_info.flagReport_button}</button></a>
     </div>
