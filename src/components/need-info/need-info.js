@@ -96,7 +96,7 @@ get reportUrl() {
             },
             {
               name: 'facebook',
-              intent: 'http://www.facebook.com/sharer/sharer.php?u=' + self.reportUrl
+              intent: 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(self.reportUrl)
             }
         ];
         self.popupcontent.voteChanged = true;
@@ -177,6 +177,26 @@ get reportUrl() {
     });
     // Set voteChanged back to false to enable trigger on next button click
     self.popupcontent.voteChanged = false;
+  }
+
+  needFeedbackInteraction(button) {
+    if ($('#needShareButtons' + button.name).hasClass('highlight')) {
+      // if clicked button active
+      // remove highlight class from all .shareButtons
+      $('.needShareButtons').removeClass('highlight');
+      // hide all .interactionFlyer
+      $('.needInteractionFlyer').hide();
+    } else {
+      // if selected button inactive
+      // remove highlight class from all .shareButtons
+      $('.needShareButtons').removeClass('highlight');
+      // add highlight class to clicked button
+      $('#needShareButtons' + button.name).addClass('highlight');
+      // hide all .interactionFlyer
+      $('.needInteractionFlyer').hide();
+      // show selected interactionFlyer
+      $('#' + button.name + 'Flyer').show();
+    }
   }
 
   itemrequestedChanged(newValue, oldValue) {
