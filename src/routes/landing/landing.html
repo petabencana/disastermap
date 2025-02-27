@@ -341,7 +341,7 @@
                 last_updated.bind="mapModel.layers.popupContent.local_date"
             ></volcano-info>
 
-            <report-info
+            <report-info id="reportInfo"
                 class="infoWrapper"
                 if.bind="mapModel.layers.popupContent.pkey"
                 id.bind="report_id"
@@ -352,7 +352,7 @@
             >
             </report-info>
 
-            <need-info
+            <need-info id="needInfo"
                 class="infoWrapper"
                 if.bind="mapModel.layers.popupContent.items_requested"
                 locale.bind="webMenu.locale"

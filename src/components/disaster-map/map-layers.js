@@ -549,6 +549,8 @@ export class MapLayers {
         let upvoteButton;
         let downvoteButton;
         let giverButton;
+        let needShareButton;
+        let needFlagButton;
         let self = this;
         //* Timeout is set to wait for the DOM to load
         setTimeout(() => {
@@ -556,24 +558,38 @@ export class MapLayers {
             div.innerHTML = getReportInfoElement[1].innerHTML;
             shareButton = document.getElementById("shareButtonsshare");
             flagButton = document.getElementById("shareButtonsflag");
+            needShareButton = document.getElementById("needShareButtonsshare");
+            needFlagButton = document.getElementById("needShareButtonsflag");
             upvoteButton = document.getElementById("upVoteButton");
             downvoteButton = document.getElementById("downVoteButton");
             giverButton = document.getElementById("itemgiver");
-            giverButton.addEventListener("click", function () {
-                self.intiateGiver();
-            });
-            upvoteButton.addEventListener("click", function () {
-                self.voteHandler(1);
-            });
-            downvoteButton.addEventListener("click", function () {
-                self.voteHandler(-1);
-            });
-            shareButton.addEventListener("click", function () {
-                self.feedbackInteraction("share");
-            });
-            flagButton.addEventListener("click", function () {
-                self.feedbackInteraction("flag");
-            });
+            if(giverButton) {
+                giverButton.addEventListener("click", function () {
+                    self.initiateGiver();
+                });
+            }
+            if(shareButton && flagButton && upvoteButton && downvoteButton) {
+                upvoteButton.addEventListener("click", function () {
+                    self.voteHandler(1);
+                });
+                downvoteButton.addEventListener("click", function () {
+                    self.voteHandler(-1);
+                });
+                shareButton.addEventListener("click", function () {
+                    self.feedbackInteraction("share");
+                });
+                flagButton.addEventListener("click", function () {
+                    self.feedbackInteraction("flag");
+                });
+            }
+            if(needShareButton && needFlagButton) {
+                needShareButton.addEventListener("click", function () {
+                    self.needFeedbackInteraction("share");
+                });
+                needFlagButton.addEventListener("click", function () {
+                    self.needFeedbackInteraction("flag");
+                });
+            }
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
@@ -697,6 +713,27 @@ export class MapLayers {
             $("#" + button + "Flyer").show();
         }
     }
+
+
+    needFeedbackInteraction(button) {
+        if ($('#needShareButtons' + button).hasClass('highlight')) {
+          // if clicked button active
+          // remove highlight class from all .shareButtons
+          $('.needShareButtons').removeClass('highlight');
+          // hide all .interactionFlyer
+          $('.needInteractionFlyer').hide();
+        } else {
+          // if selected button inactive
+          // remove highlight class from all .shareButtons
+          $('.needShareButtons').removeClass('highlight');
+          // add highlight class to clicked button
+          $('#needShareButtons' + button).addClass('highlight');
+          // hide all .interactionFlyer
+          $('.needInteractionFlyer').hide();
+          // show selected interactionFlyer
+          $('#' + button + 'Flyer').show();
+        }
+      }
 
     reportInteraction(feature, layer, cityName, map, togglePane) {
         let self = this;

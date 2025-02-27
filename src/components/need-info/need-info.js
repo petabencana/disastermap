@@ -93,7 +93,7 @@ export class NeedInfo {
             },
             {
               name: 'facebook',
-              intent: 'http://www.facebook.com/sharer/sharer.php?u=' + self.reportUrl
+              intent: 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(self.reportUrl)
             }
         ];
         self.popupcontent.voteChanged = true;
@@ -176,21 +176,21 @@ export class NeedInfo {
     self.popupcontent.voteChanged = false;
   }
 
-  feedbackInteraction(button) {
-    if ($('#shareButtons' + button.name).hasClass('highlight')) {
+  needFeedbackInteraction(button) {
+    if ($('#needShareButtons' + button.name).hasClass('highlight')) {
       // if clicked button active
       // remove highlight class from all .shareButtons
-      $('.shareButtons').removeClass('highlight');
+      $('.needShareButtons').removeClass('highlight');
       // hide all .interactionFlyer
-      $('.interactionFlyer').hide();
+      $('.needInteractionFlyer').hide();
     } else {
       // if selected button inactive
       // remove highlight class from all .shareButtons
-      $('.shareButtons').removeClass('highlight');
+      $('.needShareButtons').removeClass('highlight');
       // add highlight class to clicked button
-      $('#shareButtons' + button.name).addClass('highlight');
+      $('#needShareButtons' + button.name).addClass('highlight');
       // hide all .interactionFlyer
-      $('.interactionFlyer').hide();
+      $('.needInteractionFlyer').hide();
       // show selected interactionFlyer
       $('#' + button.name + 'Flyer').show();
     }
