@@ -1,4 +1,4 @@
-# RiskMap
+# DisasterMap
 
 ## Overview
 Client map  application for [PetaBencana platform](https://petabencana.id) . Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
