@@ -1,7 +1,8 @@
 # DisasterMap
 
 ## Overview
-Client map  application for [PetaBencana platform](https://petabencana.id) . Read more project information [here](https://github.com/urbanriskmap/petabencana-docs/blob/master/README.md).
+Client map  application for [PetaBencana platform](https://petabencana.id) . Read more project information [here](https://github.com/petabencana/petabencana-docs/blob/master/README.md).
+This repository was forked from (https://github.com/urbanriskmap) in 2017. Since then, all development has been independently maintained by Disaster Map Foundation (Yayasan Peta Bencana)(https://info.petabencana.id). 
 <br>
 <br>
 This platform is built using the Aurelia framework, with a few prerequisites. To get started, follow the prerequiste & installation steps.
