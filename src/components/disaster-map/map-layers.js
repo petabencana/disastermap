@@ -657,7 +657,7 @@ export class MapLayers {
         self.popupContent.voteChanged = false;
     }
 
-    intiateGiver() {
+    initiateGiver() {
         this.isActive = true;
         let self = this;
         self.initiateReport()
@@ -733,7 +733,7 @@ export class MapLayers {
           // show selected interactionFlyer
           $('#' + button + 'Flyer').show();
         }
-      }
+    }
 
     reportInteraction(feature, layer, cityName, map, togglePane) {
         let self = this;
