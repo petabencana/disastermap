@@ -380,11 +380,12 @@ const id = {
         intro: "PetaBencana.id adalah platform pemetaan bencana secara real-time untuk Indonesia. Sistem open-source ini menggunakan model chatbot kemanusiaan untuk mengumpulkan laporan bencana langsung dari masyarakat melalui media sosial. Laporan-laporan ini diverifikasi, disortir, dan ditampilkan pada peta berbasis web yang berfokus pada perangkat mobile secara real-time. Dengan menempatkan alat pengambilan keputusan langsung di tangan masyarakat, responden pertama, dan pemerintah daerah, PetaBencana.id membuka akses terhadap informasi bencana, sehingga semua orang dapat memperoleh informasi penting secara mudah.",
         infoLink: '<a href="https://info.petabencana.id/" target="_blank">Info lebih lanjut, kunjungi Yayasan Peta Bencana</a>',
         p1: 'Untuk informasi lebih lanjut, kunjungi <a href="https://info.petabencana.id/" target="_blank">https://info.petabencana.id</a>. Untuk umpan balik, komentar, atau permintaan kemitraan, hubungi <a href="mailto:info@petabencana.id" target="_blank">info@petabencana.id</a>',
-        p2: 'Dijalankan oleh <a href="https://info.petabencana.id" target="_blank">  Disaster Map Foundation [Yayasan Peta Bencana]</a>, platform ini dapat terwujud melalui kolaborasi dengan beberapa mitra:',
+        p2: 'Dijalankan oleh <a href="https://info.petabencana.id" target="_blank">  Disaster Map Foundation [Yayasan Peta Bencana]</a>, dan dikembangkan bekerja sama dengan <a target="_blank" href="http://civicdatalab.in">CivicDataLab</a>, platform ini dapat terwujud melalui kolaborasi dengan beberapa mitra:',
         // p3: "PetaBencana.id mengumpulkan, menyortir, dan “memvisualisasikan” data menggunakan CogniCity Open Source Software - sebuah platform untuk manajemen kebencanaan - untuk mengubah kicauan di media sosial dan digital menjadi informasi penting bagi warga, komunitas, dan instansi pemerintah. Platform ini menggunakan paradigma “manusia sebagai sensor terbaik”, di mana laporan terkonfirmasi dikumpulkan secara langsung dari pengguna di lapangan, dengan metode yang memungkinkan pengolahan data yang cepat dengan biaya minimum. Kerangka kerja ini menghasilkan data real-time dan akurat, yang langsung tersedia untuk pengguna dan petugas darurat berwenang.",
         partners: {
             funding: "Mitra Donor",
             implementing: "Mitra Pelaksana",
+            development: "Mitra pengembang",
             project: "Mitra Proyek",
             data: "Mitra Penyedia Data"
         },
