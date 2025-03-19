@@ -200,14 +200,15 @@ const en = {
     }
   },
   'info_content': {
-    'intro': 'Mapakalamidad.ph harnesses the use of social media during emergency events to gather, sort, and display confirmed hazard information in real-time.',
-    'infoLink': '<a href="https://info.petabencana.id/" target="_blank">To know more, visit Petabencana Foundation</a>',
-    'p1': 'Run by <a href="https://info.petabencana.id/" target="_blank"> Yayasan Peta Bencana</a>, as a free, transparent platform for emergency response and disaster management in megacities in South and Southeast Asia, the platform is made possible through collaboration with several partners:',
-    'p2': '',
-    'p3': 'Mapakalamidad.ph gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
+    'intro': 'MapaKalamidad.ph is a real-time disaster mapping platform for the Philippines. The platform is powered by Situational Intelligence Open Source Software (Siti OSS), developed by Disaster Map Foundation [Yayasan Peta Bencana]. The open-source system uses a novel humanitarian chatbot model to crowdsource disaster reports directly from people on the ground via social media. These reports are verified, sorted, and displayed on a web-based, mobile-centric map in real-time. Designed from first principles as a free, inclusive, and accessible tool, it has been continuously refined for nearly a decade by the frontline communities who rely on it. By placing decision-making tools directly in the hands of residents, first responders, and local governments, MapaKalamidad.ph democratizes disaster response, making critical information freely accessible to everyone.',
+    'infoLink': '<a href="https://info.mapakalamidad.ph" target="_blank">https://info.mapakalamidad.ph</a>. For feedback, comments, or partnership requests please contact <a href="bayanihan@mapakalamidad.ph" target="_blank">bayanihan@mapakalamidad.ph</a>',
+    'p1': 'For more information, visit  <a href="https://info.mapakalamidad.ph" target="_blank">https://info.mapakalamidad.ph</a>. For feedback, comments, or partnership requests please contact <a href="bayanihan@mapakalamidad.ph" target="_blank">bayanihan@mapakalamidad.ph</a>',
+    'p2': 'Run by <a href="https://info.petabencana.id" target="_blank">  Disaster Map Foundation [Yayasan Peta Bencana]</a>, and developed in partnership with  <a href="http://civicdatalab.in" target="_blank">CivicDataLab</a>, the platform is made possible through collaboration with several partners:',
+    // 'p3': 'Mapakalamidad.ph gathers, sorts, and visualizes data using specially developed CogniCity Open Source Software - an enterprise-level platform for emergency response and disaster management - to transforms the noise of social and digital media into critical information for residents, communities, and government agencies. The platform adopts a “people are the best sensors” paradigm, where confirmed reports are collected directly from the users at street level in a manner that removes expensive and time-consuming data processing. This framework creates accurate, real-time data which is immediately made available for users and first responders.',
     'partners': {
       'funding': 'Funding Partner',
       'implementing': 'Implementing partner',
+      'development': 'Development Partner',
       'project': 'Project partners',
       'data': 'Data partners'
     },

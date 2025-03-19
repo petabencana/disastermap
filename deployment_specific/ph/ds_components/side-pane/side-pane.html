@@ -168,13 +168,15 @@
               </td>
               <td align="right">
                 <a href="https://info.petabencana.id/">
-                  <img id="yayasanLogo" src="assets/graphics/yayasan_logo.svg">
+                  <img id="yayasanLogo" src="assets/graphics/yayasan_logo.png">
                 </a>
               </td>
             </tr>
           </table>
           <p id="intro">${locale.info_content.intro}</p>
           <p id="description" innerhtml.bind="locale.info_content.p1"></p>
+          <p id="description" innerhtml.bind="locale.info_content.p2"></p>
+
           <table id="partners">
             <tr class="label">
               <td colspan="4" cellpadding="0" align="left">
@@ -219,6 +221,17 @@
             </tr>
             <tr class="label">
               <td colspan="4" cellpadding="0" align="left">
+                <p>${locale.info_content.partners.development}</p>
+              </td>
+            </tr>
+            <tr class="logos">
+              <td colspan="2" align="center">
+                <a href="https://civicdatalab.in/">
+                  <img class="ocdLogo" src="assets/graphics/cdl_logo.png">
+                </a>
+              </td>
+            <tr class="label">
+              <td colspan="4" cellpadding="0" align="left">
                 <p>${locale.info_content.partners.project}</p>
               </td>
             </tr>
@@ -252,11 +265,11 @@
               </td>
             </tr>
             <tr class="logos">
-              <td colspan="2" align="center">
+              <!-- <td colspan="2" align="center">
                 <a href="https://twitter.com">
                   <img class="partnerLogo" src="assets/graphics/twitter_logo.png">
                 </a>
-              </td>
+              </td> -->
               <td colspan="2" align="center">
                 <a href="https://www.mapbox.com/">
                   <img class="partnerLogo" src="assets/graphics/mapbox_logo.png">
@@ -266,8 +279,8 @@
           </table>
 
 
-          <p innerhtml.bind="locale.info_content.p2"></p>
-          <p innerhtml.bind="locale.info_content.p3"></p>
+          <!-- <p innerhtml.bind="locale.info_content.p2"></p> -->
+          <!-- <p innerhtml.bind="locale.info_content.p3"></p> -->
 
           <p id="termslink" click.delegate="openTermsPopup()" innerhtml.bind="locale.info_content.termsPopup"></p>
 
@@ -281,9 +294,7 @@
           <p id="usaid">
             ${locale.info_content.USAID}
           </p>
-          <div id="pbLogo">
-            <img src="assets/graphics/MapaKalamidad.png">
-          </div>
+          <p class="peta">© 2017 - 2025 Yayasan Peta Bencana</p>
       </div>
        </div>
     </div>
