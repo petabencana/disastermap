@@ -294,6 +294,22 @@
       }
     }
 
+    & #footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: white;
+      width: 100vw;
+      bottom: 0;
+      position: absolute;
+      text-align: center;
+
+      & .footerHead{
+        font-weight: bold;
+        margin: 5px 0;
+      }
+    }
+
 
   & #termsPopup {
     display: none;
@@ -730,5 +746,15 @@ and (-webkit-device-pixel-ratio: 3) {
   #screen #startPopup{ top: 40% }
 
   #screen #socialMediaContainer{top : 70%}
+
+
+  #screen #footer {
+    height: 100px;
+    text-align: center;
+
+    p {
+      font-size: 12px;
+    }
+  }
 
 }
