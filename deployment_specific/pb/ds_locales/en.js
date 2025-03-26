@@ -138,7 +138,7 @@ const en = {
 
     need_info: {
         title: "Need requested:",
-        time: "Posted at:",
+        time: "Report updated:",
         status: "met",
         give: "GIVE",
 
