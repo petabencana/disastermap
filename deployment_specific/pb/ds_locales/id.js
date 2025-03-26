@@ -136,7 +136,7 @@ const id = {
     },
     need_info: {
         title: "Permintaan kebutuhan:",
-        time: "Dibuat pada:",
+        time: "Tanggal diperbarui:",
         status: "terpenuhi ",
         give: "DONASI",
 
