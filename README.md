@@ -179,7 +179,8 @@ Since November 2017, following the fork from UrbanRiskMap, we've significantly e
 * Added intelligent clustering of reports by location and disaster type
 * Integrated reports from multiple partner organizations and public sources
 * Added support for crowdlogistics reporting
-####Technical Improvements
+
+#### Technical Improvements
 * Migrated from Leaflet to MapboxGLJS for improved mapping capabilities
 * Enhanced map interaction and user experience
 * Optimized performance for handling larger geographic areas
