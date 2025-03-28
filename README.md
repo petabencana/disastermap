@@ -168,4 +168,20 @@ The release procedure is as follows:
 * Update the version in the package.json file and commit the change.
 * Further development is now on the updated version number until the release process begins again.
 
-### License
+
+### Changes since fork
+Since November 2017, following the fork from UrbanRiskMap, we've significantly enhanced the platform with numerous improvements:
+
+#### Geographic & Reporting Enhancements
+* Upgraded from bounding boxes to precise polygon boundaries for location support
+* Expanded coverage from city-level to national-level geographic scope
+* Implemented multi-disaster reporting capabilities
+* Added intelligent clustering of reports by location and disaster type
+* Integrated reports from multiple partner organizations and public sources
+* Added support for crowdlogistics reporting
+####Technical Improvements
+* Migrated from Leaflet to MapboxGLJS for improved mapping capabilities
+* Enhanced map interaction and user experience
+* Optimized performance for handling larger geographic areas
+* Implemented seamless data integration from diverse sources
+These enhancements have transformed the platform into a more robust, scalable solution for disaster reporting and management at various geographic scales.
