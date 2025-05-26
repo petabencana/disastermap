@@ -355,11 +355,19 @@
       }
       & table#reportTable {
         & tr.vidRows {
+          .videoTitle {
+            font-size: 16px;
+            padding: 5px 7px;
+            font-weight: bold;
+          } 
           & table.vidTable {
             margin: 0;
             & tr {
               & td {
                 border-bottom: 1px solid @steel-gray;
+                &.noBorder {
+                  border: none;
+                }
                 &.labelRow {
                   cursor: pointer;
                   border: none;
@@ -379,6 +387,10 @@
                       & .labelIcon{
                         width: 21px;
                         height: auto;
+                        font-weight: bold;
+                      }
+                      & .needLabelText {
+                        font-weight: bold;
                       }
                     }
                     &.arrows {
@@ -436,11 +448,19 @@
       }
       & table#reportTable {
         & tr.vidRows {
+          .videoTitle {
+            font-size: 16px;
+            padding: 5px 7px;
+            font-weight: bold;
+          } 
           & table.vidTable {
             margin: 0;
             & tr {
               & td {
                 border-bottom: 1px solid @steel-gray;
+                &.noBorder {
+                  border: none;
+                }
                 &.notifylabelRow {
                   cursor: pointer;
                   border: none;
@@ -461,6 +481,9 @@
                         width: 21px;
                         height: auto;
                       }
+                      & .needLabelText {
+                        font-weight: bold;
+                      }
                     }
                     &.arrows {
                       float: right;
@@ -470,6 +493,14 @@
                       display: none;
                     }
                   }
+                }
+                &.privacylabelRow {
+                  border: none;
+                  height: 40px;
+                  border: none;
+                  position: relative;
+                  right: 17px;
+                  .bodyregular-mixin(12px);
                 }
               }
             }
@@ -499,6 +530,33 @@
                       font-size: 18px;
                     }
                   }
+                }
+              }
+              & .needPolicyWrapper {
+                  display: block;
+                  width: 100%;
+                  height: auto;
+                  .bodyregular-mixin(12px);
+                  & iframe {
+                    width: 100%;
+                    border: none;
+                  }
+                  & p {
+                    margin: 0;
+                    padding: 0;
+                    & ul {
+                      list-style: none;
+                      .bodylight-mixin(14px);
+                      line-height: 21px;
+                      padding: 0;
+                    }
+                    & a {
+                      .linklight-mixin(14px);
+                      line-height: 21px;
+                      & i {
+                        font-size: 18px;
+                      }
+                    }
                 }
               }
             }
@@ -546,6 +604,10 @@
 }
 .accordion:hover {
   background-color: #ccc;
+}
+.betaicon {
+  width: 60px;
+  padding: 0 5px;
 }
 
 .panel {
