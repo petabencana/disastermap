@@ -45,6 +45,7 @@ const en = {
             report: "Report",
             legend: "Legend",
             notification: "Notifications",
+            needs: "MUTUAL AID NOW!",
             about: "About"
         }
     },
@@ -373,6 +374,37 @@ const en = {
                 'To unsubscribe, send a WhatsApp message with the text “unsubscribe” to <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA</a> (+62 858-4-2362262)'
             ]
         }
+    },
+    need_content: {
+        whatsapp: {
+            title: "To request needed supplies:",
+            steps: [
+                'Send a message to +62858-4-BENCANA (+62 858-4-2362262) or visit <a target="_blank" href="https://bit.ly/bantuanbencanabot"> https://bit.ly/bantuanbencanabot</a>',
+                'DisasterBot will send you a link to submit your request.',
+                'Choose the type of items you need and confirm delivery location.',
+                'You’ll receive a reply with a link to view your request on the map.',
+                `When someone offers to help, BencanaBot will notify you and assist in coordinating the delivery.`,
+                `You’ll get updates and instructions to receive the items you need.`
+            ]
+        },
+        website: {
+            title: "To give items:",
+            steps: [
+                'Visit <a target="_blank" href="https://petabencana.id"> https://petabencana.id</a> to see current requests.',
+                'Tap a request to see details, then click “Donate” to offer help where you can.',
+                'Choose the items and quantity you can deliver. You don’t have to donate the full amount requested, just what you can!',
+                'DisasterBot will notify the requester and assist in coordinating delivery.',
+                'You’ll get updates and instructions to complete your donation.'
+            ]
+        },
+        title: 'Need or Give Items'
+    },
+    need_policy_content: {
+        steps: [
+            '*We recommend always meeting in a public space.',
+            '**Please ensure that WhatsApp is updated on your device to ensure that DisasterBot can help to coordinate.',
+            '***We do not store any personal information, please visit our privacy policy for more details',
+        ]
     },
     info_content: {
         intro: "PetaBencana.id is a real-time disaster mapping platform for Indonesia. The open-source system uses a novel humanitarian chatbot model to crowdsource disaster reports directly from people on the ground via social media. These reports are verified, sorted, and displayed on a web-based, mobile-centric map in real-time. By placing decision-making tools directly in the hands of residents, first responders, and local governments, PetaBencana.id democratizes disaster response, making critical information freely accessible to everyone.",
