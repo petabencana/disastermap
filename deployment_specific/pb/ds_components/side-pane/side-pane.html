@@ -13,10 +13,15 @@
     <div class=" paneTabs" repeat.for="menuName of menuList">
       <div
         class=" p-2 m-0 accordion" id.bind="'label_' + menuName"
-        textcontent.bind="locale.web_menu.tab_names[menuName]"
         click.delegate="switchTab(menuName)"
       >
-
+      <span textcontent.bind="locale.web_menu.tab_names[menuName]"></span>
+      
+      <img
+        if.bind="menuName === 'needs'"
+        src.bind="need_beta_icon"
+        class="betaicon"
+      />   
     </div>
     <!-- <div class="col-6 col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-0 m-0 text-right">
       <p class="arrows down" id.bind="'down_' + menuName">
@@ -180,6 +185,67 @@
                           <li repeat.for="step of locale.notify_content[method.platform].steps" innerhtml.bind="step">
                           </li>
                         </ol>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- MUTUAL AID NOW -->
+        <div id="content-notifications" if.bind="seltab === 'needs'" class="contentWrapper">
+          <table id="reportTable">
+            <tr class="vidRows">
+              <td>
+                <div class="videoTitle">
+                  ${locale.need_content.title}
+                </div>
+                <table class="vidTable">
+                  <tr click.delegate="showVideo('youtube')">
+                    <td>
+                      <div class="videoWrapper" id="vid_youtube" ref.bind="vid_youtube">
+                        <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0" if.bind="need_youtube_vedio[currentLanguage]" src.bind="need_youtube_vedio[currentLanguage]"></iframe>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr repeat.for="info of needs_info" class="vidRows">
+              <td>
+                <table class="vidTable">
+                  <tr click.delegate="showNotificationSteps()" if.bind="info.platform !== 'content' ">
+                    <td class="notifylabelRow" id.bind="'notification_signup_' + info.platform">
+                      <p class="labelText">
+                        <img class='labelIcon' src.bind='info.icon' />&nbsp;&nbsp; <span class="needLabelText">${locale.need_content[info.platform].title}</span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="wrapRow" if.bind="info.platform !== 'content' ">
+                    <td class="noBorder">
+                      <div class="notificationWrapper" id.bind="'notification_signup_' + info.platform" ref.bind="notificationElement">
+                        <ol>
+                          <li repeat.for="step of locale.need_content[info.platform].steps" innerhtml.bind="step">
+                          </li>
+                        </ol>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>   
+            <tr class="vidRows">
+              <td>
+                <table class="vidTable">
+                  <tr>
+                    <td class="privacylabelRow">
+                      <div class="needPolicyWrapper" id.bind="'notification_signup_' + info.platform" ref.bind="notificationElement">
+                        <ul>
+                          <li repeat.for="step of locale.need_policy_content.steps" innerhtml.bind="step">
+                          </li>
+                        </ul>
                       </div>
                     </td>
                   </tr>

@@ -45,6 +45,7 @@ const id = {
             report: "Laporkan",
             legend: "Legenda",
             notification: "NOTIFIKASI",
+            needs: "GOTONG ROYONG SEKARANG!",
             about: "Tentang"
         }
     },
@@ -375,6 +376,37 @@ const id = {
                 'Untuk berhenti berlangganan, kirim pesan WhatsApp dengan teks “stopinfo” ke <a target="_blank" href="https://bit.ly/BencanaBotWA">https://bit.ly/BencanaBotWA</a> (+62 858-4-2362262)'
             ]
         }
+    },
+    need_content: {
+        whatsapp: {
+            title: "Untuk mengirimkan permintaan bantuan:",
+            steps: [
+                'Kirim pesan ke +62858-4-BENCANA (+62 858-4-2362262) or visit  <a target="_blank" href="https://bit.ly/bantuanbencanabot"> https://bit.ly/bantuanbencanabot</a>',
+                'BencanaBot akan mengirimkan Anda link permintaan bantuan.',
+                'Pilih jenis bantuan yang anda butuhkan dan konfirmasi alamat pengiriman.',
+                'Anda akan mendapatkan balasan berupa link untuk melihat pemintaan anda di Peta Gotong Royong.',
+                `Ketika ada yang ingin memberikan bantuan, BencanaBot akan memberitahu Anda dan membantu mengkoordinasikan pengiriman.`,
+                `Anda akan mendapatkan update dan instruksi berikutnya untuk menerima bantuan yang Anda butuhkan.`
+            ]
+        },
+        website: {
+            title: "Untuk memberikan bantuan:",
+            steps: [
+                'Kunjungi <a target="_blank" href="https://petabencana.id"> https://petabencana.id</a> untuk melihat permintaan bantuan yang ada',
+                'Pilih permintaan bantuan pada peta, kemudian klik “Donasi” untuk memberikan donasi.',
+                'Pilih item donasi dan jumlah yang Anda bisa berikan. Anda tidak perlu mendonasikan seluruh barang, cukup donasikan sesuai dengan kemampuan Anda',
+                'BencanaBot akan memberitahu pihak yang membutuhkan donasi dan membantu Anda dalam proses pengiriman',
+                'Anda akan mendapatkan update dan instruksi untuk menyelesaikan proses donasi'
+            ]
+        },
+        title: 'Minta atau berikan bantuan bencana'
+    },
+    need_policy_content: {
+        steps: [
+            '*Kami menyarankan untuk bertemu di tempat umum',
+            '**Pastikan aplikasi WhatsApp Anda adalah versi terbaru untuk memastikan BencanaBot dapat membantu proses koordinasi bantuan',
+            '***<a target="_blank" href="https://petabencana.id"> petabencana.id</a> tidak akan menyimpan data pribadi Anda, silahkan kunjungi kebijakan privasi kami untuk informasi lebih lanjut',
+        ]
     },
     info_content: {
         intro: "PetaBencana.id adalah platform pemetaan bencana secara real-time untuk Indonesia. Sistem open-source ini menggunakan model chatbot kemanusiaan untuk mengumpulkan laporan bencana langsung dari masyarakat melalui media sosial. Laporan-laporan ini diverifikasi, disortir, dan ditampilkan pada peta berbasis web yang berfokus pada perangkat mobile secara real-time. Dengan menempatkan alat pengambilan keputusan langsung di tangan masyarakat, responden pertama, dan pemerintah daerah, PetaBencana.id membuka akses terhadap informasi bencana, sehingga semua orang dapat memperoleh informasi penting secara mudah.",

@@ -33,7 +33,7 @@ export class SidePane {
     this.locale = {};
     this.currentLanguage = '';
 
-    this.menuList = ['report', 'legend', 'notification', 'about'];
+    this.menuList = ['report', 'legend', 'notification','needs', 'about'];
     // this.seltab = 'about'; //default tab to open
     this.switchTab(this.seltab);
 
@@ -75,6 +75,25 @@ export class SidePane {
         icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
       }
     ];
+
+    this.needs_info = [
+      {
+        platform: 'whatsapp', //Match string to locale/*/translation.json >
+        icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
+      },
+      {
+        platform: 'website',
+        icon: 'deployment_specific/pb/ds_assets/icons/globe.svg'
+      }
+    ];
+
+    this.need_youtube_vedio = {
+      en: 'https://youtube.com/embed/9aD3w9znFUg',
+      id: 'https://youtube.com/embed/9aD3w9znFUg',
+      icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
+    }
+
+    this.need_beta_icon = 'deployment_specific/pb/ds_assets/icons/beta.svg'
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
